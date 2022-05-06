@@ -1,6 +1,5 @@
 package tk.shanebee.hg.listeners;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -65,7 +64,7 @@ public class GameListener implements Listener {
 		ItemStack it = new ItemStack(Material.STICK, 1);
 		ItemMeta im = it.getItemMeta();
 		assert im != null;
-		im.displayName(Component.text(tsn + Config.trackingstickuses));
+		im.setDisplayName(tsn + Config.trackingstickuses);
 		trackingStick = it;
         killManager = plugin.getKillManager();
         BlockUtils.setupBuilder();
@@ -265,8 +264,8 @@ public class GameListener implements Listener {
 		assert im != null;
 		if (im.hasDisplayName())
 		{
-			if (Objects.requireNonNull(im.displayName()).contains(Component.text(tsn))) {
-				int uses = Integer.parseInt(Objects.requireNonNull(im.displayName()).toString().replace(tsn, ""));
+			if (Objects.requireNonNull(im.getDisplayName()).contains(tsn)) {
+				int uses = Integer.parseInt(Objects.requireNonNull(im.getDisplayName()).replace(tsn, ""));
 				if (uses == 0) {
 					Util.scm(p, lang.track_empty);
 				} else {
@@ -275,7 +274,7 @@ public class GameListener implements Listener {
 					for (Entity e : p.getNearbyEntities(120, 50, 120)) {
 						if (e instanceof Player) {
 							if (!g.getGamePlayerData().getPlayers().contains(e.getUniqueId())) continue;
-							im.displayName(Component.text(tsn + (uses - 1)));
+							im.setDisplayName(tsn + (uses - 1));
 							Location l = e.getLocation();
 							int range = (int) p.getLocation().distance(l);
 							Util.scm(p, lang.track_nearest
@@ -376,7 +375,7 @@ public class GameListener implements Listener {
 
         ItemStack item = event.getItem();
         if (item == null || item.getType() != Material.COMPASS) return false;
-        return item.getItemMeta() != null && item.getItemMeta().displayName().toString().equalsIgnoreCase(Util.getColString(lang.spectator_compass));
+        return item.getItemMeta() != null && item.getItemMeta().getDisplayName().equalsIgnoreCase(Util.getColString(lang.spectator_compass));
 
     }
 

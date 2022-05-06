@@ -1,12 +1,7 @@
 package tk.shanebee.hg.game;
 
 import io.papermc.lib.PaperLib;
-import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -17,7 +12,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.Nullable;
 import tk.shanebee.hg.Status;
 import tk.shanebee.hg.data.Config;
-import tk.shanebee.hg.data.Language;
 import tk.shanebee.hg.data.PlayerData;
 import tk.shanebee.hg.events.PlayerJoinGameEvent;
 import tk.shanebee.hg.events.PlayerLeaveGameEvent;
@@ -27,12 +21,7 @@ import tk.shanebee.hg.managers.PlayerManager;
 import tk.shanebee.hg.util.Util;
 import tk.shanebee.hg.util.Vault;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Data class for holding a {@link Game Game's} players
@@ -312,7 +301,7 @@ public class GamePlayerData extends Data {
                 if (Config.enableleaveitem){
                     ItemStack bed = new ItemStack(Material.getMaterial(Config.leaveitemtype), 1);
                     ItemMeta commeta = bed.getItemMeta();
-                    commeta.displayName(Component.text(lang.leave_game));
+                    commeta.setDisplayName(lang.leave_game);
                     bed.setItemMeta(commeta);
                     player.getInventory().setItem(8, bed);
                 }
@@ -320,7 +309,7 @@ public class GamePlayerData extends Data {
                 if (Config.enableforcestartitem && player.hasPermission("hg.forcestart")) {
                     ItemStack start = new ItemStack(Material.getMaterial(Config.forcestartitem), 1);
                     ItemMeta meta = start.getItemMeta();
-                    meta.displayName(Component.text(lang.force_start));
+                    meta.setDisplayName(lang.force_start);
                     start.setItemMeta(meta);
                     player.getInventory().setItem(0, start);
                 }
