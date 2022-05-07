@@ -23,6 +23,7 @@ import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.managers.PlayerManager;
 import tk.shanebee.hg.util.Util;
 
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -31,11 +32,11 @@ import java.util.Random;
  */
 public class ChestDrop implements Listener {
 
-    private FallingBlock fb;
+    private final FallingBlock fb;
     private BlockState beforeBlock;
     private Player invopener;
-    private Chunk c;
-    private PlayerManager playerManager;
+    private final Chunk c;
+    private final PlayerManager playerManager;
 
     public ChestDrop(FallingBlock fb) {
         this.fb = fb;
@@ -102,7 +103,7 @@ public class ChestDrop implements Listener {
         if (event.getClickedBlock() == null) return;
         if (event.getAction() == Action.RIGHT_CLICK_BLOCK && beforeBlock != null && event.getClickedBlock().getLocation().equals(beforeBlock.getLocation())) {
             Player player = event.getPlayer();
-            Game game = playerManager.getPlayerData(player.getUniqueId()).getGame();
+            Game game = Objects.requireNonNull(playerManager.getPlayerData(player.getUniqueId())).getGame();
             Random rg = new Random();
             invopener = player;
 

@@ -11,6 +11,7 @@ import tk.shanebee.hg.Status;
 import tk.shanebee.hg.managers.PlayerManager;
 import tk.shanebee.hg.util.Util;
 
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -18,7 +19,7 @@ import java.util.UUID;
  */
 public class CancelListener implements Listener {
 
-	private PlayerManager playerManager;
+	private final PlayerManager playerManager;
 
 	public CancelListener(HG instance) {
 		this.playerManager = instance.getPlayerManager();
@@ -32,7 +33,7 @@ public class CancelListener implements Listener {
 		String[] st = event.getMessage().split(" ");
 		if (playerManager.hasData(uuid) && !st[0].equalsIgnoreCase("/login")) {
 			if (st[0].equalsIgnoreCase("/hg")) {
-				if (st.length >= 2 && st[1].equalsIgnoreCase("kit") && playerManager.getData(uuid).getGame().getGameArenaData().getStatus() == Status.RUNNING) {
+				if (st.length >= 2 && st[1].equalsIgnoreCase("kit") && Objects.requireNonNull(playerManager.getData(uuid)).getGame().getGameArenaData().getStatus() == Status.RUNNING) {
 					event.setMessage("/");
 					event.setCancelled(true);
 					Util.scm(player, HG.getPlugin().getLang().cmd_handler_nokit);

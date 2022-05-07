@@ -217,7 +217,6 @@
                 <filtering>true</filtering>
                 <targetPath>.</targetPath>
                 <includes>
-                    <include>plugin.yml</include>
                     <include>arena.yml</include>
                     <include>config.yml</include>
                     <include>items.yml</include>
