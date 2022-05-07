@@ -45,7 +45,7 @@ public enum Status {
 	 */
 	COUNTDOWN;
 
-	Language lang = HG.getPlugin().getLang();
+	final Language lang = HG.getPlugin().getLang();
 
 	public String getName() {
         switch (this) {
