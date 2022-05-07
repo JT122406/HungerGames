@@ -25,10 +25,7 @@ import tk.shanebee.hg.tasks.TimerTask;
 import tk.shanebee.hg.util.Util;
 import tk.shanebee.hg.util.Vault;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * General game object
@@ -239,7 +236,7 @@ public class Game {
      */
     public void startFreeRoam() {
         for (UUID p : gamePlayerData.getPlayers()) {
-            Bukkit.getPlayer(p).getInventory().clear();
+            Objects.requireNonNull(Bukkit.getPlayer(p)).getInventory().clear();
         }
         gameArenaData.status = Status.BEGINNING;
         gameBlockData.updateLobbyBlock();
@@ -296,6 +293,7 @@ public class Game {
             Player player = Bukkit.getPlayer(uuid);
             if (player != null) {
                 PlayerData playerData = playerManager.getPlayerData(uuid);
+                assert playerData != null;
                 Location previousLocation = playerData.getPreviousLocation();
 
                 gamePlayerData.heal(player);
@@ -420,7 +418,7 @@ public class Game {
     boolean isGameOver() {
         if (gamePlayerData.players.size() <= 1) return true;
         for (UUID uuid : gamePlayerData.players) {
-            Team team = playerManager.getPlayerData(uuid).getTeam();
+            Team team = Objects.requireNonNull(playerManager.getPlayerData(uuid)).getTeam();
 
             if (team != null && (team.getPlayers().size() >= gamePlayerData.players.size())) {
                 for (UUID u : gamePlayerData.players) {
