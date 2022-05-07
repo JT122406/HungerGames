@@ -83,7 +83,7 @@ public class HG extends JavaPlugin {
 		config = new Config(this);
 		Bukkit.getLogger().info("Loading HungerGames by JT122406");
 		//MythicMob check
-		if (Bukkit.getPluginManager().getPlugin("MythicMobs") != null) {
+		if (Bukkit.getPluginManager().isPluginEnabled("MythicMobs")) {
 			mmMobManager = MythicMobs.inst().getMobManager();
 			Util.log("&7MythicMobs found, MythicMobs hook &aenabled");
 		} else {
@@ -101,14 +101,14 @@ public class HG extends JavaPlugin {
 		leaderboard = new Leaderboard(this);
 
 		//PAPI check
-		if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+		if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
 			new Placeholders(this).register();
 			Util.log("&7PAPI found, Placeholders have been &aenabled");
 		} else {
 			Util.log("&7PAPI not found, Placeholders have been &cdisabled");
 		}
 		//mcMMO check
-		if (Bukkit.getPluginManager().getPlugin("mcMMO") != null) {
+		if (Bukkit.getPluginManager().isPluginEnabled("mcMMO")) {
 		    if (Util.classExists("com.gmail.nossr50.events.skills.secondaryabilities.SubSkillEvent")) {
                 getServer().getPluginManager().registerEvents(new McmmoListeners(this), this);
                 Util.log("&7mcMMO found, mcMMO event hooks &aenabled");
@@ -140,11 +140,6 @@ public class HG extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new WandListener(this), this);
 		getServer().getPluginManager().registerEvents(new CancelListener(this), this);
 		getServer().getPluginManager().registerEvents(new GameListener(this), this);
-
-		if (this.getDescription().getVersion().contains("Beta")) {
-			Util.log("&eYOU ARE RUNNING A BETA VERSION, please use with caution");
-			Util.log("&eReport any issues to: &bhttps://github.com/ShaneBeeStudios/HungerGames/issues");
-		}
 
 		Util.log("HungerGames has been &aenabled&7 in &b%.2f seconds&7!", (float)(System.currentTimeMillis() - start) / 1000);
 	}
