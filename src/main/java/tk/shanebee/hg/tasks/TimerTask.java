@@ -44,8 +44,7 @@ public class TimerTask implements Runnable {
 	@Override
 	public void run() {
 		GameArenaData gameArenaData = game.getGameArenaData();
-		if (game == null || gameArenaData.getStatus() != Status.RUNNING) stop(); //A quick null check!
-		
+		if (gameArenaData.getStatus() != Status.RUNNING) stop(); //A quick null check!
 
 		if (Config.bossbar) game.getGameBarData().bossbarUpdate(remainingtime);
 

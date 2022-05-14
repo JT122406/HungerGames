@@ -1,6 +1,6 @@
 name: HungerGames
 main: tk.shanebee.hg.HG
-authors: [bob7l, Spoopy, ShaneBee]
+authors: [bob7l, Spoopy, ShaneBee, JT122406]
 description: A Simple, fun, PvP arena plugin
 version: '${project.version}'
 website: https://bitbucket.org/ShaneBeeStudios/hungergames
