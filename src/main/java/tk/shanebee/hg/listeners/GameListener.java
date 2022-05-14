@@ -270,6 +270,7 @@ public class GameListener implements Listener {
 					Util.scm(p, lang.track_empty);
 				} else {
 					PlayerData pd = playerManager.getPlayerData(p);
+					assert pd != null;
 					final Game g = pd.getGame();
 					for (Entity e : p.getNearbyEntities(120, 50, 120)) {
 						if (e instanceof Player) {
@@ -360,8 +361,10 @@ public class GameListener implements Listener {
 			PlayerData pd = playerManager.getPlayerData(player);
 			if (gameManager.getGame(player.getLocation()).getGameArenaData().getStatus()  == Status.COUNTDOWN  || gameManager.getGame(player.getLocation()).getGameArenaData().getStatus()  == Status.WAITING) event.setCancelled(true);
 			if (block.getType() == Material.CHEST) {
+				assert pd != null;
 				Bukkit.getServer().getPluginManager().callEvent(new ChestOpenEvent(pd.getGame(), block, false));
 			} else if (BlockUtils.isBonusBlock(block)) {
+				assert pd != null;
 				Bukkit.getServer().getPluginManager().callEvent(new ChestOpenEvent(pd.getGame(), block, true));
 			}
 		}
@@ -380,7 +383,7 @@ public class GameListener implements Listener {
     }
 
     private void handleSpectatorCompass(Player player) {
-        GamePlayerData gamePlayerData = playerManager.getSpectatorData(player).getGame().getGamePlayerData();
+        GamePlayerData gamePlayerData = Objects.requireNonNull(playerManager.getSpectatorData(player)).getGame().getGamePlayerData();
         gamePlayerData.getSpectatorGUI().openInventory(player);
     }
 
@@ -394,13 +397,13 @@ public class GameListener implements Listener {
                 handleSpectatorCompass(player);
             }
         } else if (action != Action.PHYSICAL && playerManager.hasPlayerData(player)) {
-            Status status = playerManager.getPlayerData(player).getGame().getGameArenaData().getStatus();
+            Status status = Objects.requireNonNull(playerManager.getPlayerData(player)).getGame().getGameArenaData().getStatus();
             if (status != Status.RUNNING && status != Status.BEGINNING) {
 				if (event.getItem() != null)
 					if(event.getItem().getType().equals(Material.getMaterial(Config.leaveitemtype))){
-						playerManager.getPlayerData(player).getGame().getGamePlayerData().leave(player, false);
+						Objects.requireNonNull(playerManager.getPlayerData(player)).getGame().getGamePlayerData().leave(player, false);
 					} else if (event.getItem().getType().equals(Material.getMaterial(Config.forcestartitem))){
-						playerManager.getPlayerData(player).getGame().startFreeRoam();
+						Objects.requireNonNull(playerManager.getPlayerData(player)).getGame().startFreeRoam();
 					} else {
 						event.setCancelled(true);
 						Util.scm(player, lang.listener_no_interact);
@@ -453,12 +456,12 @@ public class GameListener implements Listener {
 		if (e.getClickedInventory().getItem(e.getSlot()) == null)
 			return;
 
-		Game game = playerManager.getPlayerData(player).getGame();
+		Game game = Objects.requireNonNull(playerManager.getPlayerData(player)).getGame();
 		Status status = game.getGameArenaData().getStatus();
 		if (status != Status.RUNNING && status != Status.BEGINNING) {
-			if (e.getClickedInventory().getItem(e.getSlot()).equals(Material.getMaterial(Config.leaveitemtype))) {
+			if (Objects.equals(e.getClickedInventory().getItem(e.getSlot()), Material.getMaterial(Config.leaveitemtype))) {
 				game.getGamePlayerData().leave(player,false);
-			} else if (e.getClickedInventory().getItem(e.getSlot()).equals(Material.getMaterial(Config.forcestartitem))) {
+			} else if (Objects.equals(e.getClickedInventory().getItem(e.getSlot()), Material.getMaterial(Config.forcestartitem))) {
 				game.startGame();
 			}
 		}
@@ -475,7 +478,7 @@ public class GameListener implements Listener {
 		if (gameManager.isInRegion(block.getLocation())) {
 
 			if (Config.breakblocks && playerManager.hasPlayerData(player)) {
-                Game game = playerManager.getPlayerData(player).getGame();
+                Game game = Objects.requireNonNull(playerManager.getPlayerData(player)).getGame();
                 GameBlockData gameBlockData = game.getGameBlockData();
                 Status status = game.getGameArenaData().getStatus();
 				if (status == Status.RUNNING || status == Status.BEGINNING) {
@@ -520,7 +523,7 @@ public class GameListener implements Listener {
 		if (gameManager.isInRegion(block.getLocation())) {
 
 			if (Config.breakblocks && playerManager.hasPlayerData(player)) {
-                Game game = playerManager.getPlayerData(player).getGame();
+                Game game = Objects.requireNonNull(playerManager.getPlayerData(player)).getGame();
 				if (game.getGameArenaData().getStatus() == Status.RUNNING || !Config.protectCooldown) {
 					if (!BlockUtils.isBreakableBlock(block)) {
 						Util.scm(player, lang.listener_no_edit_block);
@@ -577,7 +580,7 @@ public class GameListener implements Listener {
 
         if (plugin.getManager().isInRegion(block.getLocation())) {
             if (Config.breakblocks && playerManager.hasPlayerData(player)) {
-                Game game = playerManager.getPlayerData(player).getGame();
+                Game game = Objects.requireNonNull(playerManager.getPlayerData(player)).getGame();
                 GameBlockData gameBlockData = game.getGameBlockData();
                 if (game.getGameArenaData().getStatus() == Status.RUNNING || !Config.protectCooldown) {
                     if (fill && BlockUtils.isBreakableBlock(block)) {
@@ -745,12 +748,14 @@ public class GameListener implements Listener {
 		Player player = event.getPlayer();
 		if (playerManager.hasPlayerData(player)) {
 		    PlayerData playerData = playerManager.getPlayerData(player);
-		    playerData.setOnline(false);
+			assert playerData != null;
+			playerData.setOnline(false);
 			playerData.getGame().getGamePlayerData().leave(player, false);
 		}
 		if (playerManager.hasSpectatorData(player)) {
 		    PlayerData playerData = playerManager.getSpectatorData(player);
-            playerData.setOnline(false);
+			assert playerData != null;
+			playerData.setOnline(false);
 			playerData.getGame().getGamePlayerData().leaveSpectate(player);
 		}
 	}
@@ -772,7 +777,7 @@ public class GameListener implements Listener {
 		if (!Config.spectateChat) {
 			Player spectator = event.getPlayer();
 			if (playerManager.hasSpectatorData(spectator)) {
-				for (UUID uuid : playerManager.getSpectatorData(spectator).getGame().getGamePlayerData().getPlayers()) {
+				for (UUID uuid : Objects.requireNonNull(playerManager.getSpectatorData(spectator)).getGame().getGamePlayerData().getPlayers()) {
 					event.getRecipients().remove(Bukkit.getPlayer(uuid));
 				}
 			}
