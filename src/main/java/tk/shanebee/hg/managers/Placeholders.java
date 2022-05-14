@@ -2,6 +2,7 @@ package tk.shanebee.hg.managers;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
+import org.jetbrains.annotations.NotNull;
 import tk.shanebee.hg.HG;
 import tk.shanebee.hg.data.Language;
 import tk.shanebee.hg.data.Leaderboard;
@@ -32,17 +33,17 @@ public class Placeholders extends PlaceholderExpansion {
     }
 
     @Override
-    public String getIdentifier() {
+    public @NotNull String getIdentifier() {
         return "hungergames";
     }
 
     @Override
-    public String getAuthor() {
+    public @NotNull String getAuthor() {
         return plugin.getDescription().getAuthors().toString();
     }
 
     @Override
-    public String getVersion() {
+    public @NotNull String getVersion() {
         return plugin.getDescription().getVersion();
     }
 

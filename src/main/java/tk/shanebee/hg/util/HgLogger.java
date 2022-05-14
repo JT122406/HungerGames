@@ -20,8 +20,7 @@ public class HgLogger extends Logger {
 
     @Override
     public void info(String msg) {
-        String message = msg.replace("[NBTAPI]", "&7[&bNBT&3API&7]");
-        Util.log(message);
+        Util.log(msg.replace("[NBTAPI]", "&7[&bNBT&3API&7]"));
     }
 
 }

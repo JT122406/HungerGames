@@ -26,8 +26,7 @@ public class SpectatorGUI implements InventoryHolder, Listener {
 
     public SpectatorGUI(Game game) {
         this.game = game;
-        int size = (game.getGameArenaData().getMaxPlayers() / 9) + 1;
-        inv = Bukkit.createInventory(this, 9 * Math.min(size, 6), game.getGameArenaData().getName());
+        inv = Bukkit.createInventory(this, 9 * Math.min((game.getGameArenaData().getMaxPlayers() / 9) + 1, 6), game.getGameArenaData().getName());
         Bukkit.getPluginManager().registerEvents(this, HG.getPlugin());
     }
 
@@ -71,14 +70,13 @@ public class SpectatorGUI implements InventoryHolder, Listener {
         if (!game.getGamePlayerData().getSpectators().contains(event.getWhoClicked().getUniqueId())) return;
 
         event.setCancelled(true);
-        Player player = ((Player) event.getWhoClicked());
         ItemStack clickedItem = event.getCurrentItem();
 
         if (clickedItem == null || clickedItem.getType() == Material.AIR) return;
         if (!(clickedItem.getItemMeta() instanceof SkullMeta)) return;
         Player clicked = getClicked(((SkullMeta) clickedItem.getItemMeta()));
         if (clicked == null) return;
-        player.teleport(clicked);
+        event.getWhoClicked().teleport(clicked);
     }
 
     private Player getClicked(SkullMeta meta) {
