@@ -20,15 +20,13 @@ public class FreeRoamTask implements Runnable {
         this.roamTime = game.getGameArenaData().getRoamTime();
 
         Language lang = HG.getPlugin().getLang();
-        String gameStarted = lang.roam_game_started;
-        String roamTimeString = lang.roam_time.replace("<roam>", "" + roamTime);
 
         for (UUID u : game.getGamePlayerData().getPlayers()) {
             Player player = Bukkit.getPlayer(u);
             if (player != null) {
-                Util.scm(player, gameStarted);
+                Util.scm(player, lang.roam_game_started);
                 if (roamTime > 0) {
-                    Util.scm(player, roamTimeString);
+                    Util.scm(player, lang.roam_time.replace("<roam>", "" + roamTime));
                 }
                 player.setHealth(20);
                 player.setFoodLevel(20);

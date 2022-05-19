@@ -3,6 +3,7 @@ package tk.shanebee.hg.events;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 import tk.shanebee.hg.game.Game;
 
 /**
@@ -44,7 +45,7 @@ public class PlayerLeaveGameEvent extends Event {
 	}
 
 	@Override
-	public HandlerList getHandlers() {
+	public @NotNull HandlerList getHandlers() {
 		return handlers;
 	}
 

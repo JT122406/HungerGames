@@ -50,8 +50,7 @@ public class NBTApi {
         if (!enabled) {
             return "NBT-API not available";
         }
-        NBTItem nbtItem = new NBTItem(item);
-        return nbtItem.getCompound().toString().replace("§", "&");
+        return new NBTItem(item).getCompound().toString().replace("§", "&");
     }
     
     public boolean isEnabled() {

@@ -6,7 +6,7 @@
 
     <groupId>tk.shanebee.hg</groupId>
     <artifactId>HungerGames</artifactId>
-    <version>5.0.1</version>
+    <version>5.0.2</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -96,7 +96,7 @@
         <dependency>
             <groupId>com.alessiodp.parties</groupId>
             <artifactId>parties-api</artifactId>
-            <version>3.2.4</version>
+            <version>3.2.5</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

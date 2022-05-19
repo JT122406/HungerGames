@@ -37,10 +37,7 @@ public class Parties implements Party{
     @Override
     public boolean isOwner(Player p) {
         PartyPlayer pp = api.getPartyPlayer(p.getUniqueId());
-        if (pp == null || pp.getPartyId() == null) {
-            return false;
-        }
-        return true;
+        return pp != null && pp.getPartyId() != null;
     }
 
     @Override
@@ -51,6 +48,7 @@ public class Parties implements Party{
             if (null != pp) {
                 if (pp.getPartyId() != null) {
                     com.alessiodp.parties.api.interfaces.Party party = api.getParty(pp.getPartyId());
+                    assert party != null;
                     for (PartyPlayer member : party.getOnlineMembers()) {
                         players.add(Bukkit.getPlayer(member.getPlayerUUID()));
                     }

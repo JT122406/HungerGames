@@ -49,11 +49,9 @@ public class ChestDropTask implements Runnable {
             }
         }
 
-        y = y + 10;
+        y += 10;
 
-        Location l = new Location(w, x, y, z);
-
-        FallingBlock fb = w.spawnFallingBlock(l, Bukkit.getServer().createBlockData(Material.STRIPPED_SPRUCE_WOOD));
+        FallingBlock fb = w.spawnFallingBlock(new Location(w, x, y, z), Bukkit.getServer().createBlockData(Material.STRIPPED_SPRUCE_WOOD));
 
         chests.add(new ChestDrop(fb));
 

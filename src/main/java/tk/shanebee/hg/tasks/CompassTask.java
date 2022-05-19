@@ -39,6 +39,7 @@ public class CompassTask implements Runnable {
 					for (ItemStack it : p.getInventory()) {
 						if (it != null && it.getType() == Material.COMPASS) {
 							ItemMeta im = it.getItemMeta();
+							assert im != null;
 							im.setDisplayName(info);
 							it.setItemMeta(im);
 						}
@@ -60,10 +61,6 @@ public class CompassTask implements Runnable {
 
 		Game g = pd.getGame();
 
-		int x = p.getLocation().getBlockX();
-		int y = p.getLocation().getBlockY();
-		int z = p.getLocation().getBlockZ();
-
 		int i = 200000;
 
 		Player player = null;
@@ -76,7 +73,7 @@ public class CompassTask implements Runnable {
 
 				Location l = p2.getLocation();
 
-				int c = cal((int) (x - l.getX())) + cal((int) (y - l.getY())) + cal((int) (z - l.getZ()));
+				int c = cal((int) (p.getLocation().getBlockX() - l.getX())) + cal((int) (p.getLocation().getBlockY() - l.getY())) + cal((int) (p.getLocation().getBlockZ() - l.getZ()));
 
 				if (i > c) {
 					player = p2;
