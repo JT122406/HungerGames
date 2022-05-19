@@ -18,14 +18,14 @@ settings:
     # If disabled, this will only broadcast to players in that specific game
     broadcast-join-messages: true
     # When enabled, winners will be broadcast to the whole server
-    # If disable, winners will only broadcast to players who played that specific game
+    # If disabled, winners will only broadcast to players who played that specific game
     broadcast-win-messages: true
     # If mobs will spawn in the arena, and their interval
     spawn-mobs: true
     spawn-mobs-interval: 35
     # The time once the game starts, how long they are safe from PvP (In seconds)
     free-roam: 25
-    # Whether or not to show a countdown bossbar in game
+    # Whether to show a countdown bossbar in game
     bossbar-countdown: true
     # The amount of uses a tracking stick will have
     trackingstick-uses: 8
