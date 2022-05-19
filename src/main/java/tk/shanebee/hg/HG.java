@@ -65,7 +65,7 @@ public class HG extends JavaPlugin {
             return;
         }
 		Metrics metrics1 = new org.bstats.bukkit.Metrics(this, 15119);
-		metrics1.addCustomChart(new SimplePie("partyplugin", () -> party.getClass().getName()));
+		metrics1.addCustomChart(new SimplePie("partyplugin", () -> party.getClass().getName().replaceAll("tk.shanebee.hg.util","")));
         loadPlugin(true);
     }
     public void loadPlugin(boolean load) {
