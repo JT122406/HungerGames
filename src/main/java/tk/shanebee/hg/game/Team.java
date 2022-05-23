@@ -8,6 +8,7 @@ import tk.shanebee.hg.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -27,6 +28,7 @@ public class Team {
         this.leader = leader.getUniqueId();
         PlayerData playerData = plugin.getPlayerManager().getPlayerData(leader);
         players.add(leader.getUniqueId());
+        assert playerData != null;
         playerData.setTeam(this);
         playerData.setPendingTeam(null);
 
@@ -49,7 +51,7 @@ public class Team {
         Util.scm(player, HG.getPlugin().getLang().team_invite_3);
         Util.scm(player, HG.getPlugin().getLang().team_invite_4);
         pending.add(player.getUniqueId());
-        HG.getPlugin().getPlayerManager().getData(player).setPendingTeam(this);
+        Objects.requireNonNull(HG.getPlugin().getPlayerManager().getData(player)).setPendingTeam(this);
     }
 
     /**
@@ -59,6 +61,7 @@ public class Team {
      */
     public void acceptInvite(Player player) {
         PlayerData playerData = HG.getPlugin().getPlayerManager().getPlayerData(player);
+        assert playerData != null;
         playerData.setPendingTeam(null);
         playerData.setTeam(this);
         pending.remove(player.getUniqueId());

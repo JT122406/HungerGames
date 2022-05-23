@@ -84,7 +84,7 @@ public class GamePlayerData extends Data {
     // Utility methods
 
     private void kitHelp(Player player) {
-        // Clear the chat a little bit, making this message easier to see
+        // Clear the chat a little, making this message easier to see
         for (int i = 0; i < 20; ++i)
             Util.scm(player, " ");
         String kit = game.kitManager.getKitListString();
@@ -299,16 +299,18 @@ public class GamePlayerData extends Data {
                 kills.put(player, 0);
 
                 if (Config.enableleaveitem){
-                    ItemStack bed = new ItemStack(Material.getMaterial(Config.leaveitemtype), 1);
+                    ItemStack bed = new ItemStack(Objects.requireNonNull(Material.getMaterial(Config.leaveitemtype)), 1);
                     ItemMeta commeta = bed.getItemMeta();
+                    assert commeta != null;
                     commeta.setDisplayName(lang.leave_game);
                     bed.setItemMeta(commeta);
                     player.getInventory().setItem(8, bed);
                 }
 
                 if (Config.enableforcestartitem && player.hasPermission("hg.forcestart")) {
-                    ItemStack start = new ItemStack(Material.getMaterial(Config.forcestartitem), 1);
+                    ItemStack start = new ItemStack(Objects.requireNonNull(Material.getMaterial(Config.forcestartitem)), 1);
                     ItemMeta meta = start.getItemMeta();
+                    assert meta != null;
                     meta.setDisplayName(lang.force_start);
                     start.setItemMeta(meta);
                     player.getInventory().setItem(0, start);
@@ -362,6 +364,7 @@ public class GamePlayerData extends Data {
         }
         heal(player);
         PlayerData playerData = playerManager.getPlayerData(uuid);
+        assert playerData != null;
         Location previousLocation = playerData.getPreviousLocation();
 
         playerData.restore(player);
@@ -440,6 +443,7 @@ public class GamePlayerData extends Data {
     public void leaveSpectate(Player spectator) {
         UUID uuid = spectator.getUniqueId();
         PlayerData playerData = playerManager.getSpectatorData(uuid);
+        assert playerData != null;
         Location previousLocation = playerData.getPreviousLocation();
 
         playerData.restore(spectator);

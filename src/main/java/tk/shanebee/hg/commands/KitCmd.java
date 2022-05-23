@@ -22,7 +22,6 @@ public class KitCmd extends BaseCmd {
 		    return false;
         }
 		if (st == Status.WAITING || st == Status.COUNTDOWN) {
-			player.getInventory().clear();
 			game.getKitManager().setKit(player, args[1]);
 			//Bukkit.getScheduler().runTaskLater(plugin, () -> game.getKitManager().setKit(player, args[1]), 10L);
 		} else {

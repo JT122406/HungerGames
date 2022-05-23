@@ -460,8 +460,10 @@ public class GameListener implements Listener {
 		Status status = game.getGameArenaData().getStatus();
 		if (status != Status.RUNNING && status != Status.BEGINNING) {
 			if (Objects.equals(Objects.requireNonNull(e.getClickedInventory().getItem(e.getSlot())).getType(), Material.getMaterial(Config.leaveitemtype))) {
+				Util.clearInv(player);
 				game.getGamePlayerData().leave(player,false);
 			} else if (Objects.equals(Objects.requireNonNull(e.getClickedInventory().getItem(e.getSlot())).getType(), Material.getMaterial(Config.forcestartitem))) {
+				Util.clearInv(player);
 				game.startGame();
 			}
 		}

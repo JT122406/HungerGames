@@ -14,7 +14,7 @@ import tk.shanebee.hg.data.Language;
  */
 public class KillManager {
     
-    private Language lang = HG.getPlugin().getLang();
+    private final Language lang = HG.getPlugin().getLang();
 
     /** Get the death message when a player dies of natural causes (non-entity involved deaths)
      * @param dc Cause of the damage

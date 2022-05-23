@@ -15,6 +15,7 @@ import tk.shanebee.hg.util.PotionEffectUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Manager for mob spawning in games
@@ -50,8 +51,8 @@ public class MobManager {
                 if (getSection(key) != null) {
                     MobEntry entry;
                     // MYTHIC MOB
-                    if (getString(key, "type").startsWith("MM:") && HG.getPlugin().getMmMobManager() != null) {
-                        String mythicMob = getString(key, "type").replace("MM:", "");
+                    if (Objects.requireNonNull(getString(key, "type")).startsWith("MM:") && HG.getPlugin().getMmMobManager() != null) {
+                        String mythicMob = Objects.requireNonNull(getString(key, "type")).replace("MM:", "");
                         entry = new MobEntry(mythicMob, getInt(key, "level"));
                     }
                     // REGULAR MOB

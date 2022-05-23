@@ -92,15 +92,6 @@ public enum PotionTypeUtils {
     }
 
     /**
-     * Get Bukkit key for PotionType
-     *
-     * @return Bukkit key
-     */
-    public String getBukkitKey() {
-        return bukkit;
-    }
-
-    /**
      * Get PotionData from a String
      * <p><b>Formats:</b>
      * <br>POTION-TYPE (optional start with 'LONG_' or 'STRONG_')

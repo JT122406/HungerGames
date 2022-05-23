@@ -12,9 +12,9 @@ import tk.shanebee.hg.data.Leaderboard;
  */
 public class Placeholders extends PlaceholderExpansion {
 
-    private HG plugin;
-    private Leaderboard leaderboard;
-    private Language lang;
+    private final HG plugin;
+    private final Leaderboard leaderboard;
+    private final Language lang;
 
     public Placeholders(HG plugin) {
         this.plugin = plugin;

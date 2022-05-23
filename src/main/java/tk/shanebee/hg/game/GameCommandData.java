@@ -90,7 +90,7 @@ public class GameCommandData extends Data {
          */
         JOIN("join");
 
-        String type;
+        final String type;
 
         CommandType(String type) {
             this.type = type;

@@ -105,6 +105,8 @@ public class GameBarData extends Data {
      *
      * @return Associated bossbar
      */
+
+    @Deprecated
     public BossBar getBossBar() {
         return this.bar;
     }

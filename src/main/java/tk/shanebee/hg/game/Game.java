@@ -235,9 +235,6 @@ public class Game {
      * Start the free roam state of the game
      */
     public void startFreeRoam() {
-        for (UUID p : gamePlayerData.getPlayers()) {
-            Objects.requireNonNull(Bukkit.getPlayer(p)).getInventory().clear();
-        }
         gameArenaData.status = Status.BEGINNING;
         gameBlockData.updateLobbyBlock();
         gameArenaData.bound.removeEntities();
