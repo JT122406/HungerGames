@@ -1,12 +1,15 @@
 package tk.shanebee.hg.tasks;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import tk.shanebee.hg.HG;
 import tk.shanebee.hg.data.Config;
 import tk.shanebee.hg.data.Language;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.Util;
+
+import java.util.Objects;
 
 public class StartingTask implements Runnable {
 
@@ -39,11 +42,13 @@ public class StartingTask implements Runnable {
         if (timer <= 0) {
             //clear inventory on game start
 
-            if (Config.enableleaveitem ||Config.enableforcestartitem)
+            if (Config.enableleaveitem || Config.enableforcestartitem)
                 game.getGamePlayerData().getPlayers().forEach(uuid -> {
                     Player player = Bukkit.getPlayer(uuid);
                     assert player != null;
-                    player.getInventory().clear();
+                    if (player.getInventory().contains(Objects.requireNonNull(Material.getMaterial(Config.forcestartitem)))  || player.getInventory().contains(Objects.requireNonNull(Material.getMaterial(Config.leaveitemtype)))) {
+                        player.getInventory().clear();
+                    }
                 });
 
 
