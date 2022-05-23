@@ -38,11 +38,15 @@ public class StartingTask implements Runnable {
 
         if (timer <= 0) {
             //clear inventory on game start
-            game.getGamePlayerData().getPlayers().forEach(uuid -> {
-                Player player = Bukkit.getPlayer(uuid);
-                assert player != null;
-                player.getInventory().clear();
-            });
+
+            if (Config.enableleaveitem ||Config.enableforcestartitem)
+                game.getGamePlayerData().getPlayers().forEach(uuid -> {
+                    Player player = Bukkit.getPlayer(uuid);
+                    assert player != null;
+                    player.getInventory().clear();
+                });
+
+
             stop();
             game.startFreeRoam();
         } else {
