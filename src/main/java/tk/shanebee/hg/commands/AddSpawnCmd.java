@@ -7,6 +7,7 @@ import tk.shanebee.hg.game.GameArenaData;
 import tk.shanebee.hg.util.Util;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AddSpawnCmd extends BaseCmd {
 
@@ -31,7 +32,7 @@ public class AddSpawnCmd extends BaseCmd {
 				return true;
 			}
 		}
-		d.add(l.getWorld().getName() + ":" + l.getBlockX() + ":" + l.getBlockY() + ":" + l.getBlockZ() + ":" + l.getYaw() + ":" + l.getPitch());
+		d.add(Objects.requireNonNull(l.getWorld()).getName() + ":" + l.getBlockX() + ":" + l.getBlockY() + ":" + l.getBlockZ() + ":" + l.getYaw() + ":" + l.getPitch());
 		c.set("arenas." + gameArenaData.getName() + ".spawns", d);
 		gameArenaData.addSpawn(l);
 		arenaConfig.saveCustomConfig();

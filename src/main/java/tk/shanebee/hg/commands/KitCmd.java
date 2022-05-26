@@ -3,6 +3,9 @@ package tk.shanebee.hg.commands;
 import tk.shanebee.hg.Status;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.Util;
+
+import java.util.Objects;
+
 public class KitCmd extends BaseCmd {
 
 	public KitCmd() {
@@ -15,7 +18,7 @@ public class KitCmd extends BaseCmd {
 
 	@Override
 	public boolean run() {
-		Game game = playerManager.getPlayerData(player).getGame();
+		Game game = Objects.requireNonNull(playerManager.getPlayerData(player)).getGame();
 		Status st = game.getGameArenaData().getStatus();
 		if (!game.getKitManager().hasKits()) {
 		    Util.scm(player, lang.kit_disabled);

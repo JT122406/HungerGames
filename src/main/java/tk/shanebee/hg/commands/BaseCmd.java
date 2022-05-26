@@ -31,7 +31,7 @@ public abstract class BaseCmd {
 	public String usage = "";
 	public Player player;
 
-	public boolean processCmd(HG plugin, CommandSender sender, String[] args) {
+	public void processCmd(HG plugin, CommandSender sender, String[] args) {
 		this.sender = sender;
 		this.args = args;
 		this.playerManager = plugin.getPlayerManager();
@@ -40,7 +40,7 @@ public abstract class BaseCmd {
 		this.lang = plugin.getLang();
 
 		if (forcePlayer) {
-			if (!(sender instanceof Player)) return false;
+			if (!(sender instanceof Player)) return;
 			else player = (Player) sender;
 		}
 		if (!sender.hasPermission("hg." + cmdName))
@@ -51,8 +51,9 @@ public abstract class BaseCmd {
 			Util.scm(this.sender, lang.cmd_base_noregion);
 		else if (argLength > args.length)
 			Util.scm(sender, lang.cmd_base_wrongusage + " " + sendHelpLine());
-		else return run();
-		return true;
+		else {
+			run();
+		}
 	}
 
 	public abstract boolean run();

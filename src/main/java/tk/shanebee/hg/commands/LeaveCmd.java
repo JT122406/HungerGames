@@ -7,6 +7,8 @@ import tk.shanebee.hg.game.GameArenaData;
 import tk.shanebee.hg.util.Util;
 import tk.shanebee.hg.util.Vault;
 
+import java.util.Objects;
+
 public class LeaveCmd extends BaseCmd {
 
 	public LeaveCmd() {
@@ -20,7 +22,7 @@ public class LeaveCmd extends BaseCmd {
 	public boolean run() {
 		Game game;
 		if (playerManager.hasPlayerData(player)) {
-			game = playerManager.getPlayerData(player).getGame();
+			game = Objects.requireNonNull(playerManager.getPlayerData(player)).getGame();
 			if (Config.economy) {
 				GameArenaData gameArenaData = game.getGameArenaData();
 				Status status = gameArenaData.getStatus();
@@ -32,7 +34,7 @@ public class LeaveCmd extends BaseCmd {
 			}
 			game.getGamePlayerData().leave(player, false);
 		} else {
-			game = playerManager.getSpectatorData(player).getGame();
+			game = Objects.requireNonNull(playerManager.getSpectatorData(player)).getGame();
 			game.getGamePlayerData().leaveSpectate(player);
 		}
 		Util.scm(player, lang.prefix + lang.cmd_leave_left.replace("<arena>", game.getGameArenaData().getName()));

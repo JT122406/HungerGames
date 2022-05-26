@@ -1,8 +1,7 @@
 package tk.shanebee.hg.commands;
 
-import tk.shanebee.hg.game.Game;
-import tk.shanebee.hg.HG;
 import tk.shanebee.hg.Status;
+import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.game.GamePlayerData;
 import tk.shanebee.hg.util.Util;
 
@@ -23,7 +22,7 @@ public class SpectateCmd extends BaseCmd {
 		} else {
 			Game game = gameManager.getGame(args[1]);
 			GamePlayerData gamePlayerData = game.getGamePlayerData();
-			if (game != null && !gamePlayerData.getPlayers().contains(player.getUniqueId()) && !gamePlayerData.getSpectators().contains(player.getUniqueId())) {
+			if (!gamePlayerData.getPlayers().contains(player.getUniqueId()) && !gamePlayerData.getSpectators().contains(player.getUniqueId())) {
 				Status status = game.getGameArenaData().getStatus();
 				if (status == Status.RUNNING || status == Status.BEGINNING) {
 					gamePlayerData.spectate(player);

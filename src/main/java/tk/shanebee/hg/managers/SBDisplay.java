@@ -27,6 +27,7 @@ public class SBDisplay {
 
 	public SBDisplay(Game game) {
 		this.manager = Bukkit.getScoreboardManager();
+		assert manager != null;
 		this.board = manager.getNewScoreboard();
 		this.ob = board.registerNewObjective(ChatColor.translateAlternateColorCodes('&', HG.getPlugin().getLang().players_alive), "dummy", "arena" + game.getGameArenaData().getName());
 		this.ob.setDisplaySlot(DisplaySlot.SIDEBAR);

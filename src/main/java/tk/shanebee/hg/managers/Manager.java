@@ -20,10 +20,7 @@ import tk.shanebee.hg.game.GameArenaData;
 import tk.shanebee.hg.game.GameItemData;
 import tk.shanebee.hg.util.Util;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * General manager for games
@@ -64,7 +61,7 @@ public class Manager {
 			maxplayers = arenadat.getInt("arenas." + gameName + ".info." + "max-players");
 
 			if (arenadat.isSet("arenas." + gameName + ".border.center")) {
-				borderCenter = HG.getPlugin().getArenaConfig().getSLoc(arenadat.getString("arenas." + gameName + ".border.center"));
+				borderCenter = HG.getPlugin().getArenaConfig().getSLoc(Objects.requireNonNull(arenadat.getString("arenas." + gameName + ".border.center")));
 			}
 			if (arenadat.isSet("arenas." + gameName + ".border.size")) {
 				borderSize = arenadat.getInt("arenas." + gameName + ".border.size");
@@ -88,7 +85,7 @@ public class Manager {
 		}
 
 		try {
-			lobbysign = (Sign) HG.getPlugin().getArenaConfig().getSLoc(arenadat.getString("arenas." + gameName + "." + "lobbysign")).getBlock().getState();
+			lobbysign = (Sign) HG.getPlugin().getArenaConfig().getSLoc(Objects.requireNonNull(arenadat.getString("arenas." + gameName + "." + "lobbysign"))).getBlock().getState();
 		} catch (Exception e) { 
 			Util.scm(sender, "&cUnable to load lobbysign for arena " + gameName + "!");
 			isReady = false;

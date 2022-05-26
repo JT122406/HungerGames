@@ -2,6 +2,7 @@ package tk.shanebee.hg.data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 import tk.shanebee.hg.HG;
 import tk.shanebee.hg.util.Util;
@@ -176,7 +177,7 @@ public class KitEntry {
 			player.removePotionEffect(effect.getType());
 		}
 		player.addPotionEffects(potions);
-		HG.getPlugin().getPlayerManager().getPlayerData(player.getUniqueId()).getGame().getGamePlayerData().freeze(player);
+		Objects.requireNonNull(HG.getPlugin().getPlayerManager().getPlayerData(player.getUniqueId())).getGame().getGamePlayerData().freeze(player);
 		player.updateInventory();
 	}
 

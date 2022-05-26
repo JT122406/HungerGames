@@ -36,8 +36,7 @@ public class PlayerSession {
     }
 
     public boolean hasValidSelection() {
-        if (loc1 == null || loc2 == null) return false;
-        return true;
+        return loc1 != null && loc2 != null;
     }
 
     public boolean isBigEnough() {

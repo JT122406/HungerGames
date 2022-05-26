@@ -22,6 +22,7 @@ public class TeamCmd extends BaseCmd {
     @Override
     public boolean run() {
         PlayerData pd = playerManager.getPlayerData(player.getUniqueId());
+        assert pd != null;
         Game game = pd.getGame();
 
         if (args[1].equalsIgnoreCase("create")) {

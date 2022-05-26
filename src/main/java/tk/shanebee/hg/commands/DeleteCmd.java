@@ -1,16 +1,14 @@
 package tk.shanebee.hg.commands;
 
-import tk.shanebee.hg.game.Game;
-import tk.shanebee.hg.HG;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import tk.shanebee.hg.Status;
+import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.game.GameArenaData;
 import tk.shanebee.hg.game.GamePlayerData;
 import tk.shanebee.hg.util.Util;
 
 import java.util.UUID;
-
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 
 public class DeleteCmd extends BaseCmd {
 
