@@ -82,6 +82,8 @@ public class HG extends JavaPlugin {
 
 		config = new Config(this);
 		Bukkit.getLogger().info("Loading HungerGames by JT122406");
+
+		Bukkit.getLogger().info("Your server version is: " + getServer().getVersion());
 		//MythicMob check
 		if (Bukkit.getPluginManager().isPluginEnabled("MythicMobs")) {
 			mmMobManager = MythicMobs.inst().getMobManager();

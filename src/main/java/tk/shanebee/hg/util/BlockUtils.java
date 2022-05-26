@@ -23,11 +23,13 @@ public class BlockUtils {
     public static void setupBuilder() {
         BONUS_BLOCK_MATERIALS = setup(Config.bonusBlockTypes).build();
 
-        if (Config.blocks.contains("ALL")) {
-            BREAKABLE_BLOCK_ALL = true;
-        } else {
-            BREAKABLE_BLOCK_MATERIALS = setup(Config.blocks).build();
+        for (String string : Config.blocks) {
+            if (string.equalsIgnoreCase("all")) {
+                BREAKABLE_BLOCK_ALL = true;
+                return;
+            }
         }
+            BREAKABLE_BLOCK_MATERIALS = setup(Config.blocks).build();
     }
 
     /**
