@@ -4,7 +4,7 @@ authors: [bob7l, Spoopy, ShaneBee, JT122406]
 description: A Simple, fun, PvP arena plugin
 version: '${project.version}'
 website: https://bitbucket.org/ShaneBeeStudios/hungergames
-api-version: '1.13'
+api-version: '1.14.4'
 softdepend: [Multiverse-Core, MultiWorld, Vault, My_Worlds, GoldenEnchants, mcMMO, MythicMobs, PlaceholderAPI, XConomy, PartyAndFriends, Spigot-Party-API-PAF, Parties]
 
 commands:

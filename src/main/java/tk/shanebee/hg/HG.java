@@ -84,8 +84,8 @@ public class HG extends JavaPlugin {
 		Bukkit.getLogger().info("Loading HungerGames by JT122406");
 
 		//Bukkit.getLogger().info("Your server version is: " + getServer().getVersion() + "     Your Java Version is " + System.getProperty("java.version"));
-		Double Version =Double.parseDouble(System.getProperty("java.version"));
-		if (Version == 1.8  || Version < 11) {
+		double Version =Double.parseDouble(System.getProperty("java.version"));
+		if (Version < 11) {
 			Bukkit.getLogger().info("Your Java Version is " + System.getProperty("java.version") + "     This plugin requires Java 11 or higher");
 			Bukkit.getPluginManager().disablePlugin(this);
 			return;
