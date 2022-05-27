@@ -83,7 +83,18 @@ public class HG extends JavaPlugin {
 		config = new Config(this);
 		Bukkit.getLogger().info("Loading HungerGames by JT122406");
 
-		Bukkit.getLogger().info("Your server version is: " + getServer().getVersion());
+		//Bukkit.getLogger().info("Your server version is: " + getServer().getVersion() + "     Your Java Version is " + System.getProperty("java.version"));
+		Double Version =Double.parseDouble(System.getProperty("java.version"));
+		if (Version == 1.8  || Version < 11) {
+			Bukkit.getLogger().info("Your Java Version is " + System.getProperty("java.version") + "     This plugin requires Java 11 or higher");
+			Bukkit.getPluginManager().disablePlugin(this);
+			return;
+		} else if (Version <= 16) {
+			Bukkit.getLogger().info("Your Java Version is " + System.getProperty("java.version") + "     This plugin is compatible with your version but we suggest you update to Java 17 or higher");
+		}else {
+			Bukkit.getLogger().info("Your Java Version is " + System.getProperty("java.version") + "     This plugin is compatible with your version~");
+
+		}
 		//MythicMob check
 		if (Bukkit.getPluginManager().isPluginEnabled("MythicMobs")) {
 			mmMobManager = MythicMobs.inst().getMobManager();
