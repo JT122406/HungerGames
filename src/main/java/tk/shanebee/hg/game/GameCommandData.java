@@ -53,7 +53,7 @@ public class GameCommandData extends Data {
             String type = command.split(":")[0];
             if (!type.equals(commandType.getType())) continue;
             if (command.equalsIgnoreCase("none")) continue;
-            command = command.split(":")[1]
+            command = command.split(":", 2)[1]
                     .replace("<world>", game.gameArenaData.bound.getWorld().getName())
                     .replace("<arena>", game.gameArenaData.getName());
             if (player != null) {
