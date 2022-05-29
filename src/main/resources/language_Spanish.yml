@@ -1,0 +1,262 @@
+#  This is the language file
+#  Change the messages to your liking
+#  Supports '&' color codes
+#  Messages that contain <> indicate things that the plugin replaces, such as <player> or <distance>
+#  Comments in this file will be removed if we update messages during a plugin update
+#  To restore these messages, backup this file, delete it, and restart your server, this will create a new lang file with all the notes
+
+#  GENERAL PLUGIN MESSAGES
+prefix: '&7&l[&3&lHungerGames&7&l] '
+
+#  GAME MESSAGES
+#  <player> will be replaced with name of player
+player-joined-game: '&b&l<player> &7se ha unido a la partida'
+player-left-game: '&b&l<player> &cha abandonado la partida'
+#  <arena> will be replaced with the name of the arena
+game-started: '&6&l ¡La batalla en la arena &c&l<arena> &6&lempezará en 30 segundos!'
+game-join: '&6&l Usa:&c&l /hg join <arena>&6&l para unirte'
+game-countdown: 'La batalla empezará en <timer> segundos..'
+game-almost-over: '&l&cLa batalla está a punto de acabar. ¡Luchad a muerte!'
+game-ending-minsec: '&a¡La batalla acabará en <minutes> minuto(s), y <seconds> segundo(s)!'
+game-ending-min: '&aLa batalla acabará en <minutes> minuto(s)!'
+game-ending-sec: '&aLa batalla acabará en <seconds> segundo(s)!'
+game-border-closing: '&6El borde se acerca. ¡Tienes <seconds> segundos para llegar al centro de la arena!'
+game-chests-refill: '&6¡Los cofres se han rellenado!'
+
+# <min>/<sec> will be replaced with the remaining minutes and seconds in a game
+game-bossbar: '&6&lLa batalla acaba en: &b&l<min> &7min &b&l<sec> &7seg'
+
+#  <amount> will be replaced with amount of players left to start a game
+players-to-start: '&b&l<amount> &6jugadores para empezar'
+arena-not-ready: '&c¡La arena no está lista! Porfavor espera antes de unirte'
+arena-spectate: '&6Puedes espectar la batalla usando: &3/hg spectate <arena>'
+game-full: '&cis ¡La arena está completa!'
+
+#  <arena> will be replaced with name of arena the player won in
+#  <winner> will be replaced with name of winner
+player-won: '&b&l<winner> &6ha ganado la batalla en la arena &b&l<arena>&7!'
+
+#  <amount> will be replaced with the amount the player will receive on win
+winning-amount: '&7Recibes &b$<amount> &7por ganar los &3&lHunger&b&lGames!'
+
+#  SPECTATOR
+spectator-compass: '&3Brújula del espectador'
+spectator-head-lore: '&7Haz click para teletransportarte al jugador'
+spectator-start-title: '¡Estás en modo espectador!'
+
+#  KIT MESSAGES
+kit-join-header: '&c&l>&7&l-------[&f&lBienvenido a los Hunger&f&lGames&7&l]&7&l-------&c&l<'
+kit-join-msg: '&7&l           - &3Elige un kit usando &b/hg kit &7<&rkit-name&7>'
+kit-join-available: '&3&l  Kits disponibles:&b'
+kit-join-footer: '&c&l>&7&l-----------------------------------------&c&l<'
+kit-no-perm: '&c¡No tienes permiso para usar este kit!'
+kit-doesnt-exist: '&cEse kit no existe'
+kit-disabled: '&cLos kits están deshabilitados en esta partida.'
+
+#  SCOREBOARD
+scoreboard-title: '&6&lHungerGames'
+players-alive: '&d&lTributos:'
+# <num> will be replaced by the number of remaining players in the game
+players-alive-num: '&e<num> con vida'
+scoreboard-arena: "&a&lArena: &b"
+
+#  TEAMS
+team-invite-1: '&6*&b&m                                                                             &6*'
+team-invite-2: '| &f<inviter> &3te ha invitado al equipo: &fTeam&3!'
+team-invite-3: '| &3Usa &f/hg team accept &3para unirte'
+team-invite-4: '&6*&b&m                                                                             &6*'
+joined-team: '&3¡Te has unido al equipo!'
+# <name> will be replaced with team name
+team-prefix: "&7[&aTeam-<name>&7]"
+team-suffix: ""
+team-created: "&aEquipo creado: &b<name>"
+team-already-exists: "&cEl equipo &b<name> &cya existe."
+team-already-have: "&cYa has creado un equipo llamado: &b<name>"
+team-none: "&cNo tienes un equipo, crea uno con el comando: &b'/hg team create <name>'"
+
+#  CHEST DROPS
+chest-drop-1: '&6*&b&m                                                                                   &6*'
+chest-drop-2: '"&b| &3A Los suministros han caido cerca: &f<x>&3, &f<y>&3, &f<z>'
+
+#  COMPASS
+#  <player> will be replaced with the name of the nearest player
+#  <distance> will be replaced with the distance of the nearest player
+compass-nearest-player: '&f&lJugador más cercano: &r<player>    &7&lDistancia: &c<distance>'
+
+#  FREE ROAM
+roam-game-started: '&4[]---------[ &6&l¡La batalla ha empezado! &4]---------[]'
+#  <roam> will be replaced with the time the players can roam for
+roam-time: ' &e ¡Tienes <roam> segundos para moverte sin recibir daño!'
+roam-finished: '&c&lEl tiempo de gracia ha terminado. ¡El PVP está habilitado!'
+
+#  GAME STATUSES
+status-running: '&a&lEn curso'
+status-stopped: '&4&lParado'
+status-ready: '&5&lListo'
+status-waiting: '&b&lEsperando...'
+status-broken: '&4&lFuera de servicio'
+status-rollback: '&c&lRestaurando...'
+status-notready: '&1&lNo listo'
+status-beginning: '&a&lEmpezando'
+status-countdown: '&b&lEmpezando..'
+
+#  DEATH MESSAGES
+death-fallen: '&7&l[&3&lHungerGames Fallen&7&l]'
+death-explosion: '¡<player> ha volado en pedazos!'
+death-custom: '¡<player> ha muerto en extrañas circunstancias!'
+death-fall: '¡<player> se ha comido el suelo!'
+death-falling-block: '¡A <player> le ha caido un bloque encima y lo ha aplastado!'
+death-fire: '¡<player> se ha quemado vivo!'
+death-projectile: '¡A <player> le ha disparado un franco!'
+death-lava: '¡<player> se ha caido en una piscina de lava!'
+death-magic: '¡A <player> lo ha matado magia negra!'
+death-suicide: '¡<player> No pudo con la presión!'
+death-other-cause: '<player> ha muerto por <cause>'
+death-player: '¡&c&lA &6<player> &c&llo ha matado &6<killer> &cusando una &6<weapon> &c!'
+death-zombie: '¡<player> se ha convertido en un zombie!'
+death-skeleton: '¡A <player> lo ha matado un esqueleto de un flechazo!'
+death-spider: '¡A <player> se lo ha comido vivo una araña!'
+death-drowned: '¡<player> ha sucumbido ante un ahogado!'
+death-trident: '¡A <player> lo han empalado con un tridente!'
+death-stray: '¡A <player> le ha disparado un caminate blanco!'
+death-other-entity: '¡<player> ha surido combustión espontánea!'
+
+#  COMMANDS
+## Spawn
+cmd-spawn-same: '&c¡No puedes configurar dos spawns en el mismo sito!'
+cmd-spawn-set: '&a¡Has configurado el spawn numero &7#<number>&a!'
+
+## Base
+cmd-base-noperm: '&cNo tienes permiso para usar: /hg <command>'
+cmd-base-nogame: '&c¡No estás en una partida válida!'
+cmd-base-noregion: '&c¡No estás en una región válida!'
+cmd-base-wrongusage: '&cUso incorrecto:'
+
+## Create
+cmd-create-need-selection: '&c¡Debes seleccionar una zona antes de crear una arena!'
+cmd-create-divisible-1: '&c¡El tiempo debe ser divisible por 30!'
+cmd-create-divisible-2: '&cEjemplo: 90 es divisible por 30'
+cmd-create-minmax: '&c¡Los jugadores minimos no pueden ser más que los máximos!'
+cmd-create-created: '&aHas creado la arena: &b<arena>&a!'
+cmd-create-add-spawns: "&6Ahora puedes crear puntos de aparición con el comando: '&a/hg addspawn&6'"
+
+## Delete
+cmd-delete-attempt: '&aIntendando eliminar la arena: <arena>!'
+cmd-delete-stopping: '&7- &c¡Partida en curso! &aParando..'
+cmd-delete-kicking: '&7- &c&c¡Jugadores detectados! &aEchando..'
+cmd-delete-deleted: '&a¡Arena: &b<arena> &a eliminada correctamente!'
+cmd-delete-failed: '&c¡Error al eliminar la arena!'
+cmd-delete-noexist: '&c¡La arena no exista!'
+
+## Join
+cmd-join-in-game: '&c¡Ya estás en una partida!'
+cmd-join-no-money: '&cNo tienes suficiente dinero para entrar en la partida. Coste: &b$<cost>'
+
+## Kit
+cmd-kit-no-change: '&c¡No puedes cambiar tu kit mientras estás en partida!'
+
+## Leave
+cmd-leave-left: '&6Has abandonado &b&l<arena>&c!'
+cmd-leave-refund: '&6Has recibido un reembolso de &b$<cost> &6por abandonar la arena antes de que empezara la partida'
+
+## Reload
+cmd-reload-attempt: '&a&l¡Intentando recargar HungerGames!'
+cmd-reload-reloaded-arena: '&6 - &e¡Las arenas han sido recargadas!'
+cmd-reload-reloaded-kit: '&6 - &e¡Los kits han sido recargados!'
+cmd-reload-reloaded-items: '&6 - &e¡Los objetos aleatorios han sido recargados!'
+cmd-reload-reloaded-config: '&6 - &e¡La configuración ha sido recargada!'
+cmd-reload-reloaded-success: '&l&a- Éxito al recargar la configuración'
+
+## Exit
+cmd-exit-set: '&6Global Exit Spawn Set:'
+cmd-exit-set-arena: '&6<arena> Exit Spawn Set:'
+
+## LobbyWall
+cmd-lobbywall-set: '&a¡Los carteles se han creado correctamente!'
+cmd-lobbywall-notcorrect: '&c¡Los carteles no tienen el formato correcto!'
+cmd-lobbywall-format: '&cFormato: &6[cartel] &c[cartel] [cartel]'
+lobby-signs:
+    sign-1:
+        line-1: '&1&lHunger Games'
+        line-3: '&0&lClick para unirse'
+        line-4: 'Coste $&b<cost>'
+    sign-2:
+        line-1: '&1&lEstado: '
+    sign-3:
+        line-1: '&1&lEn curso'
+
+## Start
+cmd-start-starting: '&6¡&b<arena>&6 está empezando!'
+
+## Stop
+cmd-stop-all: '&aTodas las partidas se han parado'
+cmd-stop-arena: '&c¡&b<arena>&c se ha parado!'
+cmd-stop-noexist: '&c¡La partida &b<arena>&c no existe!'
+
+## Team
+cmd-team-not-avail: '&b<player> &cNo está disponible!'
+cmd-team-only-leader: '&c¡Sólo el lider puede invitar más jugadores!'
+cmd-team-on-team: '&b<player> &6ya está en el equipo!'
+cmd-team-max: '&cHas llegado al límite del equipo!'
+cmd-team-invited: '&b<player> &6ha sido invitado!'
+cmd-team-wrong: '&cUso incorrecto: &6/hg team invite &b<name>'
+cmd-team-no-pending: '&cNo tienes invitaciones pendientes...'
+cmd-team-joined: '&b<player> &6acaba de unirse al equipo'
+cmd-team-no-team: '&c¡No estas en un equipo!'
+cmd-team-not-on-team: '&b<player> &cno está en el equipo'
+cmd-team-tp: '&6Teletransportandose a  &b<player>'
+cmd-team-self: '&cNo te puedes invitar a tu propio equipo.'
+
+## Toggle
+cmd-toggle-unlocked: '&b<arena>&6 está ahora &aDISPONIBLE!'
+cmd-toggle-locked: '&3<arena>&b ha dejado de estar &4DISPONIBLE&b!'
+
+## Handler
+cmd-handler-nokit: '&c¡No puedes elegir un kit en una partida en curso!'
+cmd-handler-nocmd: '&c¡No puedes usar comandos durante la partida!'
+cmd-handler-playing: '&cEste jugador está jugando &3HungerGames!'
+
+## Chest Refill
+cmd-chestrefill-set: '&6El rellenado de cofres de &b<arena> &6se ha configurado en &b<sec> segundos'
+cmd-chestrefill-now: '&6Los cofres se han rellenado en &b<arena>'
+
+## Border
+cmd-border-size: '&6El tamaño del borde de &b<arena> &6se ha configurado en &b<size>'
+cmd-border-center: '&6El centro del borde de &b<arena> &6se ha configurado en tu posición'
+cmd-border-timer: '&6El temporizador del borde de &b<arena> &6ha sido configurado para empezar cuando falten &b<start> segundos &6y que pare cuando queden &b<end> segundos'
+
+#  LISTENER
+listener-not-running: '&c¡La partida no está en curso!'
+listener-no-edit-block: '&c¡No puedes editar este tipo de bloque!'
+listener-no-interact: '&c¡No puedes interactuar hasta que la partida empieze!'
+listener-sign-click-hand: '&c¡Haz click al cartel con tu mano!'
+
+#  WAND LISTENER
+listener-wand-create-arena: "&6Estás listo para crear tu arena usando: '&a/hg create&6'"
+listener-wand-set-pos-2: '&6Ahora debes seleccionar la segunda posición!'
+listener-wand-big-enough: '&cUna arena debe ser de mínimo 5x5x5 bloques.'
+
+#  ARENA CHECK
+check-need-more-spawns: '&cAún necesitas &7<number> &c puntos de aparición!'
+check-broken-debug: '&c¡La arena está deshabilitada! usa &7/hg debug <arena> &cpara buscar errores!'
+check-broken-debug-2: '&cSi no hay errores usa: &7/hg toggle <arena>&c!'
+check-invalid-lobby: '&c¡Tus carteles para unirse no son correctos! Porfavor, rehazlos.'
+check-set-lobby: '&6Poner carteles para unirse: &7/hg setlobbywall <arena>'
+check-ready-run: '&aTu arena: &7<arena>&a está lista para funcionar!'
+
+#  TRACK STICK
+track-nearest: '"&b<player> &eestá a &b<range> &ebloques de distancia de ti: &b<location>"'
+track-no-near: '&c¡No se han encontrado jugadores cercanos!'
+track-empty: '&c¡No te quedan usos!'
+track-bar: '&a&l[]------------------------------------------[]'
+track-new1: '&a&l |&6&l   Se te ha dado un palo busca jugadores! &a&l |'
+track-new2: '&a&l |&6&l   Usa el palo para buscar jugadores cercanos!                &a&l |'
+
+#  LEADERBOARD
+lb-blank-space: ''
+lb-combined-separator: ' : '
+lb-missing-player: '<none>'
+
+# LEAVE/START GAME ITEMS
+leave-game-item-name: 'Abandonar partida'
+force-start-item-name: 'Forzar el inicio de la partida'

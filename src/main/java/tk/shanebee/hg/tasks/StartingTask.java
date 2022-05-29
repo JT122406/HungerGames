@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import tk.shanebee.hg.HG;
+import tk.shanebee.hg.Status;
 import tk.shanebee.hg.data.Config;
 import tk.shanebee.hg.data.Language;
 import tk.shanebee.hg.game.Game;
@@ -38,6 +39,8 @@ public class StartingTask implements Runnable {
     @Override
     public void run() {
         timer = (timer - 5);
+        if (game.getGameArenaData().getStatus() != Status.BEGINNING)
+            stop();
 
         if (timer <= 0) {
             //clear inventory on game start

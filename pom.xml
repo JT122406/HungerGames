@@ -6,7 +6,7 @@
 
     <groupId>tk.shanebee.hg</groupId>
     <artifactId>HungerGames</artifactId>
-    <version>5.0.3</version>
+    <version>5.0.4</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -224,6 +224,7 @@
                     <include>language.yml</include>
                     <include>leaderboard.yml</include>
                     <include>mobs.yml</include>
+                    <include>language_Spanish.yml</include>
                 </includes>
             </resource>
         </resources>

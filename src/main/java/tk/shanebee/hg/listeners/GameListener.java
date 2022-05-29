@@ -404,6 +404,7 @@ public class GameListener implements Listener {
 						playerManager.getPlayerData(player).getGame().getGamePlayerData().leave(player, false);
 					} else if (event.getItem().getType().equals(Material.getMaterial(Config.forcestartitem))){
 						Util.clearInv(player);
+						//playerManager.getPlayerData(player).getGame()
 						playerManager.getPlayerData(player).getGame().startFreeRoam();
 					} else {
 						event.setCancelled(true);
