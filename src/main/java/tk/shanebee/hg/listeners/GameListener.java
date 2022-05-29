@@ -398,7 +398,6 @@ public class GameListener implements Listener {
             }
         } else if (action != Action.PHYSICAL && playerManager.hasPlayerData(player)) {  //Player is in game
             Status status = Objects.requireNonNull(playerManager.getPlayerData(player)).getGame().getGameArenaData().getStatus();
-			Bukkit.getLogger().info("check 1");
             if (status != Status.RUNNING && status != Status.BEGINNING) {
 				if (event.getItem() != null)
 					if(event.getItem().getType().equals(Material.getMaterial(Config.leaveitemtype))){
