@@ -299,12 +299,12 @@ public class GamePlayerData extends Data {
                 kills.put(player, 0);
 
                 if (Config.enableleaveitem){
-                    ItemStack bed = new ItemStack(Objects.requireNonNull(Material.getMaterial(Config.leaveitemtype)), 1);
-                    ItemMeta commeta = bed.getItemMeta();
+                    ItemStack leaveitem = new ItemStack(Objects.requireNonNull(Material.getMaterial(Config.leaveitemtype)), 1);
+                    ItemMeta commeta = leaveitem.getItemMeta();
                     assert commeta != null;
                     commeta.setDisplayName(lang.leave_game);
-                    bed.setItemMeta(commeta);
-                    player.getInventory().setItem(8, bed);
+                    leaveitem.setItemMeta(commeta);
+                    player.getInventory().setItem(8, leaveitem);
                 }
 
                 if (Config.enableforcestartitem && player.hasPermission("hg.forcestart")) {

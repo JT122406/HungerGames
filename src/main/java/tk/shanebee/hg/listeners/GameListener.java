@@ -396,14 +396,16 @@ public class GameListener implements Listener {
             if (isSpectatorCompass(event)) {
                 handleSpectatorCompass(player);
             }
-        } else if (action != Action.PHYSICAL && playerManager.hasPlayerData(player)) {
+        } else if (action != Action.PHYSICAL && playerManager.hasPlayerData(player)) {  //Player is in game
             Status status = Objects.requireNonNull(playerManager.getPlayerData(player)).getGame().getGameArenaData().getStatus();
+			Bukkit.getLogger().info("check 1");
             if (status != Status.RUNNING && status != Status.BEGINNING) {
 				if (event.getItem() != null)
 					if(event.getItem().getType().equals(Material.getMaterial(Config.leaveitemtype))){
-						Objects.requireNonNull(playerManager.getPlayerData(player)).getGame().getGamePlayerData().leave(player, false);
+						playerManager.getPlayerData(player).getGame().getGamePlayerData().leave(player, false);
 					} else if (event.getItem().getType().equals(Material.getMaterial(Config.forcestartitem))){
-						Objects.requireNonNull(playerManager.getPlayerData(player)).getGame().startFreeRoam();
+						Util.clearInv(player);
+						playerManager.getPlayerData(player).getGame().startFreeRoam();
 					} else {
 						event.setCancelled(true);
 						Util.scm(player, lang.listener_no_interact);
@@ -464,7 +466,7 @@ public class GameListener implements Listener {
 				game.getGamePlayerData().leave(player,false);
 			} else if (Objects.equals(Objects.requireNonNull(e.getClickedInventory().getItem(e.getSlot())).getType(), Material.getMaterial(Config.forcestartitem))) {
 				Util.clearInv(player);
-				game.startGame();
+				game.startFreeRoam();
 			}
 		}
 	}
