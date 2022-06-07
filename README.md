@@ -1,5 +1,5 @@
 # HungerGames
-![GitHub issues](https://img.shields.io/bitbucket/issues/ShaneBeeStudios/HungerGames.svg?style=for-the-badge)
+[![GitHub issues](https://img.shields.io/bitbucket/issues/ShaneBeeStudios/HungerGames.svg?style=for-the-badge)](https://github.com/JT122406/HungerGames/issues)
 [![Discord](https://img.shields.io/discord/425192525091831808.svg?style=for-the-badge)](https://discord.gg/xCYpScW8Kc)
 
 
