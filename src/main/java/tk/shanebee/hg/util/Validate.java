@@ -1,6 +1,6 @@
 package tk.shanebee.hg.util;
 
-public abstract class Validate extends org.apache.commons.lang.Validate {
+public abstract class Validate extends  org.apache.commons.lang3.Validate{
 
     /**
      * Validate if a value is between a min and max value
