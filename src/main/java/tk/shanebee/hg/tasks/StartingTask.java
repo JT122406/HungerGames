@@ -38,9 +38,11 @@ public class StartingTask implements Runnable {
 
     @Override
     public void run() {
-        timer = (timer - 5);
-        if (game.getGameArenaData().getStatus() != Status.BEGINNING)
+        timer-=5;
+
+        if (game.getGameArenaData().getStatus() != Status.COUNTDOWN)
             stop();
+
 
         if (timer <= 0) {
             //clear inventory on game start
@@ -53,9 +55,8 @@ public class StartingTask implements Runnable {
                         player.getInventory().clear();
                     }
                 });
-
-            stop();
             game.startFreeRoam();
+            stop();
         } else {
             game.getGamePlayerData().msgAll(lang.game_countdown.replace("<timer>", String.valueOf(timer)));
         }
