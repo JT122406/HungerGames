@@ -2,6 +2,7 @@ package tk.shanebee.hg.tasks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import tk.shanebee.hg.HG;
 import tk.shanebee.hg.Status;
@@ -11,6 +12,7 @@ import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.Util;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class StartingTask implements Runnable {
 
@@ -42,6 +44,18 @@ public class StartingTask implements Runnable {
 
         if (game.getGameArenaData().getStatus() != Status.COUNTDOWN)
             stop();
+
+
+        for (UUID p : game.getGamePlayerData().getPlayers()) {
+            Player player = Bukkit.getPlayer(p);
+            assert player != null;
+            int health = (int)player.getSaturation();
+            health+= 3;
+            if (health < 40) {
+                player.setHealth(health);
+            }
+        }
+
 
 
         if (timer <= 0) {
