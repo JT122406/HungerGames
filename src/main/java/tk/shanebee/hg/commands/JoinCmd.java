@@ -1,9 +1,12 @@
 package tk.shanebee.hg.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import tk.shanebee.hg.HG;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.Util;
+
+import java.util.List;
 
 public class JoinCmd extends BaseCmd {
 
@@ -29,9 +32,16 @@ public class JoinCmd extends BaseCmd {
 				}
 				else if ((HG.getParty().isOwner(player)) &&  (g.getGamePlayerData().getPlayers().size() + HG.getParty().partySize(player)) <= g.getGameArenaData().getMaxPlayers())
 				{
-					for (Player p:HG.getParty().getMembers(player)) {  //join all party members
+					List<Player> party = HG.getParty().getMembers(player);
+					for (int i = 0; i < party.size(); i++) {
+						Player p = party.get(i);
+						if (i != 0){
+							Bukkit.getScheduler().runTaskLater(HG.getPlugin(), () -> g.getGamePlayerData().join(p, true), 20);
+							continue;
+						}
 						g.getGamePlayerData().join(p, true);
 					}
+
 				} else if (!HG.getParty().isOwner(player)) {
 					player.sendMessage("You are in a party but not the leader, unable to join game");
 				} else {
