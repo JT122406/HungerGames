@@ -19,7 +19,7 @@ public class StartCmd extends BaseCmd {
 		Game g = gameManager.getGame(args[1]);
 		if (g != null) {
 			Status status = g.getGameArenaData().getStatus();
-			if (status == Status.WAITING || status == Status.READY) {
+			if ((status == Status.WAITING || status == Status.READY )&& (g.getStartingTask() == null)) {
 				g.startPreGame();
 				Util.scm(sender, lang.cmd_start_starting.replace("<arena>", args[1]));
 			} else if (status == Status.COUNTDOWN) {
