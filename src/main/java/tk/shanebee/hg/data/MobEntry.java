@@ -1,8 +1,6 @@
 package tk.shanebee.hg.data;
 
-import io.lumine.xikage.mythicmobs.adapters.bukkit.BukkitAdapter;
-import io.lumine.xikage.mythicmobs.mobs.ActiveMob;
-import io.lumine.xikage.mythicmobs.mobs.MythicMob;
+import io.lumine.mythic.core.mobs.ActiveMob;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -32,7 +30,7 @@ public class MobEntry {
 	private ItemStack chest = null;
 	private ItemStack leggings = null;
 	private ItemStack boots = null;
-	private List<PotionEffect> potionEffect = new ArrayList<>();
+	private final List<PotionEffect> potionEffect = new ArrayList<>();
 	private String deathMessage = null;
 	private boolean mythic;
     private String mythicMob;
@@ -229,18 +227,15 @@ public class MobEntry {
                         equip.setLeggings(leggings);
                     if (boots != null)
                         equip.setBoots(boots);
-                    if (potionEffect != null) {
-                        for (PotionEffect effect : this.potionEffect) {
-                            mob.addPotionEffect(effect);
-                        }
-                    }
-                    if (deathMessage != null)
+					for (PotionEffect effect : this.potionEffect) {
+						mob.addPotionEffect(effect);
+					}
+					if (deathMessage != null)
                         mob.setMetadata("death-message", new FixedMetadataValue(HG.getPlugin(), deathMessage));
                 }
             });
 		} else {
-			MythicMob mob = HG.getPlugin().getMmMobManager().getMythicMob(mythicMob);
-			ActiveMob activeMob = mob.spawn(BukkitAdapter.adapt(location), mythicLevel);
+			ActiveMob activeMob = HG.getPlugin().getMmMobManager().spawnMob(mythicMob, location);
 			if (deathMessage != null) {
 				activeMob.getEntity().getBukkitEntity().setMetadata("death-message", new FixedMetadataValue(HG.getPlugin(), deathMessage));
 			}
