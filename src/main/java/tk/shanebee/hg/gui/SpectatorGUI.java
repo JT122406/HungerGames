@@ -1,5 +1,6 @@
 package tk.shanebee.hg.gui;
 
+import io.papermc.lib.PaperLib;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -16,6 +17,7 @@ import tk.shanebee.hg.HG;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.Util;
 
+import java.awt.print.Paper;
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -76,7 +78,7 @@ public class SpectatorGUI implements InventoryHolder, Listener {
         if (!(clickedItem.getItemMeta() instanceof SkullMeta)) return;
         Player clicked = getClicked(((SkullMeta) clickedItem.getItemMeta()));
         if (clicked == null) return;
-        event.getWhoClicked().teleport(clicked);
+        PaperLib.teleportAsync(event.getWhoClicked(), clicked.getLocation());
     }
 
     private Player getClicked(SkullMeta meta) {

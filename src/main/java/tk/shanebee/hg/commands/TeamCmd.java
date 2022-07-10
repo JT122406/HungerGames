@@ -1,5 +1,6 @@
 package tk.shanebee.hg.commands;
 
+import io.papermc.lib.PaperLib;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import tk.shanebee.hg.data.Config;
@@ -108,7 +109,7 @@ public class TeamCmd extends BaseCmd {
             if (args.length >= 3) {
                 Player tpTo = Bukkit.getPlayer(args[2]);
                 if (tpTo != null && team.isOnTeam(tpTo.getUniqueId())) {
-                    player.teleport(tpTo);
+                    PaperLib.teleportAsync(player, tpTo.getLocation());
                     Util.scm(player, lang.cmd_team_tp.replace("<player>", tpTo.getName()));
                 } else {
                     Util.scm(player, lang.cmd_team_not_on_team.replace("<player>", args[2]));

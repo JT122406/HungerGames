@@ -108,7 +108,7 @@ public class GamePlayerData extends Data {
         for (UUID u : players) {
             Player p = Bukkit.getPlayer(u);
             if (p != null)
-                p.teleport(pickSpawn());
+                PaperLib.teleportAsync(p, pickSpawn());
         }
     }
 
@@ -395,7 +395,7 @@ public class GamePlayerData extends Data {
         if (playerData == null || playerData.isOnline()) {
             PaperLib.teleportAsync(player, loc);
         } else {
-            player.teleport(loc);
+            PaperLib.teleportAsync(player, loc);
         }
     }
 
@@ -406,7 +406,7 @@ public class GamePlayerData extends Data {
      */
     public void spectate(Player spectator) {
         UUID uuid = spectator.getUniqueId();
-        spectator.teleport(game.gameArenaData.getSpawns().get(0));
+        PaperLib.teleportAsync(spectator, game.gameArenaData.getSpawns().get(0));
         if (playerManager.hasPlayerData(uuid)) {
             playerManager.transferPlayerDataToSpectator(uuid);
         } else {
