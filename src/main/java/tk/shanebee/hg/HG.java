@@ -2,6 +2,7 @@ package tk.shanebee.hg;
 
 import io.lumine.mythic.bukkit.MythicBukkit;
 import io.lumine.mythic.core.mobs.MobExecutor;
+import io.papermc.lib.PaperLib;
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
 import org.bukkit.Bukkit;
@@ -103,7 +104,7 @@ public class HG extends JavaPlugin {
 		}else if (version >= 17) {
 			Bukkit.getLogger().info("Your Java Version is " + System.getProperty("java.version") + " This plugin is compatible with your version");
 		}
-
+		PaperLib.suggestPaper(this);
 
 
 		//MythicMob check
