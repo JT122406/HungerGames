@@ -359,6 +359,7 @@ public class GameListener implements Listener {
 			Block block = event.getClickedBlock();
 			assert block != null;
 			PlayerData pd = playerManager.getPlayerData(player);
+			if (gameManager.getGame(player.getLocation()) == null) return;
 			if (gameManager.getGame(player.getLocation()).getGameArenaData().getStatus()  == Status.COUNTDOWN  || gameManager.getGame(player.getLocation()).getGameArenaData().getStatus()  == Status.WAITING) event.setCancelled(true);
 			if (block.getType() == Material.CHEST) {
 				assert pd != null;
