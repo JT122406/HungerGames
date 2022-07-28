@@ -58,7 +58,7 @@ dependencies {
     shadow("org.bstats:bstats-bukkit:3.0.0")
     shadow("de.tr7zw:item-nbt-api-plugin:2.10.0")
     implementation("org.apache.commons:commons-lang3:3.12.0")
-    compileOnly("org.spigotmc:spigot-api:1.19-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.19.1-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.2")
     compileOnly("de.simonsator:Party-and-Friends-MySQL-Edition-Spigot-API:1.5.3")
     compileOnly("de.simonsator:Spigot-Party-API-For-RedisBungee:1.0.3-SNAPSHOT")
@@ -66,7 +66,7 @@ dependencies {
     compileOnly("com.alessiodp.parties:parties-api:3.2.6")
     compileOnly("io.lumine:Mythic-Dist:5.0.4")
     compileOnly("net.milkbowl.vault:VaultAPI:1.7")
-    compileOnly("com.gmail.nossr50.mcMMO:mcMMO:2.1.214")
+    compileOnly("com.gmail.nossr50.mcMMO:mcMMO:2.1.216")
 }
 
 group = "tk.shanebee.hg"
