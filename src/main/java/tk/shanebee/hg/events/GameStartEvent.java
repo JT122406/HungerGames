@@ -11,7 +11,7 @@ import tk.shanebee.hg.game.Game;
 public class GameStartEvent extends Event {
 
 	private static final HandlerList handlers = new HandlerList();
-	private Game game;
+	private final Game game;
 
 	public GameStartEvent(Game game) {
 		this.game = game;

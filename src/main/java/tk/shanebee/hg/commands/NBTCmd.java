@@ -10,7 +10,7 @@ import tk.shanebee.hg.util.Util;
 
 public class NBTCmd extends BaseCmd {
 
-	private NBTApi api;
+	private final NBTApi api;
 
 	public NBTCmd() {
 		forcePlayer = true;

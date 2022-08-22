@@ -17,7 +17,6 @@ import tk.shanebee.hg.HG;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.Util;
 
-import java.awt.print.Paper;
 import java.util.Arrays;
 import java.util.UUID;
 

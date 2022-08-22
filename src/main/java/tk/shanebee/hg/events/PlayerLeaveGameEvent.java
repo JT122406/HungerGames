@@ -12,9 +12,9 @@ import tk.shanebee.hg.game.Game;
 public class PlayerLeaveGameEvent extends Event {
 
 	private static final HandlerList handlers = new HandlerList();
-	private Game game;
-	private Player player;
-	private boolean death;
+	private final Game game;
+	private final Player player;
+	private final boolean death;
 
 	public PlayerLeaveGameEvent(Game game, Player player, boolean death) {
 		this.game = game;

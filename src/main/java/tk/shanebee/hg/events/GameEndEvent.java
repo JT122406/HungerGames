@@ -14,9 +14,9 @@ public class GameEndEvent extends Event {
 
     private static final HandlerList handlers = new HandlerList();
 
-    private Game game;
-    private Collection<Player> winners;
-    private boolean death;
+    private final Game game;
+    private final Collection<Player> winners;
+    private final boolean death;
 
     public GameEndEvent(Game game, Collection<Player> winners, boolean death) {
         this.game = game;

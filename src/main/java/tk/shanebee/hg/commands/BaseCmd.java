@@ -11,7 +11,7 @@ import tk.shanebee.hg.util.Util;
 
 public abstract class BaseCmd {
 
-    HG plugin;
+    final HG plugin;
     Language lang;
     PlayerManager playerManager;
     Manager gameManager;

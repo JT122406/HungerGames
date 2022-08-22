@@ -11,9 +11,9 @@ import tk.shanebee.hg.game.Game;
  */
 public class ChestOpenEvent extends Event {
 
-	private Game game;
-	private Block block;
-	private boolean bonus;
+	private final Game game;
+	private final Block block;
+	private final boolean bonus;
 
 	/** Create a new player open chest event
 	 * @param game The game this is happening in

@@ -19,10 +19,10 @@ import tk.shanebee.hg.util.Util;
  */
 public class SBDisplay {
 
-	private ScoreboardManager manager;
+	private final ScoreboardManager manager;
 	private Scoreboard board;
 	private Objective ob;
-	private HashMap<String, Scoreboard> score = new HashMap<>();
+	private final HashMap<String, Scoreboard> score = new HashMap<>();
 	private final Game game;
 
 	public SBDisplay(Game game) {

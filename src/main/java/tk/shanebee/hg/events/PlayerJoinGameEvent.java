@@ -12,8 +12,8 @@ import tk.shanebee.hg.game.Game;
 public class PlayerJoinGameEvent extends Event implements Cancellable {
 
 	private static final HandlerList handlers = new HandlerList();
-	private Game game;
-	private Player player;
+	private final Game game;
+	private final Player player;
 	private boolean isCancelled;
 
 	public PlayerJoinGameEvent(Game game, Player player) {
