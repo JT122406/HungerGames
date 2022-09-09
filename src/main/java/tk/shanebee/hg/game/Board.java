@@ -13,7 +13,6 @@ import tk.shanebee.hg.HG;
 import tk.shanebee.hg.data.Config;
 import tk.shanebee.hg.data.Language;
 import tk.shanebee.hg.util.Util;
-import tk.shanebee.hg.util.Validate;
 
 /**
  * Represents a team based scoreboard for a game
@@ -99,7 +98,6 @@ public class Board {
      * @param text Text to put in line
      */
     public void setLine(int line, String text) {
-        Validate.isBetween(line, 1, 15);
         Team t = lines[line - 1];
         if (ChatColor.stripColor(text).length() > (128 / 2)) {
             String prefix = Util.getColString(text.substring(0, (128 / 2)));
