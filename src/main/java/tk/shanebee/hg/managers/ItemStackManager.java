@@ -171,13 +171,24 @@ public class ItemStackManager {
                 }
             } else if (s.startsWith("data:")) {
                 s = s.replace("data:", "").replace("~", " ");
+                Util.log("Reading NBT...");
                 if (nbtApi != null)
+                    //itemMeta = nbtApi.getItemWithNBT(item, s).getItemMeta();
+                    //ItemStack itD = nbtApi.getItemWithNBT(item, s);
+                    //Util.log("NBT Meta loaded:");
+                    //Util.log(itemMeta.toString());
+                    //Util.log(nbtApi.getItemWithNBT(item, s).getItemMeta().toString());
+                    //Util.log(itD.toString());
+                    //Util.log(s);
                     itemMeta = nbtApi.getItemWithNBT(item, s).getItemMeta();
             } else if (s.startsWith("ownerName:") && itemMeta instanceof SkullMeta) {
                 s = s.replace("ownerName:", "");
                 ((SkullMeta) itemMeta).setOwningPlayer(Bukkit.getOfflinePlayer(s));
             }
             item.setItemMeta(itemMeta);
+        }
+        if (nbtApi == null) {
+            Util.log("NBT API BROKE??? Dumb test log from sabre3");
         }
         return item;
     }

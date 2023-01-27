@@ -106,6 +106,8 @@ public class HG extends JavaPlugin {
 		}
 		PaperLib.suggestPaper(this);
 
+		// NBT Api
+		nbtApi = new NBTApi();
 
 		//MythicMob check
 		if (Bukkit.getPluginManager().isPluginEnabled("MythicMobs")) {
