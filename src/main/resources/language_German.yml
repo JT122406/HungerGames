@@ -1,0 +1,262 @@
+#  This is the language file
+#  Change the messages to your liking
+#  Supports '&' color codes
+#  Messages that contain <> indicate things that the plugin replaces, such as <player> or <distance>
+#  Comments in this file will be removed if we update messages during a plugin update
+#  To restore these messages, backup this file, delete it, and restart your server, this will create a new lang file with all the notes
+
+#  GENERAL PLUGIN MESSAGES
+prefix: '&7&l[&3&lHungerGames&7&l] '
+
+#  GAME MESSAGES
+#  <player> will be replaced with name of player
+player-joined-game: '&b&l<player> &7hat das Spiel betreten'
+player-left-game: '&b&l<player> &chat das Spiel verlassen'
+#  <arena> will be replaced with the name of the arena
+game-started: '&6&l Arena &c&l<arena> &6&lbeginnt in 30 Sekunden!'
+game-join: '&6&l Benutze:&c&l /hg join <arena>&6&l zum Beitreten!'
+game-countdown: 'Das Spiel beginnt in <timer> Sekunden..'
+game-almost-over: '&l&cTDas Spiel ist fast vorbei, kämpft bis zum Tod!'
+game-ending-minsec: '&aDas Spiel endet in <minutes> Minute(n), und <seconds> Sekunde(n)!'
+game-ending-min: '&aDas Spiel endet in <minutes> Minute(n)!'
+game-ending-sec: '&aDas Spiel endet in <seconds> Sekunde(n)!'
+game-border-closing: '&6Die Border kommt, du hast <seconds> Sekunden, um in die Mitte der Arena zu kommen!'
+game-chests-refill: '&6Die Truhen wurden aufgefüllt'
+
+# <min>/<sec> will be replaced with the remaining minutes and seconds in a game
+game-bossbar: '&6&lSpielende in &b&l<min>:&b&l<sec> &7Minuten'
+
+#  <amount> will be replaced with amount of players left to start a game
+players-to-start: '&6Es werden &b&l<amount> &6Spieler zum Starten benötigt!'
+arena-not-ready: '&cDiese Arena ist nicht bereit! Bitte warte, bevor du beitrittst!'
+arena-spectate: '&6Du kannst dir diese Arena mit &3/hg spectate <arena> &6ansehen'
+game-full: '&cist aktuell voll!'
+
+#  <arena> will be replaced with name of arena the player won in
+#  <winner> will be replaced with name of winner
+player-won: '&b&l<winner> &6gewann HungerGames in Arena &b&l<arena>&7!'
+
+#  <amount> will be replaced with the amount the player will receive on win
+winning-amount: '&7Du erhältst &b$<amount> &7für das Gewinnen von &3&lHunger&b&lGames!'
+
+#  SPECTATOR
+spectator-compass: '&3Zuschauer-Kompass'
+spectator-head-lore: '&7Klicke, um dich zu einem Spieler zu teleportieren'
+spectator-start-title: 'Du schaust jetzt zu!'
+
+#  KIT MESSAGES
+kit-join-header: '&c&l>&7&l----------[&f&lWillkommen bei Hunger&f&lGames&7&l]&7&l----------&c&l<'
+kit-join-msg: '&7&l           - &3Wähle ein Kit mit &b/hg kit &7<&rkit-name&7>'
+kit-join-available: '&3&l  Verfügbare Kits:&b'
+kit-join-footer: '&c&l>&7&l------------------------------------------&c&l<'
+kit-no-perm: '&cDu hast keine Erlaubnis, dieses Kit zu verwenden!'
+kit-doesnt-exist: '&cexistiert nicht'
+kit-disabled: '&cKits sind für dieses Spiel deaktiviert.'
+
+#  SCOREBOARD
+scoreboard-title: '&6&lHungerGames'
+players-alive: '&d&lTribute:'
+# <num> will be replaced by the number of remaining players in the game
+players-alive-num: '&e<num> am Leben'
+scoreboard-arena: "&a&lArena: &b"
+
+#  TEAMS
+team-invite-1: '&6*&b&m                                                                             &6*'
+team-invite-2: '| &f<inviter> &3hat dich zu einem &fTeam &3eingeladen!'
+team-invite-3: '| &3Nutze &f/hg team accept &3zum Beitreten!'
+team-invite-4: '&6*&b&m                                                                             &6*'
+joined-team: '&3Du bist dem Team erfolgreich beigetreten!'
+# <name> will be replaced with team name
+team-prefix: "&7[&aTeam-<name>&7]"
+team-suffix: ""
+team-created: "&aTeam erstellt: &b<name>"
+team-already-exists: "&cEin Team mit dem Namen &b<name> &cexistiert bereits."
+team-already-have: "&cDu hast bereits ein Team erstellt: &b<name>"
+team-none: "&cDu hast kein Team, erstelle erst eines mit &b'/hg team create <name>'"
+
+#  CHEST DROPS
+chest-drop-1: '&6*&b&m                                                                                   &6*'
+chest-drop-2: '"&b| &3A Ein Versorgungspaket wurde in der Nähe von &f<x>&3, &f<y>&3, &f<z> &3fallen gelassen.'
+
+#  COMPASS
+#  <player> will be replaced with the name of the nearest player
+#  <distance> will be replaced with the distance of the nearest player
+compass-nearest-player: '&f&lNächstgelegener Spieler: &r<player>    &7&lEntfernung: &c<distance>'
+
+#  FREE ROAM
+roam-game-started: '&4[]---------[ &6&lDas Spiel hat begonnen! &4]---------[]'
+#  <roam> will be replaced with the time the players can roam for
+roam-time: ' &e Du hast <roam> Sekunden, dich zu bewegen, ohne Schaden zu nehmen!'
+roam-finished: '&c&lDie Schutzphase ist vorbei, PVP ist jetzt aktiviert!'
+
+#  GAME STATUSES
+status-running: '&a&lAktiv'
+status-stopped: '&4&lGestoppt'
+status-ready: '&5&lBereit'
+status-waiting: '&b&lWarte...'
+status-broken: '&4&lDEFEKT'
+status-rollback: '&c&lWiederherstellung...'
+status-notready: '&1&lNicht bereit'
+status-beginning: '&a&lAktiv'
+status-countdown: '&b&lStartet...'
+
+#  DEATH MESSAGES
+death-fallen: '&7&l[&3&lHungerGames Fallen&7&l]'
+death-explosion: '<player> wurde in die Luft gejagt!'
+death-custom: '<player> wurde durch eine unbekannte Ursache getötet!'
+death-fall: '<player> stürzte in den Tod!'
+death-falling-block: '<player> wurde von einem Block zerschmettert!'
+death-fire: '<player> verbrannte lebendig!'
+death-projectile: '<player> wurde von einem Projektil getroffen!'
+death-lava: '<player> fiel in eine Lavagrube!'
+death-magic: '<player> wurde durch Magie zerstört!'
+death-suicide: '<player> konnte HungerGames nicht bewältigen!'
+death-other-cause: '<player> wurde durch <cause> getötet'
+death-player: '&6<player> &c&lwurde von &6<killer> &cmit &6<weapon> &cgetötet!'
+death-zombie: '<player> wurde von einem Zombie in Stücke gerissen!'
+death-skeleton: '<player> wurde von einem Skelett ins Gesicht geschossen'
+death-spider: '<player> wurde lebendig von einer Spinne gefressen!'
+death-drowned: '<player> wurde von einem Ertrunkenen auseinandergerissen!'
+death-trident: '<player> wurde von einem Dreizack aufgespießt!'
+death-stray: '<player> wurde von einem Eiswanderer ins Gesicht geschossen!'
+death-other-entity: '<player> starb spontan!'
+
+#  COMMANDS
+## Spawn
+cmd-spawn-same: '&cDu kannst nicht zwei Spawns am selben Ort haben!'
+cmd-spawn-set: '&aDu hast den HungerGames-Spawn &7#<number> &agesetzt!'
+
+## Base
+cmd-base-noperm: '&cDu hast keine Erlaubnis zur Verwendung von /hg <command>'
+cmd-base-nogame: '&cDu befindest dich nicht in einem gültigen Spiel!'
+cmd-base-noregion: '&cDu befindest dich nicht in einer gültigen HungerGames-Region!'
+cmd-base-wrongusage: '&cFalsche Verwendung:'
+
+## Create
+cmd-create-need-selection: '&cDu musst eine Auswahl treffen, bevor du eine Arena erstellst!'
+cmd-create-divisible-1: '&cDie Zeit in Sekunden muss durch 30 teilbar sein!'
+cmd-create-divisible-2: '&cBeispiel: 90 ist durch 30 teilbar'
+cmd-create-minmax: '&cDie Mindestanzahl an Spielern kann nicht mehr als die Maximalanzahl sein!'
+cmd-create-created: '&aDu hast die HungerGames-Arena &b<arena> &aerstellt!'
+cmd-create-add-spawns: "&6Jetzt kannst du Spawns mit '&a/hg addspawn&6' setzen"
+
+## Delete
+cmd-delete-attempt: '&aVersuche, <arena> zu löschen!'
+cmd-delete-stopping: '&7- &cDas Spiel läuft! &aStoppe..'
+cmd-delete-kicking: '&7- &c&cSpieler entdeckt! &aKicke..'
+cmd-delete-deleted: '&aDu hast die HungerGames-Arena &b<arena> &aerfolgreich gelöscht!'
+cmd-delete-failed: '&cArena konnte nicht gelöscht werden!'
+cmd-delete-noexist: '&cDiese Arena existiert nicht!'
+
+## Join
+cmd-join-in-game: '&cDu bist bereits in einem Spiel!'
+cmd-join-no-money: '&cDu hast nicht genug Geld, um diesem Spiel beizutreten. Kosten: &b<cost>$'
+
+## Kit
+cmd-kit-no-change: '&cDu kannst dein Kit nicht ändern, während das Spiel läuft!'
+
+## Leave
+cmd-leave-left: '&6Du hast &b&l<arena> &cverlassen!'
+cmd-leave-refund: '&6Du hast eine Rückerstattung von &b$<cost> &6erhalten, weil du das Spiel vor dem Start verlassen hast'
+
+## Reload
+cmd-reload-attempt: '&a&lVersuche, HungerGames neuzuladen!'
+cmd-reload-reloaded-arena: '&6 - &eDie Arenas wurden neugeladen!'
+cmd-reload-reloaded-kit: '&6 - &eDie Kits wurden neugeladen!'
+cmd-reload-reloaded-items: '&6 - &eDie zufälligen Items wurden neugeladen!'
+cmd-reload-reloaded-config: '&6 - &eDie Config-Werte wurden neugeladen!'
+cmd-reload-reloaded-success: '&l&a- HungerGames erfolgreich neugeladen'
+
+## Exit
+cmd-exit-set: '&6Globaler Ausgangs-Spawn gesetzt:'
+cmd-exit-set-arena: '&6Ausgangs-Spawn von <arena> gesetzt:'
+
+## LobbyWall
+cmd-lobbywall-set: '&aDas Wandschild in der Lobby wurde gesetzt!'
+cmd-lobbywall-notcorrect: '&cDiese Schilder sind nicht in einem korrekten Format!'
+cmd-lobbywall-format: '&cFormat: &6[sign] &c[sign] [sign]'
+lobby-signs:
+    sign-1:
+        line-1: '&1&lHunger Games'
+        line-3: '&0&lKlicke zum Beitritt'
+        line-4: 'Kosten: &b<cost>$'
+    sign-2:
+        line-1: '&1&lSpielstatus'
+    sign-3:
+        line-1: '&1&lAm Leben'
+
+## Start
+cmd-start-starting: '&b<arena>&6 startet jetzt!'
+
+## Stop
+cmd-stop-all: '&aAlle Spiele wurden gestoppt'
+cmd-stop-arena: '&b<arena>&c wurde gestoppt!'
+cmd-stop-noexist: '&cDas Spiel &b<arena>&c existiert nicht!'
+
+## Team
+cmd-team-not-avail: '&b<player> &cist nicht verfügbar!'
+cmd-team-only-leader: '&cNur der Leiter des Teams kann andere Spieler einladen!'
+cmd-team-on-team: '&b<player> &6ist bereits in einem Team!'
+cmd-team-max: '&cDu hast das maximale Teamlimit erreicht!'
+cmd-team-invited: '&b<player> &6wurde eingeladen!'
+cmd-team-wrong: '&cFalsche Verwendung: &6/hg team invite &b<name>'
+cmd-team-no-pending: '&cDu hast keine ausstehenden Einladungen...'
+cmd-team-joined: '&b<player> &6ist deinem Team beigetreten!'
+cmd-team-no-team: '&cDu bist nicht in einem Team!'
+cmd-team-not-on-team: '&b<player> &cist nicht in deinem Team!'
+cmd-team-tp: '&6Teleportiere zu &b<player>'
+cmd-team-self: '&cDu kannst dich nicht selber in dein eigenes Team einladen.'
+
+## Toggle
+cmd-toggle-unlocked: '&b<arena>&6 ist jetzt &aFREIGESCHALTEN!'
+cmd-toggle-locked: '&3<arena>&b ist jetzt &4GESPERRT&b!'
+
+## Handler
+cmd-handler-nokit: '&cDu kannst kein Kit auswählen, während das Spiel läuft!'
+cmd-handler-nocmd: '&cDu kannst keine Nicht-HungerGames-Befehle verwenden, während du in einem SPiel bist!'
+cmd-handler-playing: '&cDieser Spieler spielt aktuell &3HungerGames!'
+
+## Chest Refill
+cmd-chestrefill-set: '&6Truhenauffüllung für &b<arena> &6wurde auf &b<sec> Sekunden &6gesetzt'
+cmd-chestrefill-now: '&6Die Truhen in &b<arena> &6 wurden aufgefüllt'
+
+## Border
+cmd-border-size: '&6Die Border-Größe für &b<arena> &6wurde auf &b<size> &6gesetzt'
+cmd-border-center: '&6Die Border-Mitte für &b<arena> &6wurde auf deine Position gesetzt'
+cmd-border-timer: '&6Die Border-Zeit für &b<arena> &6wurde so eingestellt, dass sie bei den verbleibenden &b<start> Sekunden &6beginnt und bei &b<end> Sekunden &6endet'
+
+#  LISTENER
+listener-not-running: '&cDas Spiel läuft nicht!'
+listener-no-edit-block: '&cDu kannst diesen Blocktyp nicht bearbeiten!'
+listener-no-interact: '&cDu kannst nicht interagieren, bevor das Spiel begonnen hat!'
+listener-sign-click-hand: '&cKlicke das Schild mit deiner Hand!'
+
+#  WAND LISTENER
+listener-wand-create-arena: "&6Jetzt kannst du deine Arena mit '&a/hg create &6' erstellen"
+listener-wand-set-pos-2: '&6Jetzt musst du die zweite Position setzen!'
+listener-wand-big-enough: '&cEine Arena muss ein Quader von mindestens 5x5x5 sein.'
+
+#  ARENA CHECK
+check-need-more-spawns: '&cEs fehlen noch &7<number> &cSpawns!'
+check-broken-debug: '&cDeine Arena ist als defekt markiert! Benutze &7/hg debug <arena>&c, um nach Fehlern zu suchen!'
+check-broken-debug-2: '&cWenn keine Fehler gefunden wurden, benutze &7/hg toggle <arena>&c!'
+check-invalid-lobby: '&cDeine Lobby-Wand ist inkorrekt! Bitte setze sie zurück!'
+check-set-lobby: '&6Lobby-Wand setzen: &7/hg setlobbywall <arena>'
+check-ready-run: '&aDeine HungerGames-Arena &7<arena>&a ist bereit!'
+
+#  TRACK STICK
+track-nearest: '"&b<player> &eist &b<range> &eBlöcke entfernt von dir: &b<location>"'
+track-no-near: '&cKonnte keine Spieler in der Nähe finden!'
+track-empty: '&cDieser Tracking-Stock kann nicht mehr verwendet werden!'
+track-bar: '&a&l[]------------------------------------------[]'
+track-new1: '&a&l |&6&l   Du hast einen Spieler-Tracking-Stock erhalten! &a&l |'
+track-new2: '&a&l |&6&l   Schlage mit dem Stock, um Spieler zu finden!                &a&l |'
+
+#  LEADERBOARD
+lb-blank-space: ''
+lb-combined-separator: ' : '
+lb-missing-player: '<none>'
+
+# LEAVE/START GAME ITEMS
+leave-game-item-name: 'Spiel verlassen'
+force-start-item-name: 'Erzwinge Spielstart'
