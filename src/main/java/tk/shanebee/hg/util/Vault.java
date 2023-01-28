@@ -14,9 +14,7 @@ public class Vault {
     
     public static void setupEconomy() {
         RegisteredServiceProvider<Economy> economyProvider = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-        if (economyProvider != null) {
-            economy = economyProvider.getProvider();
-        }
+        if (economyProvider != null) economy = economyProvider.getProvider();
     }
     
 }
