@@ -105,7 +105,9 @@ public class HG extends JavaPlugin {
 			Bukkit.getLogger().info("Your Java Version is " + System.getProperty("java.version") + " This plugin is compatible with your version");
 		}
 		PaperLib.suggestPaper(this);
-
+	    
+	    	// NBT Api init
+		nbtApi = new NBTApi();
 
 		//MythicMob check
 		if (Bukkit.getPluginManager().isPluginEnabled("MythicMobs")) {
