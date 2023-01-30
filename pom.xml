@@ -6,7 +6,7 @@
 
     <groupId>tk.shanebee.hg</groupId>
     <artifactId>HungerGames</artifactId>
-    <version>5.2.1</version>
+    <version>5.2.2</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -127,6 +127,7 @@
             <groupId>de.tr7zw</groupId>
             <artifactId>item-nbt-api-plugin</artifactId>
             <version>2.11.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.gmail.nossr50.mcMMO</groupId>
@@ -186,10 +187,6 @@
                         <relocation>
                             <pattern>org.bstats</pattern>
                             <shadedPattern>tk.shanebee</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>de.tr7zw.changeme.nbtapi</pattern>
-                            <shadedPattern>tk.shanebee.hg.api.nbt</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>io.papermc.lib</pattern>
