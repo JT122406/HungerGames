@@ -2,6 +2,7 @@ package tk.shanebee.hg.listeners;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.Chest;
 import org.bukkit.block.Sign;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
@@ -13,6 +14,7 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -345,7 +347,8 @@ public class GameListener implements Listener {
 		Game game = event.getGame();
 		GameBlockData gameBlockData = game.getGameBlockData();
 		if (!gameBlockData.isLoggedChest(block.getLocation())) {
-			HG.getPlugin().getManager().fillChests(block, game, event.isBonus());
+			Inventory inv = ((Chest) block.getState()).getBlockInventory();
+			HG.getPlugin().getManager().fillChest(inv, game, event.isBonus());
 			gameBlockData.addGameChest(block.getLocation());
 		}
 	}

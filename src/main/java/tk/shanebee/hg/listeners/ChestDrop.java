@@ -109,14 +109,7 @@ public class ChestDrop implements Listener {
 
             Inventory i = Bukkit.getServer().createInventory(player, 54);
             i.clear();
-            int c = rg.nextInt(Config.randomChestMaxContent) + 1;
-            while (c != 0) {
-                ItemStack it = HG.getPlugin().getManager().randomItem(game,false);
-                if (it != null) {
-                    i.addItem(it);
-                }
-                c--;
-            }
+            HG.getPlugin().getManager().fillChest(i, game, true);
             event.setCancelled(true);
             player.playSound(player.getLocation(), Sound.BLOCK_ENDER_CHEST_OPEN, 1, 1);
             player.openInventory(i);

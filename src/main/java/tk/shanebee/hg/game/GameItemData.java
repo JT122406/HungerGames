@@ -10,33 +10,21 @@ import java.util.Map;
  */
 @SuppressWarnings("unused")
 public class GameItemData extends Data {
+    private Map<ItemStack, Integer> itemRarityMap;
 
-    private Map<Integer, ItemStack> items;
-    private Map<Integer, ItemStack> bonusItems;
+    private Map<ItemStack, Integer> itemCostMap;
+
+    private Map<ItemStack, Integer> bonusRarityMap;
+
+    private Map<ItemStack, Integer> bonusCostMap;
 
     protected GameItemData(Game game) {
         super(game);
         // Set default items from items.yml (if arenas.yml has items it will override this)
-        this.items = plugin.getItems();
-        this.bonusItems = plugin.getBonusItems();
-    }
-
-    /**
-     * Set the items for this game
-     *
-     * @param items Map of items to set
-     */
-    public void setItems(Map<Integer, ItemStack> items) {
-        this.items = items;
-    }
-
-    /**
-     * Get the items map for this game
-     *
-     * @return Map of items
-     */
-    public Map<Integer, ItemStack> getItems() {
-        return this.items;
+        this.itemCostMap = game.plugin.getItemCostMap();
+        this.itemRarityMap = game.plugin.getItemRarityMap();
+        this.bonusCostMap = game.plugin.getBonusCostMap();
+        this.bonusRarityMap = game.plugin.getBonusRarityMap();
     }
 
     /**
@@ -44,63 +32,84 @@ public class GameItemData extends Data {
      *
      * @param item ItemStack to add
      */
-    public void addToItems(ItemStack item) {
-        this.items.put(this.items.size() + 1, item.clone());
+    public void addToItems(ItemStack item, int cost, int rarity) {
+        this.itemRarityMap.put(item, rarity);
+        this.itemCostMap.put(item, rarity);
     }
 
     /**
      * Clear the items for this game
      */
     public void clearItems() {
-        this.items.clear();
+        this.itemRarityMap.clear();
+        this.itemCostMap.clear();
     }
 
     /**
      * Reset the items for this game to the plugin's default items list
      */
     public void resetItemsDefault() {
-        this.items = HG.getPlugin().getItems();
+        this.itemCostMap = HG.getPlugin().getItemCostMap();
+        this.itemRarityMap = HG.getPlugin().getItemRarityMap();
     }
 
-    /**
-     * Set the bonus items for this game to a new map
-     *
-     * @param items Map of bonus items
-     */
-    public void setBonusItems(Map<Integer, ItemStack> items) {
-        this.bonusItems = items;
-    }
-
-    /**
-     * Get the bonus items map for this game
-     *
-     * @return Map of bonus items
-     */
-    public Map<Integer, ItemStack> getBonusItems() {
-        return this.bonusItems;
-    }
 
     /**
      * Add an item to this game's bonus items
      *
      * @param item ItemStack to add to bonus items
      */
-    public void addToBonusItems(ItemStack item) {
-        this.bonusItems.put(this.bonusItems.size() + 1, item.clone());
+    public void addToBonusItems(ItemStack item, int cost, int rarity) {
+        this.bonusRarityMap.put(item, rarity);
+        this.bonusCostMap.put(item, cost);
     }
 
     /**
      * Clear this game's bonus items
      */
     public void clearBonusItems() {
-        this.bonusItems.clear();
+        this.bonusCostMap.clear();
+        this.bonusRarityMap.clear();
+    }
+
+    public Map<ItemStack, Integer> getItemRarityMap() {
+        return itemRarityMap;
+    }
+
+    public void setItemRarityMap(Map<ItemStack, Integer> itemRarityMap) {
+        this.itemRarityMap = itemRarityMap;
+    }
+
+    public Map<ItemStack, Integer> getItemCostMap() {
+        return itemCostMap;
+    }
+
+    public void setItemCostMap(Map<ItemStack, Integer> itemCostMap) {
+        this.itemCostMap = itemCostMap;
+    }
+
+    public Map<ItemStack, Integer> getBonusRarityMap() {
+        return bonusRarityMap;
+    }
+
+    public void setBonusRarityMap(Map<ItemStack, Integer> bonusRarityMap) {
+        this.bonusRarityMap = bonusRarityMap;
+    }
+
+    public Map<ItemStack, Integer> getBonusCostMap() {
+        return bonusCostMap;
+    }
+
+    public void setBonusCostMap(Map<ItemStack, Integer> bonusCostMap) {
+        this.bonusCostMap = bonusCostMap;
     }
 
     /**
      * Reset the bonus items for this game to the plugin's default bonus items list
      */
     public void resetBonusItemsDefault() {
-        this.bonusItems = HG.getPlugin().getBonusItems();
+        this.bonusCostMap = HG.getPlugin().getBonusCostMap();
+        this.bonusRarityMap = HG.getPlugin().getBonusRarityMap();
     }
 
 }
