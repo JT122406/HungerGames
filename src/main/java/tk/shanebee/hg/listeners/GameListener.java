@@ -3,6 +3,7 @@ package tk.shanebee.hg.listeners;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.block.Container;
 import org.bukkit.block.Sign;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
@@ -347,7 +348,7 @@ public class GameListener implements Listener {
 		Game game = event.getGame();
 		GameBlockData gameBlockData = game.getGameBlockData();
 		if (!gameBlockData.isLoggedChest(block.getLocation())) {
-			Inventory inv = ((Chest) block.getState()).getBlockInventory();
+			Inventory inv = ((Container) block.getState()).getInventory();
 			HG.getPlugin().getManager().fillChest(inv, game, event.isBonus());
 			gameBlockData.addGameChest(block.getLocation());
 		}
@@ -619,21 +620,9 @@ public class GameListener implements Listener {
     }
 
 	@EventHandler
-	private void onBlockFall(BlockPhysicsEvent event) {
-		Block block = event.getBlock();
-		if (Config.breakblocks && gameManager.isInRegion(block.getLocation())) {
-			Game game = gameManager.getGame(block.getLocation());
-			Status status = game.getGameArenaData().getStatus();
-			if (status == Status.RUNNING || status == Status.BEGINNING) {
-				game.getGameBlockData().recordBlockBreak(block);
-			}
-		}
-	}
-
-	@EventHandler
 	private void onFallingBlockLand(EntityChangeBlockEvent event) {
-		Block block = event.getBlock();
-		if (block.getType() == Material.AIR || block.getType() == Material.WATER || block.getType() == Material.LAVA) {
+		if (event.getEntity().getType() == EntityType.FALLING_BLOCK){
+			Block block = event.getBlock();
 			if (Config.breakblocks && gameManager.isInRegion(event.getEntity().getLocation())) {
 				Game game = gameManager.getGame(event.getEntity().getLocation());
 				Status status = game.getGameArenaData().getStatus();
