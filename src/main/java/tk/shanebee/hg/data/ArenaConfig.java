@@ -161,6 +161,11 @@ public class ArenaConfig {
 					plugin.getGames().add(game);
 
 					World world = bound.getWorld();
+					if (world == null) {
+						Util.warning("World '%s' for arena '%s' does not exist!", arenaName, arenaName);
+						continue;
+					}
+
 					if (world.getDifficulty() == Difficulty.PEACEFUL) {
 						Util.warning("Difficulty in world '%s' for arena '%s' is set to PEACEFUL...", world.getName(), arenaName);
 						Util.warning("This can have negative effects on the game, please consider raising the difficulty.");
