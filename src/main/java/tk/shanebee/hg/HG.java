@@ -179,6 +179,7 @@ public class HG extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new WandListener(this), this);
 		getServer().getPluginManager().registerEvents(new CancelListener(this), this);
 		getServer().getPluginManager().registerEvents(new GameListener(this), this);
+		getServer().getPluginManager().registerEvents(new ChestDropListener(this), this);
 
 		Util.log("HungerGames has been &aenabled&7 in &b%.2f seconds&7!", (float)(System.currentTimeMillis() - start) / 1000);
 	}

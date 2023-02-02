@@ -76,7 +76,7 @@ team-none: "&cYou do not have a team, create one first with command &b'/hg team 
 
 #  CHEST DROPS
 chest-drop-1: '&6*&b&m                                                                                   &6*'
-chest-drop-2: '"&b| &3A Care-Package was just dropped near: &f<x>&3, &f<y>&3, &f<z>'
+chest-drop-2: '"&b| &3A care package is dropping in 30 seconds at &f<x>&3, &f<y>&3, &f<z>'
 
 #  COMPASS
 #  <player> will be replaced with the name of the nearest player

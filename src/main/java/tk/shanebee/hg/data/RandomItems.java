@@ -78,7 +78,6 @@ public class RandomItems {
                 Util.log("Item definition %s doesn't contain a cost or a rarity! Defaulting to 1...", s);
             }
             String itemStackStr = s.replaceAll("cost:", "").replaceAll("rarity:", "");
-            Util.log(itemStackStr);
             ItemStack readItem = plugin.getItemStackManager().getItem(itemStackStr, true);
             costMap.put(readItem, cost);
             rarityMap.put(readItem, rarity);

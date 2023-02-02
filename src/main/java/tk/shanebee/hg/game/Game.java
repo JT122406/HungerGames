@@ -13,14 +13,11 @@ import tk.shanebee.hg.data.PlayerData;
 import tk.shanebee.hg.events.GameEndEvent;
 import tk.shanebee.hg.events.GameStartEvent;
 import tk.shanebee.hg.game.GameCommandData.CommandType;
+import tk.shanebee.hg.managers.ChestDropManager;
 import tk.shanebee.hg.managers.KitManager;
 import tk.shanebee.hg.managers.MobManager;
 import tk.shanebee.hg.managers.PlayerManager;
-import tk.shanebee.hg.tasks.ChestDropTask;
-import tk.shanebee.hg.tasks.FreeRoamTask;
-import tk.shanebee.hg.tasks.Rollback;
-import tk.shanebee.hg.tasks.SpawnerTask;
-import tk.shanebee.hg.tasks.StartingTask;
+import tk.shanebee.hg.tasks.*;
 import tk.shanebee.hg.tasks.TimerTask;
 import tk.shanebee.hg.util.Util;
 import tk.shanebee.hg.util.Vault;
@@ -40,13 +37,13 @@ public class Game {
     KitManager kitManager;
     private final MobManager mobManager;
     private final PlayerManager playerManager;
+    private ChestDropManager chestDropManager;
 
     // Task ID's here!
     private SpawnerTask spawner;
     private FreeRoamTask freeRoam;
     private StartingTask starting;
     private TimerTask timer;
-    private ChestDropTask chestDrop;
 
     // Data Objects
     final GameArenaData gameArenaData;
@@ -114,6 +111,11 @@ public class Game {
         this.gameBorderData = new GameBorderData(this);
         this.gameBorderData.setBorderSize(Config.borderFinalSize);
         this.gameBorderData.setBorderTimer(Config.borderCountdownStart, Config.borderCountdownEnd);
+        this.chestDropManager = new ChestDropManager(this);
+    }
+
+    public ChestDropManager getChestDropManager() {
+        return chestDropManager;
     }
 
     /**
@@ -248,7 +250,7 @@ public class Game {
     public void startGame() {
         gameArenaData.status = Status.RUNNING;
         if (Config.spawnmobs) spawner = new SpawnerTask(this, Config.spawnmobsinterval);
-        if (Config.randomChest) chestDrop = new ChestDropTask(this);
+        if (Config.randomChest) chestDropManager.startChestDrop();
         gameBlockData.updateLobbyBlock();
         if (Config.bossbar) {
             bar.createBossbar(gameArenaData.timer);
@@ -264,7 +266,7 @@ public class Game {
         if (timer != null) timer.stop();
         if (starting != null) starting.stop();
         if (freeRoam != null) freeRoam.stop();
-        if (chestDrop != null) chestDrop.shutdown();
+        if (freeRoam != null) chestDropManager.shutdown();
     }
 
     /**

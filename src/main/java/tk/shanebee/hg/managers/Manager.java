@@ -175,7 +175,6 @@ public class Manager {
 
 		ArrayList<ItemStack> itemList = new ArrayList<>();
 		for (Map.Entry<ItemStack, Integer> e : itemRarityMap.entrySet()) {
-			Util.log("Adding %s to item list", e.getKey().toString());
 			for (int i = 0; i < e.getValue(); i++){
 				itemList.add(e.getKey());
 			}
@@ -183,7 +182,6 @@ public class Manager {
 		Collections.shuffle(itemList);
 
 		int costGoal = rg.nextInt(minCost, maxCost + 1);
-		Util.log("Looking for total cost of %s", costGoal);
 		int chestCost = 0;
 		ArrayList<ItemStack> chestContents = new ArrayList<>();
 		int numTries = 0;
@@ -202,7 +200,6 @@ public class Manager {
 		}
 		HashSet<Integer> pickedSlots = new HashSet<>();
 		chestContents.forEach((itemStack -> {
-			Util.log("Put %s in a chest", itemStack.toString());
 			int slot = rg.nextInt(inv.getSize());
 			while (pickedSlots.contains(slot)) {
 				slot = rg.nextInt(inv.getSize());
