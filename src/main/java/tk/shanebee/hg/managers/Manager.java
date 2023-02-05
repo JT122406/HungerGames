@@ -160,54 +160,54 @@ public class Manager {
 	}
 
     /** Fill chests in a game
-     * @param block Chest to fill
+     * @param inv Inventory to fill
      * @param game Game this chest is in
      * @param bonus Whether or not this is a bonus chest
      */
-	public void fillChests(Block block, Game game, boolean bonus) {
-		Inventory i = ((InventoryHolder)block.getState()).getInventory();
-		List<Integer> slots = new ArrayList<>();
-		for (int slot = 0; slot <= 26; slot++) {
-			slots.add(slot);
-		}
-		Collections.shuffle(slots);
-		i.clear();
-		int max = bonus ? Config.maxbonuscontent : Config.maxchestcontent;
-		int min = bonus ? Config.minbonuscontent : Config.minchestcontent;
-
-		int c = rg.nextInt(max) + 1;
-		c = Math.max(c, min);
-		while (c != 0) {
-			ItemStack it = randomItem(game, bonus);
-			int slot = slots.get(0);
-			slots.remove(0);
-			i.setItem(slot, it);
-			c--;
-		}
-	}
-
-    /** Get a random item from a game's item list
-     * @param game Game to get the item from
-     * @param bonus Whether or not its a bonus item
-     * @return Random ItemStack
-     */
-	public ItemStack randomItem(Game game, boolean bonus) {
+	public void fillChest(Inventory inv, Game game, boolean bonus) {
 		GameItemData gameItemData = game.getGameItemData();
-		if (bonus) {
-		    int r = gameItemData.getBonusItems().size();
-		    if (r == 0) {
-		        return new ItemStack(Material.AIR);
-            }
-			int i = rg.nextInt(r) + 1;
-			return gameItemData.getBonusItems().get(i);
-		} else {
-		    int r = gameItemData.getItems().size();
-            if (r == 0) {
-                return new ItemStack(Material.AIR);
-            }
-			int i = rg.nextInt(r) + 1;
-			return gameItemData.getItems().get(i);
+		inv.clear();
+
+		Map<ItemStack, Integer> itemRarityMap =  bonus ? gameItemData.getBonusRarityMap() : gameItemData.getItemRarityMap();
+		Map<ItemStack, Integer> itemCostMap =  bonus ? gameItemData.getBonusCostMap() : gameItemData.getItemCostMap();
+		int maxCost = bonus ? Config.maxbonuscontent : Config.maxchestcontent;
+		int minCost = bonus ? Config.minbonuscontent : Config.minchestcontent;
+
+		ArrayList<ItemStack> itemList = new ArrayList<>();
+		for (Map.Entry<ItemStack, Integer> e : itemRarityMap.entrySet()) {
+			for (int i = 0; i < e.getValue(); i++){
+				itemList.add(e.getKey());
+			}
 		}
+		Collections.shuffle(itemList);
+
+		int costGoal = rg.nextInt(minCost, maxCost + 1);
+		int chestCost = 0;
+		ArrayList<ItemStack> chestContents = new ArrayList<>();
+		int numTries = 0;
+		while (chestCost < costGoal && numTries < 10) {
+			int nextItemIndex = rg.nextInt(itemList.size());
+			ItemStack nextItem = itemList.get(nextItemIndex);
+			int nextItemCost = itemCostMap.get(nextItem);
+			if (nextItemCost <= (costGoal - chestCost) && !chestContents.contains(nextItem)) {
+				chestCost += nextItemCost;
+				chestContents.add(nextItem);
+				numTries = 0;
+			}
+			else {
+				numTries++;
+			}
+		}
+		HashSet<Integer> pickedSlots = new HashSet<>();
+		chestContents.forEach((itemStack -> {
+			int slot = rg.nextInt(inv.getSize());
+			while (pickedSlots.contains(slot)) {
+				slot = rg.nextInt(inv.getSize());
+			}
+			pickedSlots.add(slot);
+			inv.setItem(slot, itemStack);
+		}));
+
 	}
 
 	/** Check if a location is in a game's bounds

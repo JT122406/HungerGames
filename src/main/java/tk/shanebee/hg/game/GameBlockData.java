@@ -172,7 +172,7 @@ public class GameBlockData extends Data {
      * @return List of all recorded blocks
      */
     public List<BlockState> getBlocks() {
-        Collections.reverse(blocks);
+         Collections.reverse(blocks);
         return blocks;
     }
 

@@ -20,10 +20,7 @@ import tk.shanebee.hg.util.Util;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * General data handler for the plugin
@@ -176,20 +173,22 @@ public class ArenaConfig {
 						game.setKitManager(kit);
 
 					if (!arenadat.getStringList(path + ".items").isEmpty()) {
-						HashMap<Integer, ItemStack> items = new HashMap<>();
-						for (String itemString : arenadat.getStringList(path + ".items")) {
-							plugin.getRandomItems().loadItems(itemString, items);
-						}
-						game.getGameItemData().setItems(items);
-						Util.log(items.size() + " Random items have been loaded for arena: &b" + arenaName);
+						List<String> itemList = arenadat.getStringList(path + ".items");
+						Map<ItemStack, Integer> itemCostMap = HG.getPlugin().getItemCostMap();
+						Map<ItemStack, Integer> itemRarityMap = HG.getPlugin().getItemRarityMap();
+						plugin.getRandomItems().loadItems(itemList, itemCostMap, itemRarityMap);
+						game.getGameItemData().setItemCostMap(itemCostMap);
+						game.getGameItemData().setItemRarityMap(itemRarityMap);
+						Util.log(itemCostMap.keySet().size() + " Random items have been loaded for arena: &b" + arenaName);
 					}
 					if (!arenadat.getStringList(path + ".bonus").isEmpty()) {
-						HashMap<Integer, ItemStack> bonusItems = new HashMap<>();
-						for (String itemString : arenadat.getStringList(path + ".bonus")) {
-							plugin.getRandomItems().loadItems(itemString, bonusItems);
-						}
-						game.getGameItemData().setBonusItems(bonusItems);
-						Util.log(bonusItems.size() + " Random bonus items have been loaded for arena: &b" + arenaName);
+						List<String> itemList = arenadat.getStringList(path + ".bonus");
+						Map<ItemStack, Integer> itemCostMap = HG.getPlugin().getBonusCostMap();
+						Map<ItemStack, Integer> itemRarityMap = HG.getPlugin().getBonusRarityMap();
+						plugin.getRandomItems().loadItems(itemList, itemCostMap, itemRarityMap);
+						game.getGameItemData().setBonusCostMap(itemCostMap);
+						game.getGameItemData().setBonusRarityMap(itemRarityMap);
+						Util.log(itemCostMap.keySet().size() + " Random items have been loaded for arena: &b" + arenaName);
 					}
 
 					if (arenadat.isSet(path + ".border.center")) {

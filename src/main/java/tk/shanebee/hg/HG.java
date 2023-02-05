@@ -29,8 +29,14 @@ public class HG extends JavaPlugin {
 	//Maps
 	private Map<String, BaseCmd> cmds;
 	private Map<UUID, PlayerSession> playerSession;
-	private Map<Integer, ItemStack> items;
-	private Map<Integer, ItemStack> bonusItems;
+
+	private Map<ItemStack, Integer> itemRarityMap;
+
+	private Map<ItemStack, Integer> itemCostMap;
+
+	private Map<ItemStack, Integer> bonusRarityMap;
+
+	private Map<ItemStack, Integer> bonusCostMap;
 
 	//Lists
 	private List<Game> games;
@@ -78,8 +84,10 @@ public class HG extends JavaPlugin {
         }
 	    games = new ArrayList<>();
         playerSession = new HashMap<>();
-        items = new HashMap<>();
-        bonusItems = new HashMap<>();
+        itemCostMap = new HashMap<>();
+		itemRarityMap = new HashMap<>();
+		bonusCostMap = new HashMap<>();
+		bonusRarityMap = new HashMap<>();
 
 		config = new Config(this);
 		Bukkit.getLogger().info("Loading HungerGames by JT122406");
@@ -171,6 +179,7 @@ public class HG extends JavaPlugin {
 		getServer().getPluginManager().registerEvents(new WandListener(this), this);
 		getServer().getPluginManager().registerEvents(new CancelListener(this), this);
 		getServer().getPluginManager().registerEvents(new GameListener(this), this);
+		getServer().getPluginManager().registerEvents(new ChestDropListener(this), this);
 
 		Util.log("HungerGames has been &aenabled&7 in &b%.2f seconds&7!", (float)(System.currentTimeMillis() - start) / 1000);
 	}
@@ -183,8 +192,8 @@ public class HG extends JavaPlugin {
         stopAll();
         games = null;
         playerSession = null;
-        items = null;
-        bonusItems = null;
+        itemRarityMap = null;
+		itemCostMap = null;
         plugin = null;
         config = null;
         nbtApi = null;
@@ -366,20 +375,6 @@ public class HG extends JavaPlugin {
 		return this.playerSession;
 	}
 
-	/** Get general items map
-	 * @return Items map
-	 */
-	public Map<Integer, ItemStack> getItems() {
-		return this.items;
-	}
-
-	/** Get general bonus items map
-	 * @return Bonus items map
-	 */
-	public Map<Integer, ItemStack> getBonusItems() {
-		return this.bonusItems;
-	}
-
 	/** Get a map of commands
 	 * @return Map of commands
 	 */
@@ -427,6 +422,20 @@ public class HG extends JavaPlugin {
 	 */
 	public MobExecutor getMmMobManager() {
 		return this.mmMobManager;
+	}
+	public Map<ItemStack, Integer> getItemRarityMap() {
+		return itemRarityMap;
+	}
+
+	public Map<ItemStack, Integer> getItemCostMap() {
+		return itemCostMap;
+	}
+	public Map<ItemStack, Integer> getBonusRarityMap() {
+		return bonusRarityMap;
+	}
+
+	public Map<ItemStack, Integer> getBonusCostMap() {
+		return bonusCostMap;
 	}
 
 }
