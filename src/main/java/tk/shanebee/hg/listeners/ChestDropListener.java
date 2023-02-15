@@ -14,7 +14,6 @@ import tk.shanebee.hg.HG;
 import tk.shanebee.hg.data.ChestDrop;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.managers.ChestDropManager;
-import tk.shanebee.hg.util.Util;
 
 
 /**

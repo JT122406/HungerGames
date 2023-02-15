@@ -1,14 +1,11 @@
 package tk.shanebee.hg.managers;
 
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import tk.shanebee.hg.HG;
 import tk.shanebee.hg.Status;
@@ -30,7 +27,7 @@ public class Manager {
 	private final HG plugin;
 	private final Language lang;
 	private final Random rg = new Random();
-	
+
 	public Manager(HG plugin) {
 		this.plugin = plugin;
 		this.lang = plugin.getLang();
@@ -79,14 +76,14 @@ public class Manager {
 			if (arenadat.isSet("arenas." + gameName + ".chest-refill")) {
 				chestRefill = arenadat.getInt("arenas." + gameName + ".chest-refill");
 			}
-		} catch (Exception e) { 
+		} catch (Exception e) {
 			Util.scm(sender, "&cUnable to load information for arena " + gameName + "!");
 			isReady = false;
 		}
 
 		try {
 			lobbysign = (Sign) HG.getPlugin().getArenaConfig().getSLoc(Objects.requireNonNull(arenadat.getString("arenas." + gameName + "." + "lobbysign"))).getBlock().getState();
-		} catch (Exception e) { 
+		} catch (Exception e) {
 			Util.scm(sender, "&cUnable to load lobbysign for arena " + gameName + "!");
 			isReady = false;
 		}
@@ -97,10 +94,10 @@ public class Manager {
 			}
 			int count = arenadat.getStringList("arenas." + gameName + "." + "spawns").size();
 			if (count < maxplayers) {
-				Util.scm(sender, "&cYou need to add " + (maxplayers - count) + " more spawns!"); 
+				Util.scm(sender, "&cYou need to add " + (maxplayers - count) + " more spawns!");
 				isReady = false;
 			}
-		} catch (Exception e) { 
+		} catch (Exception e) {
 			Util.scm(sender, "&cUnable to load random spawns for arena " + gameName + "!");
 			isReady = false;
 		}
@@ -108,7 +105,7 @@ public class Manager {
 		try {
 			@SuppressWarnings("unused")
             Bound b = new Bound(arenadat.getString("arenas." + gameName + ".bound." + "world"), HG.getPlugin().getArenaConfig().BC(gameName, "x"), HG.getPlugin().getArenaConfig().BC(gameName, "y"), HG.getPlugin().getArenaConfig().BC(gameName, "z"), HG.getPlugin().getArenaConfig().BC(gameName, "x2"), HG.getPlugin().getArenaConfig().BC(gameName, "y2"), HG.getPlugin().getArenaConfig().BC(gameName, "z2"));
-		} catch (Exception e) { 
+		} catch (Exception e) {
 			Util.scm(sender, "&cUnable to load region bounds for arena " + gameName + "!");
 			isReady = false;
 		}

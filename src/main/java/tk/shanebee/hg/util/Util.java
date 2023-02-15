@@ -235,7 +235,7 @@ public class Util {
      * Convert a list of UUIDs to a string of player names
      *
      * @param uuid UUID list to convert
-     * @return String of player names
+     * @return List<String></String> of player names
      */
     public static List<String> convertUUIDListToStringList(List<UUID> uuid) {
         List<String> winners = new ArrayList<>();

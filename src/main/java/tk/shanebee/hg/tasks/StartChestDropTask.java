@@ -2,14 +2,10 @@ package tk.shanebee.hg.tasks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import tk.shanebee.hg.HG;
 import tk.shanebee.hg.data.ChestDrop;
-import tk.shanebee.hg.data.Config;
-import tk.shanebee.hg.game.Bound;
 import tk.shanebee.hg.game.Game;
 import tk.shanebee.hg.util.Util;
 

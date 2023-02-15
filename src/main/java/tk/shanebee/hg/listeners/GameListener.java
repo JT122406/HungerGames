@@ -2,7 +2,6 @@ package tk.shanebee.hg.listeners;
 
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.Chest;
 import org.bukkit.block.Container;
 import org.bukkit.block.Sign;
 import org.bukkit.enchantments.Enchantment;

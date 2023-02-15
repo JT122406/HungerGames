@@ -1,13 +1,8 @@
 package tk.shanebee.hg.managers;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import tk.shanebee.hg.HG;
 import tk.shanebee.hg.data.ChestDrop;
 import tk.shanebee.hg.game.Game;
-import tk.shanebee.hg.listeners.ChestDropListener;
-import tk.shanebee.hg.tasks.StartChestDropTask;
-import tk.shanebee.hg.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;

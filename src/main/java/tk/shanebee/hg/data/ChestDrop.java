@@ -6,14 +6,11 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.Inventory;
 import tk.shanebee.hg.HG;
 import tk.shanebee.hg.game.Bound;
 import tk.shanebee.hg.game.Game;
-import tk.shanebee.hg.tasks.ChestDropTask;
 import tk.shanebee.hg.tasks.StartChestDropTask;
-import tk.shanebee.hg.util.Util;
 
 public class ChestDrop {
     private Inventory chestInv;
