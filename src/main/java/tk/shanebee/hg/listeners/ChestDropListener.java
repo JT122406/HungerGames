@@ -32,6 +32,7 @@ public class ChestDropListener implements Listener {
             // inv.getLocation() returns null for custom created inventories, so we can use it to check if an inventory is one we created
             if (inv.getType() == InventoryType.CHEST && inv.getLocation() == null) {
                 Game game = plugin.getPlayerManager().getGame((Player) event.getPlayer());
+                if (game == null) return;
                 ChestDropManager manager = game.getChestDropManager();
                 ChestDrop matchingDrop = null;
                 for (ChestDrop cd : manager.getChestDrops()) {
