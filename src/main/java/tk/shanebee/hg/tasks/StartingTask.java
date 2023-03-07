@@ -2,6 +2,7 @@ package tk.shanebee.hg.tasks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import tk.shanebee.hg.HG;
 import tk.shanebee.hg.Status;
@@ -31,9 +32,8 @@ public class StartingTask implements Runnable {
         if (Config.broadcastJoinMessages) {
             Util.broadcast(broadcast);
             Util.broadcast(lang.game_join.replace("<arena>", name));
-        } else {
-            game.getGamePlayerData().msgAll(broadcast);
-        }
+        } else game.getGamePlayerData().msgAll(broadcast);
+
         this.id = Bukkit.getScheduler().scheduleSyncRepeatingTask(HG.getPlugin(), this, 5 * 20L, 5 * 20L);
     }
 
@@ -43,7 +43,6 @@ public class StartingTask implements Runnable {
 
         if (game.getGameArenaData().getStatus() != Status.COUNTDOWN)
             stop();
-
 
         for (UUID p : game.getGamePlayerData().getPlayers()) {
             Player player = Bukkit.getPlayer(p);
@@ -68,6 +67,12 @@ public class StartingTask implements Runnable {
                         player.getInventory().clear();
                     }
                 });
+            for (UUID p : game.getGamePlayerData().getPlayers()) {
+                Player player = Bukkit.getPlayer(p);
+                assert player != null;
+                Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(40);
+                player.setSaturation(20);
+            }
             game.startFreeRoam();
             stop();
         } else {
