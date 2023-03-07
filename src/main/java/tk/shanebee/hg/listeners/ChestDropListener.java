@@ -20,13 +20,14 @@ import tk.shanebee.hg.managers.ChestDropManager;
  * Manager for chest drops
  */
 public class ChestDropListener implements Listener {
-    private HG plugin;
+    private final HG plugin;
 
     public ChestDropListener(HG plugin) {
         this.plugin = plugin;
     }
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
+        if (plugin.getGames().isEmpty()) return;
         Inventory inv = event.getInventory();
         if (event.getPlayer() instanceof Player) {
             // inv.getLocation() returns null for custom created inventories, so we can use it to check if an inventory is one we created
@@ -35,15 +36,14 @@ public class ChestDropListener implements Listener {
                 if (game == null) return;
                 ChestDropManager manager = game.getChestDropManager();
                 ChestDrop matchingDrop = null;
-                for (ChestDrop cd : manager.getChestDrops()) {
+                for (ChestDrop cd : manager.getChestDrops())
                     if (cd.getChestInv().equals(inv)) {
                         matchingDrop = cd;
                         break;
                     }
-                }
+
                 if (matchingDrop != null) {
-                    World w = game.getGameArenaData().getBound().getWorld();
-                    w.playSound(matchingDrop.getChestBlock().getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1f, 1f);
+                    game.getGameArenaData().getBound().getWorld().playSound(matchingDrop.getChestBlock().getLocation(), Sound.ENTITY_GENERIC_EXPLODE, 1f, 1f);
                     matchingDrop.getChestBlock().setType(Material.AIR);
                 }
             }
