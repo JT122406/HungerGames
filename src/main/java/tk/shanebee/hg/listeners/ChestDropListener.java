@@ -59,17 +59,20 @@ public class ChestDropListener implements Listener {
         Game game = plugin.getPlayerManager().getGame(event.getPlayer());
         if (game != null) {
             ChestDropManager manager = game.getChestDropManager();
-            if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && block.getType().equals(manager.getChestDropType())) {
-                ChestDrop matchingDrop = null;
-                for (ChestDrop cd : manager.getChestDrops()) {
-                    if (cd.getChestBlock().equals(block)) {
-                        matchingDrop = cd;
-                        break;
+            if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+                assert block != null;
+                if (block.getType().equals(manager.getChestDropType())) {
+                    ChestDrop matchingDrop = null;
+                    for (ChestDrop cd : manager.getChestDrops()) {
+                        if (cd.getChestBlock().equals(block)) {
+                            matchingDrop = cd;
+                            break;
+                        }
                     }
-                }
-                if (matchingDrop != null) {
-                    event.getPlayer().openInventory(matchingDrop.getChestInv());
-                    event.setCancelled(true);
+                    if (matchingDrop != null) {
+                        event.getPlayer().openInventory(matchingDrop.getChestInv());
+                        event.setCancelled(true);
+                    }
                 }
             }
         }
