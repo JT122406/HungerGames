@@ -27,13 +27,13 @@ public class ChestDropListener implements Listener {
     }
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
-        if (plugin.getGames().isEmpty()) return;
+        if (plugin.getGames().isEmpty()) return;  //Empty game list, no need to continue
         Inventory inv = event.getInventory();
         if (event.getPlayer() instanceof Player) {
+            Game game = plugin.getPlayerManager().getGame((Player) event.getPlayer());
+            if (game == null) return;
             // inv.getLocation() returns null for custom created inventories, so we can use it to check if an inventory is one we created
             if (inv.getType() == InventoryType.CHEST && inv.getLocation() == null) {
-                Game game = plugin.getPlayerManager().getGame((Player) event.getPlayer());
-                if (game == null) return;
                 ChestDropManager manager = game.getChestDropManager();
                 ChestDrop matchingDrop = null;
                 for (ChestDrop cd : manager.getChestDrops())
@@ -55,24 +55,23 @@ public class ChestDropListener implements Listener {
 
     @EventHandler
     public void onOpenChestDrop(PlayerInteractEvent event) {
-        Block block = event.getClickedBlock();
         Game game = plugin.getPlayerManager().getGame(event.getPlayer());
-        if (game != null) {
-            ChestDropManager manager = game.getChestDropManager();
-            if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
-                assert block != null;
-                if (block.getType().equals(manager.getChestDropType())) {
-                    ChestDrop matchingDrop = null;
-                    for (ChestDrop cd : manager.getChestDrops()) {
-                        if (cd.getChestBlock().equals(block)) {
-                            matchingDrop = cd;
-                            break;
-                        }
+        if (game == null) return;
+        Block block = event.getClickedBlock();
+        ChestDropManager manager = game.getChestDropManager();
+        if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
+            assert block != null;
+            if (block.getType().equals(manager.getChestDropType())) {
+                ChestDrop matchingDrop = null;
+                for (ChestDrop cd : manager.getChestDrops()) {
+                    if (cd.getChestBlock().equals(block)) {
+                        matchingDrop = cd;
+                        break;
                     }
-                    if (matchingDrop != null) {
-                        event.getPlayer().openInventory(matchingDrop.getChestInv());
-                        event.setCancelled(true);
-                    }
+                }
+                if (matchingDrop != null) {
+                    event.getPlayer().openInventory(matchingDrop.getChestInv());
+                    event.setCancelled(true);
                 }
             }
         }
