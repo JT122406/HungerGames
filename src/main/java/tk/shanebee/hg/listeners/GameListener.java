@@ -405,11 +405,11 @@ public class GameListener implements Listener {
             if (status != Status.RUNNING && status != Status.BEGINNING) {
 				if (event.getItem() != null)
 					if(event.getItem().getType().equals(Material.getMaterial(Config.leaveitemtype))){
-						playerManager.getPlayerData(player).getGame().getGamePlayerData().leave(player, false);
+						Objects.requireNonNull(playerManager.getPlayerData(player)).getGame().getGamePlayerData().leave(player, false);
 					} else if (event.getItem().getType().equals(Material.getMaterial(Config.forcestartitem))){
 						Util.clearInv(player);
 						//playerManager.getPlayerData(player).getGame()
-						playerManager.getPlayerData(player).getGame().startFreeRoam();
+						Objects.requireNonNull(playerManager.getPlayerData(player)).getGame().startFreeRoam();
 					} else {
 						event.setCancelled(true);
 						Util.scm(player, lang.listener_no_interact);
@@ -792,6 +792,14 @@ public class GameListener implements Listener {
 				}
 			}
 		}
+	}
+
+	@EventHandler
+	private void onMove(PlayerMoveEvent event) {
+		Game game = plugin.getPlayerManager().getGame(event.getPlayer());
+		if (game == null) return;
+		if (game.getGameArenaData().getStatus() == Status.COUNTDOWN || game.getGameArenaData().getStatus() == Status.WAITING)
+			event.setCancelled(true);
 	}
 
 }
