@@ -78,14 +78,14 @@ public class TimerTask implements Runnable {
 				if (minutes != 0) {
 					if (asd == 0) {
 					    if (end_min.length() < 1) return;
-                        game.getGamePlayerData().msgAll(end_min.replace("<minutes>", "" + minutes));
+                        game.getGamePlayerData().msgAll(end_min.replace("<minutes>", String.valueOf(minutes)));
                     } else {
 					    if (end_minsec.length() < 1) return;
-                        game.getGamePlayerData().msgAll(end_minsec.replace("<minutes>", "" + minutes).replace("<seconds>", "" + asd));
+                        game.getGamePlayerData().msgAll(end_minsec.replace("<minutes>", String.valueOf(minutes)).replace("<seconds>", String.valueOf(asd)));
                     }
 				} else {
 				    if (end_sec.length() < 1) return;
-				    game.getGamePlayerData().msgAll(end_sec.replace("<seconds>", "" + this.remainingtime));
+				    game.getGamePlayerData().msgAll(end_sec.replace("<seconds>", String.valueOf(this.remainingtime)));
                 }
 			}
 		}

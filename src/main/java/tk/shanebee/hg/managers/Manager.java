@@ -143,7 +143,7 @@ public class Manager {
 		String name = gameArenaData.getName();
 		if (gameArenaData.getSpawns().size() <  gameArenaData.getMaxPlayers()) {
 			Util.sendPrefixedMessage(player, lang.check_need_more_spawns.replace("<number>",
-					"" + (gameArenaData.getMaxPlayers() - gameArenaData.getSpawns().size())));
+					String.valueOf(gameArenaData.getMaxPlayers() - gameArenaData.getSpawns().size())));
 		} else if (gameArenaData.getStatus() == Status.BROKEN) {
 			Util.sendPrefixedMessage(player, lang.check_broken_debug.replace("<arena>", name));
 			Util.sendPrefixedMessage(player, lang.check_broken_debug_2.replace("<arena>", name));

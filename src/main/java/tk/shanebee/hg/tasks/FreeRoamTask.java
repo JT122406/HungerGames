@@ -26,7 +26,7 @@ public class FreeRoamTask implements Runnable {
             if (player != null) {
                 Util.scm(player, lang.roam_game_started);
                 if (roamTime > 0) {
-                    Util.scm(player, lang.roam_time.replace("<roam>", "" + roamTime));
+                    Util.scm(player, lang.roam_time.replace("<roam>", String.valueOf(roamTime)));
                 }
                 player.setHealth(20);
                 player.setFoodLevel(20);

@@ -193,7 +193,7 @@ public class GameBlockData extends Data {
     void updateLobbyBlock() {
         if (sign2 == null || sign3 == null) return;
         sign2.setLine(1, game.gameArenaData.status.getName());
-        sign3.setLine(1, ChatColor.BOLD + "" + game.getGamePlayerData().players.size() + "/" + game.gameArenaData.maxPlayers);
+        sign3.setLine(1, ChatColor.BOLD + String.valueOf(game.getGamePlayerData().players.size()) + "/" + game.gameArenaData.maxPlayers);
         sign2.update(true);
         sign3.update(true);
     }

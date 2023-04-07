@@ -33,9 +33,9 @@ public class StartChestDropTask implements Runnable {
             if (p != null) {
                 Util.scm(p, HG.getPlugin().getLang().chest_drop_1);
                 Util.scm(p, HG.getPlugin().getLang().chest_drop_2
-                        .replace("<x>", x+"")
-                        .replace("<y>", y+"")
-                        .replace("<z>", z+""));
+                        .replace("<x>", String.valueOf(x))
+                        .replace("<y>", String.valueOf(y))
+                        .replace("<z>", String.valueOf(z)));
                 Util.scm(p, HG.getPlugin().getLang().chest_drop_1);
             }
         }
