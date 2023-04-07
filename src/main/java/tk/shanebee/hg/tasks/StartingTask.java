@@ -28,7 +28,7 @@ public class StartingTask implements Runnable {
         String name = g.getGameArenaData().getName();
         String broadcast = lang.game_started
                 .replace("<arena>", name)
-                .replace("<seconds>", "" + timer);
+                .replace("<seconds>", String.valueOf(timer));
         if (Config.broadcastJoinMessages) {
             Util.broadcast(broadcast);
             Util.broadcast(lang.game_join.replace("<arena>", name));
@@ -49,9 +49,8 @@ public class StartingTask implements Runnable {
             assert player != null;
             int health = (int)player.getSaturation();
             health+= 3;
-            if (health < 40) {
+            if (health < 20)
                 player.setHealth(health);
-            }
         }
 
 
@@ -70,14 +69,13 @@ public class StartingTask implements Runnable {
             for (UUID p : game.getGamePlayerData().getPlayers()) {
                 Player player = Bukkit.getPlayer(p);
                 assert player != null;
-                Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).setBaseValue(40);
+                player.setHealth(Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getBaseValue());
                 player.setSaturation(20);
             }
             game.startFreeRoam();
             stop();
-        } else {
-            game.getGamePlayerData().msgAll(lang.game_countdown.replace("<timer>", String.valueOf(timer)));
-        }
+        } else game.getGamePlayerData().msgAll(lang.game_countdown.replace("<timer>", String.valueOf(timer)));
+
     }
 
     public void stop() {
