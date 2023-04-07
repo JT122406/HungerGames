@@ -62,7 +62,6 @@ public class ItemStackManager {
         return kit;
     }
 
-    @SuppressWarnings("ConstantConditions")
     private void kitCreator(Configuration config, KitManager kit, @Nullable String gameName) {
         if (gameName == null) gameName = "";
         if (config.getConfigurationSection(gameName + "kits") == null) return;

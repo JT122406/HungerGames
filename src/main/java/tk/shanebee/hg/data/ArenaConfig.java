@@ -83,7 +83,6 @@ public class ArenaConfig {
 		}
 	}
 
-	@SuppressWarnings("ConstantConditions")
 	public void load() {
 		Util.log("Loading arenas...");
 		Configuration pluginConfig = plugin.getHGConfig().getConfig();

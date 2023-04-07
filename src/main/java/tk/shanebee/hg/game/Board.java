@@ -34,7 +34,6 @@ public class Board {
     private final Team team;
     private final String[] entries = new String[]{"&1&r", "&2&r", "&3&r", "&4&r", "&5&r", "&6&r", "&7&r", "&8&r", "&9&r", "&0&r", "&a&r", "&b&r", "&c&r", "&d&r", "&e&r"};
 
-    @SuppressWarnings("ConstantConditions")
     public Board(Game game) {
         this.game = game;
         this.plugin = game.plugin;

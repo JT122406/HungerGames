@@ -204,7 +204,6 @@ public class PlayerManager {
      * @param uuid UUID of player to get game
      * @return Game of player, null if player is not in a game
      */
-    @SuppressWarnings("ConstantConditions")
     @Nullable
     public Game getGame(UUID uuid) {
         if (hasPlayerData(uuid))

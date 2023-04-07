@@ -199,7 +199,6 @@ public class Config {
     }
 
     // Used to update config
-    @SuppressWarnings("ConstantConditions")
     private void matchConfig(FileConfiguration config, File file) {
         try {
             boolean hasUpdated = false;

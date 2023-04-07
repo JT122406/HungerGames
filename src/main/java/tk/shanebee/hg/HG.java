@@ -171,8 +171,7 @@ public class HG extends JavaPlugin {
 				party = new Parties();
 			}
 
-		//noinspection ConstantConditions
-        getCommand("hg").setExecutor(new CommandListener(this));
+		getCommand("hg").setExecutor(new CommandListener(this));
 		if (load) {
             loadCmds();
         }
@@ -264,7 +263,6 @@ public class HG extends JavaPlugin {
 		for (String bc : cmds.keySet()) {
 			getServer().getPluginManager().addPermission(new Permission("hg." + bc));
 			if (cArray.contains(bc))
-				//noinspection ConstantConditions
 				getServer().getPluginManager().getPermission("hg." + bc).setDefault(PermissionDefault.TRUE);
 
 		}

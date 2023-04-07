@@ -204,7 +204,6 @@ public class GameBlockData extends Data {
      * @param sign The sign to which the lobby will be set at
      * @return True if lobby is set
      */
-    @SuppressWarnings("ConstantConditions")
     public boolean setLobbyBlock(Sign sign) {
         try {
             this.sign1 = sign;

@@ -46,7 +46,6 @@ public class GameCommandData extends Data {
      * @param commandType Type of command to run
      * @param player      The player involved (can be null)
      */
-    @SuppressWarnings("ConstantConditions")
     public void runCommands(CommandType commandType, @Nullable Player player) {
         if (commands == null) return;
         for (String command : commands) {

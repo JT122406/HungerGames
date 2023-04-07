@@ -247,7 +247,6 @@ public class Leaderboard {
 
     private void getLeaderboard(String path, Map<String, Integer> map, List<String> scores, List<String> players) {
         if (leaderboardConfig.getConfigurationSection(path) != null) {
-            //noinspection ConstantConditions
             for (String key : leaderboardConfig.getConfigurationSection(path).getKeys(false)) {
                 map.put(key, leaderboardConfig.getInt(path + "." + key));
             }
