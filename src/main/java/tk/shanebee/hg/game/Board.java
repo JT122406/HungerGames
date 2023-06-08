@@ -15,6 +15,8 @@ import tk.shanebee.hg.data.Language;
 import tk.shanebee.hg.util.Util;
 import tk.shanebee.hg.util.Validate;
 
+import java.util.Objects;
+
 /**
  * Represents a team based scoreboard for a game
  */
@@ -37,7 +39,7 @@ public class Board {
     public Board(Game game) {
         this.game = game;
         this.plugin = game.plugin;
-        scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+        scoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard();
         board = scoreboard.registerNewObjective("Board", "dummy", "Board");
         board.setDisplaySlot(DisplaySlot.SIDEBAR);
         board.setDisplayName(" ");
