@@ -1,0 +1,262 @@
+#  This is the language file
+#  Change the messages to your liking
+#  Supports '&' color codes
+#  Messages that contain <> indicate things that the plugin replaces, such as <player> or <distance>
+#  Comments in this file will be removed if we update messages during a plugin update
+#  To restore these messages, backup this file, delete it, and restart your server, this will create a new lang file with all the notes
+
+#  GENERAL PLUGIN MESSAGES
+prefix: '&7&l[&3&lHungerGames&7&l] '
+
+#  GAME MESSAGES
+#  <player> will be replaced with name of player
+player-joined-game: '&b&l<player> &7加入了游戏'
+player-left-game: '&b&l<player> &c离开了游戏'
+#  <arena> will be replaced with the name of the arena
+game-started: '&6&l 比赛场地 &c&l<arena> &6&l将在30秒后开始游戏'
+game-join: '&6&l 用:&c&l /hg join <arena>&6&l 来加入游戏'
+game-countdown: '游戏将会在 <timer> 秒后开始'
+game-almost-over: '&l&c游戏即将结束，决一死战！！！'
+game-ending-minsec: '&a游戏还有 <minutes> 分钟, <seconds> 秒结束'
+game-ending-min: '&a游戏在 <minutes> 分钟后结束'
+game-ending-sec: '&a游戏在 <seconds> 秒后结束'
+game-border-closing: '&6边界发生了一些变化，你有 <seconds> 秒的时间来到游戏场地的中心'
+game-chests-refill: '&6箱子已被填满！'
+
+# <min>/<sec> will be replaced with the remaining minutes and seconds in a game
+game-bossbar: '&6&l距离游戏结束: &b&l<min> &7分 &b&l<sec> &7秒'
+
+#  <amount> will be replaced with amount of players left to start a game
+players-to-start: '&b&l<amount> &6位玩家准备开始游戏'
+arena-not-ready: '&c游戏场地还在准备中，加入游戏前再等一等'
+arena-spectate: '&6你可以用如下指令来观战此场地的游戏： &3/hg spectate <arena>'
+game-full: '&cis 游戏满啦！！'
+
+#  <arena> will be replaced with name of arena the player won in
+#  <winner> will be replaced with name of winner
+player-won: '&b&l<winner> &6赢得了 &b&l<arena>&7的游戏！！！'
+
+#  <amount> will be replaced with the amount the player will receive on win
+winning-amount: '&你得到了 &b$<amount> &7作为胜利 &3&lHunger&b&lGames!的奖励'
+
+#  SPECTATOR
+spectator-compass: '&3观察者指南针'
+spectator-head-lore: '&7按下来传送'
+spectator-start-title: '你现在正在观战'
+
+#  KIT MESSAGES
+kit-join-header: '&c&l>&7&l----------[&f&lWelcome to Hunger&f&lGames&7&l]&7&l----------&c&l<'
+kit-join-msg: '&7&l           - &3用如下指令选择一个套件： &b/hg kit &7<&rkit-name&7>'
+kit-join-available: '&3&l  套件可用:&b'
+kit-join-footer: '&c&l>&7&l------------------------------------------&c&l<'
+kit-no-perm: '&c你没用这个套件的权限'
+kit-doesnt-exist: '&c不存在！！'
+kit-disabled: '&c套件未在此游戏中启用'
+
+#  SCOREBOARD
+scoreboard-title: '&6&l饥饿游戏'
+players-alive: '&d&l存活：'
+# <num> will be replaced by the number of remaining players in the game
+players-alive-num: '&e<num> 活着的'
+scoreboard-arena: "&a&l游戏场地: &b"
+
+#  TEAMS
+team-invite-1: '&6*&b&m                                                                             &6*'
+team-invite-2: '| &f<inviter> &3邀请你加入 &fTeam&3!'
+team-invite-3: '| &3输入 &f/hg team 来同意 &3加入队伍'
+team-invite-4: '&6*&b&m                                                                             &6*'
+joined-team: '&3成功加入'
+# <name> will be replaced with team name
+team-prefix: "&7[&aTeam-<name>&7]"
+team-suffix: ""
+team-created: "&a创建团队: &b<name>"
+team-already-exists: "&c队伍 &b<name> &c已经存在嘞"
+team-already-have: "&c你已经创建了一个队伍: &b<name>"
+team-none: "&c你还没有队伍，用如下指令创建： &b'/hg team create <name>'"
+
+#  CHEST DROPS
+chest-drop-1: '&6*&b&m                                                                                   &6*'
+chest-drop-2: '"&b| &3三十秒后会有一个很不错的包裹在如下位置出现： &f<x>&3, &f<y>&3, &f<z>'
+
+#  COMPASS
+#  <player> will be replaced with the name of the nearest player
+#  <distance> will be replaced with the distance of the nearest player
+compass-nearest-player: '&f&l最近的玩家: &r<player>    &7&l距离: &c<distance>'
+
+#  FREE ROAM
+roam-game-started: '&4[]---------[ &6&l游戏已经开始嘞！ &4]---------[]'
+#  <roam> will be replaced with the time the players can roam for
+roam-time: ' &e 你有 <roam> 秒的时间搜集物资而且不会受到伤害'
+roam-finished: '&c&l瞎跑时间到,现在启用伤害'
+
+#  GAME STATUSES
+status-running: '&a&lRunning'
+status-stopped: '&4&lStopped'
+status-ready: '&5&lReady'
+status-waiting: '&b&lWaiting...'
+status-broken: '&4&lBROKEN'
+status-rollback: '&c&lRestoring...'
+status-notready: '&1&lNotReady'
+status-beginning: '&a&lRunning'
+status-countdown: '&b&lStarting...'
+
+#  DEATH MESSAGES
+death-fallen: '&7&l[&3&lHungerGames Fallen&7&l]'
+death-explosion: '<player> 被炸成了渣渣'
+death-custom: '<player> 被一个不明因素干掉了'
+death-fall: '<player> 失足摔死'
+death-falling-block: '<player> 被方块砸死了'
+death-fire: '<player> 被烧死了，蛋白质变性'
+death-projectile: '<player> 被一个炮弹干死了'
+death-lava: '<player> 试图在岩浆中挥洒汗水'
+death-magic: '<player> 被魔法弄死了'
+death-suicide: '<player> 把握不住这个游戏'
+death-other-cause: '<player> 被 <cause>弄死'
+death-player: '&6<player> &c&l死了，因为 &6<killer> &c用了 &6<weapon> &c!'
+death-zombie: '<player> 不小心被僵尸弄死了'
+death-skeleton: '<player> 试图和小白对狙但是失败了'
+death-spider: '<player> 蜘蛛把你弄死了'
+death-drowned: '<player> 没有带上足够的氧气就潜水，结果人没了'
+death-trident: '<player> 紧紧的拥抱了三叉戟然后死了'
+death-stray: '<player> 被流浪者的箭穿心而死。基础不牢，地动山摇。'
+death-other-entity: '<player> 自然死亡了。哈哈，我知道你不信:D'
+
+#  COMMANDS
+## Spawn
+cmd-spawn-same: '&c你在搞什么？同一位置不能有俩出生点'
+cmd-spawn-set: '&a你将饥饿游戏出生点设置为 &7#<number>&a!'
+
+## Base
+cmd-base-noperm: '&c你没有使用如下指令的权限，菜狗: /hg <command>'
+cmd-base-nogame: '&c你没有参与有效的游戏！'
+cmd-base-noregion: '&c你不在有效的《饥饿游戏》区域！'
+cmd-base-wrongusage: '&c错误用法：'
+
+## Create
+cmd-create-need-selection: '&c在创建竞技场之前，你需要做出选择！'
+cmd-create-divisible-1: '&c时间（以秒为单位）必须能被 30 整除!'
+cmd-create-divisible-2: '&cEx: 90 is divisible by 30'
+cmd-create-minmax: '&c最小玩家数不能多于最大玩家数！'
+cmd-create-created: '&a你创建了游戏场地：&b<arena>&a!'
+cmd-create-add-spawns: "&6你现在可以用如下指令设置出生点： '&a/hg addspawn&6'"
+
+## Delete
+cmd-delete-attempt: '&a正在试着删除 <arena>!'
+cmd-delete-stopping: '&7- &c游戏运行中 &a暂停中'
+cmd-delete-kicking: '&7- &c&c检测到玩家! &a一脚踢出去'
+cmd-delete-deleted: '&a成功地检测到游戏场地 &b<arena>!'
+cmd-delete-failed: '&c删除失败'
+cmd-delete-noexist: '&c这个游戏场地不存在'
+
+## Join
+cmd-join-in-game: '&c你已经在一个游戏里面了'
+cmd-join-no-money: '&c你没有足够多的钱加入游戏。 要花： &b$<cost>'
+
+## Kit
+cmd-kit-no-change: '&c你当然不可以在游戏运行时改掉你的套件！'
+
+## Leave
+cmd-leave-left: '&6你离开了 &b&l<arena>&c!'
+cmd-leave-refund: '&6你活的 &b$<cost> &6的退款（在游戏开始前）'
+
+## Reload
+cmd-reload-attempt: '&a&l正在尝试重新加载饥饿游戏！'
+cmd-reload-reloaded-arena: '&6 - &e已经加载游戏场地!'
+cmd-reload-reloaded-kit: '&6 - &e已经加载套件'
+cmd-reload-reloaded-items: '&6 - &e随机物品已经被加载！'
+cmd-reload-reloaded-config: '&6 - &e配置值已重新加载！'
+cmd-reload-reloaded-success: '&l&a- 饥饿游戏重新加载成功'
+
+## Exit
+cmd-exit-set: '&6退出地生成:'
+cmd-exit-set-arena: '&6<arena> 退出生成:'
+
+## LobbyWall
+cmd-lobbywall-set: '&aLobbyWall标志已设置!'
+cmd-lobbywall-notcorrect: '&c这些标志的格式不正确!'
+cmd-lobbywall-format: '&c格式: &6[sign] &c[sign] [sign]'
+lobby-signs:
+    sign-1:
+        line-1: '&1&lHunger Games'
+        line-3: '&0&l点击加入'
+        line-4: '要花费: $&b<cost>'
+    sign-2:
+        line-1: '&1&l现在'
+    sign-3:
+        line-1: '&1&l活着的'
+
+## Start
+cmd-start-starting: '&b<arena>&6 正准备开始!'
+
+## Stop
+cmd-stop-all: '&a暂停所有游戏'
+cmd-stop-arena: '&b<arena>&c 已经暂停!'
+cmd-stop-noexist: '&c这个 &b<arena>&c 不存在!'
+
+## Team
+cmd-team-not-avail: '&b<player> &c掉线嘞!'
+cmd-team-only-leader: '&c只有队长才能邀请其他玩家!'
+cmd-team-on-team: '&b<player> &6已经在一个队伍里面了!'
+cmd-team-max: '&c你已达到团队人数上限!'
+cmd-team-invited: '&b<player> &6已被邀请!'
+cmd-team-wrong: '&c错误用法: &6/hg team invite &b<name>'
+cmd-team-no-pending: '&c你没有待处理的邀请...'
+cmd-team-joined: '&b<player> &6进你的队伍嘞!'
+cmd-team-no-team: '&c你不在一个队伍里面哦!'
+cmd-team-not-on-team: '&b<player> &c不在你的队伍里面!'
+cmd-team-tp: '&6传送到 &b<player>'
+cmd-team-self: '&c我不知道你咋想的，你当然不可以拉你自己到自己的队伍'
+
+## Toggle
+cmd-toggle-unlocked: '&b<arena>&6 现在 &a被解锁!'
+cmd-toggle-locked: '&3<arena>&b 现在 &4被锁定&b!'
+
+## Handler
+cmd-handler-nokit: '&c游戏运行时你无法选择套件!'
+cmd-handler-nocmd: '&c你不能在游戏中使用非 HungerGames 命令!'
+cmd-handler-playing: '&c这个玩家正在玩 &3HungerGames!'
+
+## Chest Refill
+cmd-chestrefill-set: '&6箱子填充 &b<arena> &6被设置为 &b<sec> 秒'
+cmd-chestrefill-now: '&6箱子现在被填充在 &b<arena>'
+
+## Border
+cmd-border-size: '&6边框尺寸 &b<arena> &6已经被设置为 &b<size>'
+cmd-border-center: '&6边框中心 &b<arena> &6已经被设置为你现在的位置'
+cmd-border-timer: '&6边圈时间 &b<arena> &6已设置为在剩余时间 &b<start> 秒开始 &6并且在 &b<end> 秒后停止'
+
+#  LISTENER
+listener-not-running: '&c游戏未在运行!'
+listener-no-edit-block: '&c你无法编辑此块类型!'
+listener-no-interact: '&c游戏开始之前你无法互动!'
+listener-sign-click-hand: '&c用手点击标志!'
+
+#  WAND LISTENER
+listener-wand-create-arena: "&6你可以用如下指令创建游戏场地： '&a/hg create&6'"
+listener-wand-set-pos-2: '&6现在你需要设置pos2'
+listener-wand-big-enough: '&c游戏场地的大小必须是至少 5x5x5 的长方体'
+
+#  ARENA CHECK
+check-need-more-spawns: '&c你还需要 &7<number> &c 个出生点'
+check-broken-debug: '&c你的游戏场地被标记为损坏 用 &7/hg debug <arena> &c检查问题'
+check-broken-debug-2: '&c如果找不到哪错了，用 &7/hg toggle <arena>&c!'
+check-invalid-lobby: '&c你的LobbyWall无效，快重设'
+check-set-lobby: '&6用如下指令重设LobbyWall： &7/hg setlobbywall <arena>'
+check-ready-run: '&a你的游戏场地： &7<arena>&a 已经准备好运作啦！！！'
+
+#  TRACK STICK
+track-nearest: '"&b<player> &e在距离你 &b<range> &eblocks 格远的地方: &b<location>"'
+track-no-near: '&c定位不到最近的玩家'
+track-empty: '&c这根棒子不再被使用'
+track-bar: '&a&l[]------------------------------------------[]'
+track-new1: '&a&l |&6&l   你得到了一个可以跟着玩家的棒子 &a&l |'
+track-new2: '&a&l |&6&l   挥动棒子跟着玩家                &a&l |'
+
+#  LEADERBOARD
+lb-blank-space: ''
+lb-combined-separator: ' : '
+lb-missing-player: '<none>'
+
+# LEAVE/START GAME ITEMS
+leave-game-item-name: '离开游戏'
+force-start-item-name: '强制开始游戏'

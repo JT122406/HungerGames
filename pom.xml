@@ -6,7 +6,7 @@
 
     <groupId>tk.shanebee.hg</groupId>
     <artifactId>HungerGames</artifactId>
-    <version>5.2.5</version>
+    <version>5.2.6</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -60,7 +60,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.20-R0.1-SNAPSHOT</version>
+            <version>1.20.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -172,7 +172,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.4.1</version>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
                         <id>shade</id>
@@ -210,6 +210,8 @@
                     <include>language.yml</include>
                     <include>leaderboard.yml</include>
                     <include>mobs.yml</include>
+                    <include>language_Chinese.yml</include>
+                    <include>language_German.yml</include>
                     <include>language_Spanish.yml</include>
                 </includes>
             </resource>
