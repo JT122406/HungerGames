@@ -41,6 +41,7 @@ import tk.shanebee.hg.util.Util;
 
 import java.util.Collections;
 import java.util.Objects;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -364,7 +365,20 @@ public class GameListener implements Listener {
 			PlayerData pd = playerManager.getPlayerData(player);
 			if (gameManager.getGame(player.getLocation()) == null) return;
 			if (gameManager.getGame(player.getLocation()).getGameArenaData().getStatus()  == Status.COUNTDOWN  || gameManager.getGame(player.getLocation()).getGameArenaData().getStatus()  == Status.WAITING) event.setCancelled(true);
-			if (block.getType() == Material.CHEST) {
+
+			if(Config.bonusRandom){
+				int random = Math.toIntExact((long) (Config.bonusChance*10));
+				Random ran = new Random();
+				int chance = ran.nextInt(10);
+				if(chance<=random){
+                    assert pd != null;
+                    Bukkit.getServer().getPluginManager().callEvent(new ChestOpenEvent(pd.getGame(), block, true));
+				} else{
+                    assert pd != null;
+                    Bukkit.getServer().getPluginManager().callEvent(new ChestOpenEvent(pd.getGame(), block, false));
+				}
+			}
+			else if (block.getType() == Material.CHEST) {
 				assert pd != null;
 				Bukkit.getServer().getPluginManager().callEvent(new ChestOpenEvent(pd.getGame(), block, false));
 			} else if (BlockUtils.isBonusBlock(block)) {
@@ -383,7 +397,6 @@ public class GameListener implements Listener {
         ItemStack item = event.getItem();
         if (item == null || item.getType() != Material.COMPASS) return false;
         return item.getItemMeta() != null && item.getItemMeta().getDisplayName().equalsIgnoreCase(Util.getColString(lang.spectator_compass));
-
     }
 
     private void handleSpectatorCompass(Player player) {
