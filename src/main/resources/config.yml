@@ -53,6 +53,10 @@ settings:
         - TRAPPED_CHEST
         - BARREL
         - tag:shulker_boxes
+    # When enabled, bonus chests are randomly chosen.
+    bonus-random: false
+    # Chance for a chest to be bonus (between 0 and 1) (only works if bonus-random is enabled)
+    bonus-chance: 0.1
     # When enabled, name tags will be hidden from all players in the game
     hide-nametags: true
     # Enables an item to click to leave game while waiting
