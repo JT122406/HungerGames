@@ -18,6 +18,7 @@ import tk.shanebee.hg.game.GameItemData;
 import tk.shanebee.hg.util.Util;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * General manager for games
@@ -26,7 +27,7 @@ public class Manager {
 
 	private final HG plugin;
 	private final Language lang;
-	private final Random rg = new Random();
+	private final ThreadLocalRandom rg = ThreadLocalRandom.current();
 
 	public Manager(HG plugin) {
 		this.plugin = plugin;
