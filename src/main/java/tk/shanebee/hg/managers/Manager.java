@@ -1,6 +1,7 @@
 package tk.shanebee.hg.managers;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.block.Sign;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.Configuration;
@@ -18,6 +19,7 @@ import tk.shanebee.hg.game.GameItemData;
 import tk.shanebee.hg.util.Util;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * General manager for games
@@ -26,7 +28,7 @@ public class Manager {
 
 	private final HG plugin;
 	private final Language lang;
-	private final Random rg = new Random();
+	private final ThreadLocalRandom rg = ThreadLocalRandom.current();
 
 	public Manager(HG plugin) {
 		this.plugin = plugin;
@@ -51,6 +53,7 @@ public class Manager {
 		int borderCountdownStart = 0;
 		int borderCountdownEnd = 0;
 		int chestRefill = 0;
+		World world = null;
 
 		try {
 			timer = arenadat.getInt("arenas." + gameName + ".info." + "timer");
@@ -105,10 +108,17 @@ public class Manager {
 		try {
 			@SuppressWarnings("unused")
             Bound b = new Bound(arenadat.getString("arenas." + gameName + ".bound." + "world"), HG.getPlugin().getArenaConfig().BC(gameName, "x"), HG.getPlugin().getArenaConfig().BC(gameName, "y"), HG.getPlugin().getArenaConfig().BC(gameName, "z"), HG.getPlugin().getArenaConfig().BC(gameName, "x2"), HG.getPlugin().getArenaConfig().BC(gameName, "y2"), HG.getPlugin().getArenaConfig().BC(gameName, "z2"));
+			world = b.getWorld();
 		} catch (Exception e) {
 			Util.scm(sender, "&cUnable to load region bounds for arena " + gameName + "!");
 			isReady = false;
 		}
+
+		if (world == null) {
+			Util.scm(sender, "&cThe world for this arena does not exist!");
+			isReady = false;
+		}
+
 		if (isReady) {
 			Util.scm(sender,"&7&l---= &3&lYour HungerGames arena is ready to run! &7&l=---");
 			Util.scm(sender, "&7Spawns:&b " + spawns.size());

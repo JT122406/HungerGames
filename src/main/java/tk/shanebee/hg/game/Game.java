@@ -74,9 +74,8 @@ public class Game {
         gameArenaData.spawns.addAll(spawns);
         this.gameBlockData.sign1 = lobbySign;
 
-        // If lobby signs are not properly setup, game is not ready
-        if (!this.gameBlockData.setLobbyBlock(lobbySign)) {
-            isReady = false;
+        if (lobbySign != null) {
+            this.gameBlockData.setLobbyBlock(lobbySign);
         }
         gameArenaData.setStatus(isReady ? Status.READY : Status.BROKEN);
 

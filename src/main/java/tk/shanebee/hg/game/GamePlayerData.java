@@ -331,7 +331,9 @@ public class GamePlayerData extends Data {
                         msgAll(broadcast);
                     }
                 }
-                kitHelp(player);
+                if (game.kitManager.hasKits()) {
+                    kitHelp(player);
+                }
 
                 game.gameBlockData.updateLobbyBlock();
                 game.gameArenaData.updateBoards();
