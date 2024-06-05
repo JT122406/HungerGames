@@ -114,6 +114,7 @@ public class ArenaConfig {
 					int maxplayers = 0;
 					Bound bound = null;
 					List<String> commands;
+					World world = null;
 
 					String path = "arenas." + arenaName;
 					try {
@@ -131,10 +132,8 @@ public class ArenaConfig {
 
 					try {
 						lobbysign = (Sign) getSLoc(arenadat.getString(path + ".lobbysign")).getBlock().getState();
-					} catch (Exception e) { 
-						Util.warning("Unable to load lobby sign for arena '" + arenaName + "'!");
-						Util.debug(e);
-						isReady = false;
+					} catch (Exception e) {
+						// lobby sign not required
 					}
 
 					try {
@@ -148,17 +147,21 @@ public class ArenaConfig {
 
 					try {
 						bound = new Bound(arenadat.getString(path + ".bound.world"), BC(arenaName, "x"), BC(arenaName, "y"), BC(arenaName, "z"), BC(arenaName, "x2"), BC(arenaName, "y2"), BC(arenaName, "z2"));
+						world = bound.getWorld();
 					} catch (Exception e) { 
 						Util.warning("Unable to load region bounds for arena " + arenaName + "!");
+						isReady = false;
+					}
+
+					if (world == null) {
+						Util.warning("The world for arena '%s' does not exist!", arenaName);
 						isReady = false;
 					}
 
 					Game game = new Game(arenaName, bound, spawns, lobbysign, timer, minplayers, maxplayers, freeroam, isReady, cost);
 					plugin.getGames().add(game);
 
-					World world = bound.getWorld();
 					if (world == null) {
-						Util.warning("World '%s' for arena '%s' does not exist!", arenaName, arenaName);
 						continue;
 					}
 
