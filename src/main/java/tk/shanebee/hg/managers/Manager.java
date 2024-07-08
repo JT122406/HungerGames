@@ -178,7 +178,7 @@ public class Manager {
 		}
 		Collections.shuffle(itemList);
 
-		int costGoal = rg.nextInt(minCost, maxCost + 1);
+		int costGoal = minCost + rg.nextInt((maxCost - minCost) + 1);
 		int chestCost = 0;
 		ArrayList<ItemStack> chestContents = new ArrayList<>();
 		int numTries = 0;
