@@ -41,9 +41,9 @@ public class ChestDropTask implements Runnable {
             chestDrop.setCurDropTaskId(newTaskId);
         }
         else {
-            w.spawnEntity(blockLoc, EntityType.FIREWORK, true);
-            w.spawnEntity(blockLoc, EntityType.FIREWORK, true);
-            w.spawnEntity(blockLoc, EntityType.FIREWORK, true);
+            w.spawnEntity(blockLoc, EntityType.FIREWORK_ROCKET, true);
+            w.spawnEntity(blockLoc, EntityType.FIREWORK_ROCKET, true);
+            w.spawnEntity(blockLoc, EntityType.FIREWORK_ROCKET, true);
             BlockState origBlockState = chestDrop.getInitBeaconBlock();
             Block curBeaconBlock = origBlockState.getWorld().getBlockAt(origBlockState.getLocation());
             curBeaconBlock.setBlockData(origBlockState.getBlockData());

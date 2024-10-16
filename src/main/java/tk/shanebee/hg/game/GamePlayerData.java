@@ -132,7 +132,7 @@ public class GamePlayerData extends Data {
      */
     public void freeze(Player player) {
         player.setGameMode(GameMode.SURVIVAL);
-        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 23423525, -10, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, 23423525, -10, false, false));
         player.setWalkSpeed(0.0001F);
         player.setFoodLevel(1);
         player.setAllowFlight(false);
@@ -146,7 +146,7 @@ public class GamePlayerData extends Data {
      * @param player Player to unfreeze
      */
     public void unFreeze(Player player) {
-        player.removePotionEffect(PotionEffectType.JUMP);
+        player.removePotionEffect(PotionEffectType.JUMP_BOOST);
         player.setWalkSpeed(0.2F);
     }
 

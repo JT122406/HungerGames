@@ -4,6 +4,8 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Container;
 import org.bukkit.block.Sign;
+import org.bukkit.damage.DamageSource;
+import org.bukkit.damage.DamageType;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.*;
@@ -232,10 +234,10 @@ public class GameListener implements Listener {
 			game.getGameCommandData().runCommands(CommandType.DEATH, player);
 
 			// Call our death event so other plugins can pick up the fake death
-			PlayerDeathGameEvent event = new PlayerDeathGameEvent(player, deathString, game);
+			PlayerDeathGameEvent event = new PlayerDeathGameEvent(player, DamageSource.builder(DamageType.PLAYER_ATTACK).build(),deathString, game);
 			Bukkit.getPluginManager().callEvent(event);
 			// Call bukkit player death event so other plugins can pick up on that too
-			PlayerDeathEvent playerDeathEvent = new PlayerDeathEvent(player, Collections.emptyList(), 0, deathString);
+			PlayerDeathEvent playerDeathEvent = new PlayerDeathEvent(player, DamageSource.builder(DamageType.PLAYER_ATTACK).build(), Collections.emptyList(), 0, deathString);
 			Bukkit.getPluginManager().callEvent(playerDeathEvent);
 
 			Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () -> checkStick(game), 40L);
