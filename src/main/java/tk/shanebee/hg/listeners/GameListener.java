@@ -798,10 +798,24 @@ public class GameListener implements Listener {
 
 	@EventHandler
 	private void onMove(PlayerMoveEvent event) {
-		Game game = plugin.getPlayerManager().getGame(event.getPlayer());
-		if (game == null) return;
-		if (game.getGameArenaData().getStatus() == Status.COUNTDOWN || game.getGameArenaData().getStatus() == Status.WAITING)
-			event.setCancelled(true);
-	}
+	    Game game = plugin.getPlayerManager().getGame(event.getPlayer());
+	    if (game == null) return;
+
+	    if (game.getGameArenaData().getStatus() == Status.COUNTDOWN || 
+		game.getGameArenaData().getStatus() == Status.WAITING) {
+
+		// Allow looking but prevent movement
+		Location from = event.getFrom();
+		Location to = event.getTo();
+
+		if (from.getX() != to.getX() || from.getY() != to.getY() || from.getZ() != to.getZ()) {
+		    // Only revert movement, keep yaw and pitch
+		    Location stayStill = from.clone();
+		    stayStill.setYaw(to.getYaw());
+		    stayStill.setPitch(to.getPitch());
+		    event.setTo(stayStill);
+		}
+    }
+}
 
 }
