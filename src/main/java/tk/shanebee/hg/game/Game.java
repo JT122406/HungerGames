@@ -1,7 +1,6 @@
 package tk.shanebee.hg.game;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
+import org.bukkit.*;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import tk.shanebee.hg.HG;
@@ -21,12 +20,7 @@ import tk.shanebee.hg.tasks.*;
 import tk.shanebee.hg.tasks.TimerTask;
 import tk.shanebee.hg.util.Util;
 import tk.shanebee.hg.util.Vault;
-import org.bukkit.ChatColor;
-import org.bukkit.Sound;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
 

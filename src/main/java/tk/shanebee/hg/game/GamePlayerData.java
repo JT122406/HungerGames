@@ -360,14 +360,17 @@ public class GamePlayerData extends Data {
         if (!death) allPlayers.remove(uuid); // Only remove the player if they voluntarily left the game
         unFreeze(player);
         if (death) {
-            if (Config.spectateEnabled && Config.spectateOnDeath && !game.isGameOver()) {
+
+            // NEW: always spectate on death if enabled
+            if (Config.spectateEnabled && Config.spectateOnDeath) {
                 spectate(player);
                 player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 5, 1);
                 player.sendTitle(game.gameArenaData.getName(), Util.getColString(lang.spectator_start_title), 10, 100, 10);
                 game.updateAfterDeath(player, true);
                 return;
-            } else if (game.gameArenaData.getStatus() == Status.RUNNING)
+            } else if (game.gameArenaData.getStatus() == Status.RUNNING) {
                 game.getGameBarData().removePlayer(player);
+            }
         }
         heal(player);
         PlayerData playerData = playerManager.getPlayerData(uuid);
