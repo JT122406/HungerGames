@@ -132,7 +132,11 @@ public class GamePlayerData extends Data {
      */
     public void freeze(Player player) {
         player.setGameMode(GameMode.SURVIVAL);
-        player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, 23423525, -10, false, false));
+        PotionEffectType jumpBoost = PotionEffectType.getByName("JUMP_BOOST");
+        if (jumpBoost != null) {
+            player.addPotionEffect(new PotionEffect(jumpBoost, 23423525, -10, false, false));
+        }
+
         player.setWalkSpeed(0.0001F);
         player.setFoodLevel(1);
         player.setAllowFlight(false);
@@ -146,7 +150,10 @@ public class GamePlayerData extends Data {
      * @param player Player to unfreeze
      */
     public void unFreeze(Player player) {
-        player.removePotionEffect(PotionEffectType.JUMP_BOOST);
+        PotionEffectType jumpBoost = PotionEffectType.getByName("JUMP_BOOST");
+        if (jumpBoost != null) {
+            player.removePotionEffect(jumpBoost);
+        }
         player.setWalkSpeed(0.2F);
     }
 
@@ -353,14 +360,17 @@ public class GamePlayerData extends Data {
         if (!death) allPlayers.remove(uuid); // Only remove the player if they voluntarily left the game
         unFreeze(player);
         if (death) {
-            if (Config.spectateEnabled && Config.spectateOnDeath && !game.isGameOver()) {
+
+            // NEW: always spectate on death if enabled
+            if (Config.spectateEnabled && Config.spectateOnDeath) {
                 spectate(player);
                 player.playSound(player.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 5, 1);
                 player.sendTitle(game.gameArenaData.getName(), Util.getColString(lang.spectator_start_title), 10, 100, 10);
                 game.updateAfterDeath(player, true);
                 return;
-            } else if (game.gameArenaData.getStatus() == Status.RUNNING)
+            } else if (game.gameArenaData.getStatus() == Status.RUNNING) {
                 game.getGameBarData().removePlayer(player);
+            }
         }
         heal(player);
         PlayerData playerData = playerManager.getPlayerData(uuid);

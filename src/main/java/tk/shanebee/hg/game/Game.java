@@ -1,7 +1,6 @@
 package tk.shanebee.hg.game;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
+import org.bukkit.*;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import tk.shanebee.hg.HG;
@@ -21,6 +20,9 @@ import tk.shanebee.hg.tasks.*;
 import tk.shanebee.hg.tasks.TimerTask;
 import tk.shanebee.hg.util.Util;
 import tk.shanebee.hg.util.Vault;
+import org.bukkit.Location;
+import org.bukkit.entity.Firework;
+import org.bukkit.inventory.meta.FireworkMeta;
 
 import java.util.*;
 
@@ -276,12 +278,60 @@ public class Game {
         stop(false);
     }
 
+    public void stop(Boolean death) {
+        // === FULL-SCREEN TITLE + 5s DELAY ===
+        // Build winner name before we clear anything
+        java.util.List<java.util.UUID> winPreview = new java.util.ArrayList<>(gamePlayerData.players);
+        String winnerName = tk.shanebee.hg.util.Util.translateStop(
+                tk.shanebee.hg.util.Util.convertUUIDListToStringList(winPreview)
+        );
+
+        // Send a full-screen title (not chat) to players & spectators
+        String title = ChatColor.GOLD + winnerName;
+        String subtitle = ChatColor.YELLOW + "is the Victor " + gameArenaData.getName() + "!";
+        int fadeIn = 10, stay = 60, fadeOut = 10;
+
+        java.util.List<Player> winnerPlayers = new java.util.ArrayList<>();
+        for (java.util.UUID u : winPreview) {
+            Player wp = Bukkit.getPlayer(u);
+            if (wp != null) winnerPlayers.add(wp);
+        }
+
+        for (java.util.UUID uuid : gamePlayerData.getPlayers()) {
+            Player p = Bukkit.getPlayer(uuid);
+            if (p != null) {
+                p.sendTitle(title, subtitle, fadeIn, stay, fadeOut);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1f, 0.8f);
+                p.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1f, 1f);
+                p.playSound(p.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
+            }
+        }
+        for (java.util.UUID uuid : gamePlayerData.getSpectators()) {
+            Player p = Bukkit.getPlayer(uuid);
+            if (p != null) {
+                p.sendTitle(title, subtitle, fadeIn, stay, fadeOut);
+                p.playSound(p.getLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1f, 0.8f);
+                p.playSound(p.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_BLAST, 1f, 1f);
+                p.playSound(p.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 1f, 1f);
+            }
+        }
+
+        launchWinnerFireworks(winnerPlayers);
+
+        // 5secs = 100 ticks
+        int POST_GAME_DELAY_TICKS = 200;
+        if (plugin.isEnabled()) {
+            Bukkit.getScheduler().runTaskLater(plugin, () -> doStop(death), POST_GAME_DELAY_TICKS);
+            return; // prevent running the original body now
+        }
+        doStop(death);
+    }
     /**
      * Stop the game
      *
      * @param death Whether the game stopped after the result of a death (false = no winnings payed out)
      */
-    public void stop(Boolean death) {
+    public void doStop(Boolean death) {
         if (Config.borderEnabled) {
             gameBorderData.resetBorder();
         }
@@ -381,6 +431,12 @@ public class Game {
     }
 
     void updateAfterDeath(Player player, boolean death) {
+
+        // strike lightning effect at death location
+        if (player != null && player.getLocation().getWorld() != null) {
+            player.getWorld().strikeLightningEffect(player.getLocation());
+        }
+
         Status status = gameArenaData.status;
         if (status == Status.RUNNING || status == Status.BEGINNING || status == Status.COUNTDOWN) {
             if (isGameOver()) {
@@ -429,6 +485,70 @@ public class Game {
             }
         }
         return false;
+    }
+
+    private void launchWinnerFireworks(java.util.Collection<Player> winners) {
+        if (winners == null || winners.isEmpty()) return;
+
+        final int bursts = 6;           // how many total spawns
+        final int intervalTicks = 10;   // every 0.5s
+        final java.util.Random rng = new java.util.Random();
+
+        for (Player winner : winners) {
+            if (winner == null || winner.getWorld() == null) continue;
+            final World world = winner.getWorld();
+            final Location base = winner.getLocation().clone().add(0, 1, 0);
+
+            // schedule a short series of launches at this winner's spot
+            for (int i = 0; i < bursts; i++) {
+                final int delay = i * intervalTicks;
+                Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                    Firework fw = (Firework) world.spawn(base, Firework.class);
+                    FireworkMeta meta = fw.getFireworkMeta();
+
+                    // random style/colors each time
+                    FireworkEffect.Type type;
+                    switch (rng.nextInt(4)) {
+                        case 0:
+                            type = FireworkEffect.Type.BALL;
+                            break;
+                        case 1:
+                            type = FireworkEffect.Type.BALL_LARGE;
+                            break;
+                        case 2:
+                            type = FireworkEffect.Type.BURST;
+                            break;
+                        default:
+                            type = FireworkEffect.Type.STAR;
+                            break;
+                    }
+
+                    Color c1 = randomNiceColor(rng);
+                    Color c2 = randomNiceColor(rng);
+                    boolean flicker = rng.nextBoolean();
+                    boolean trail = rng.nextBoolean();
+
+                    meta.addEffect(FireworkEffect.builder()
+                            .with(type)
+                            .withColor(c1)
+                            .withFade(c2)
+                            .flicker(flicker)
+                            .trail(trail)
+                            .build());
+                    meta.setPower(1 + rng.nextInt(2)); // 1–2 height
+                    fw.setFireworkMeta(meta);
+                }, delay);
+            }
+        }
+    }
+
+    private Color randomNiceColor(java.util.Random rng) {
+        // a curated palette that looks good
+        Color[] palette = new Color[] {
+                Color.RED, Color.AQUA, Color.BLUE, Color.LIME, Color.FUCHSIA,
+                Color.ORANGE, Color.SILVER, Color.PURPLE, Color.YELLOW, Color.WHITE
+        };
+        return palette[rng.nextInt(palette.length)];
     }
 
     @Override
