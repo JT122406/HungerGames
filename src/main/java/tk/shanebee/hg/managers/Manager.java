@@ -169,7 +169,7 @@ public class Manager {
     /** Fill chests in a game
      * @param inv Inventory to fill
      * @param game Game this chest is in
-     * @param bonus Whether or not this is a bonus chest
+     * @param bonus Whether this is a bonus chest
      */
 	public void fillChest(Inventory inv, Game game, boolean bonus) {
 		GameItemData gameItemData = game.getGameItemData();
@@ -189,6 +189,7 @@ public class Manager {
 		Collections.shuffle(itemList);
 
 		int costGoal = rg.nextInt(minCost, maxCost + 1);
+
 		int chestCost = 0;
 		ArrayList<ItemStack> chestContents = new ArrayList<>();
 		int numTries = 0;

@@ -42,6 +42,8 @@ public class Config {
     public static boolean enableforcestartitem;
     public static String leaveitemtype;
     public static String forcestartitem;
+    public static boolean bonusRandom;
+    public static double bonusChance;
 
     //Team info
     public static boolean team_showTeamNames;
@@ -135,6 +137,8 @@ public class Config {
         enableforcestartitem = config.getBoolean("settings.enable-force-start-item");
         leaveitemtype = config.getString("settings.leave-item-type");
         forcestartitem = config.getString("settings.force-start-item-type");
+        bonusRandom = config.getBoolean("settings.bonus-random");
+        bonusChance = config.getDouble("settings.bonus-chance");
 
         // Team
         team_maxTeamSize = config.getInt("team.max-team-size");
