@@ -89,7 +89,7 @@ public class PlayerData implements Cloneable {
 
     // Restores later if player has an item in their inventory which changes their max health value
     private void restoreHealth(Player player) {
-        double att = player.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue();
+        double att = player.getAttribute(Attribute.MAX_HEALTH).getValue();
         if (health > att) {
             Bukkit.getScheduler().runTaskLater(HG.getPlugin(), () -> player.setHealth(health), 10);
         } else {

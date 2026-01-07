@@ -69,7 +69,7 @@ public class StartingTask implements Runnable {
             for (UUID p : game.getGamePlayerData().getPlayers()) {
                 Player player = Bukkit.getPlayer(p);
                 assert player != null;
-                player.setHealth(Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getBaseValue());
+                player.setHealth(Objects.requireNonNull(player.getAttribute(Attribute.MAX_HEALTH)).getBaseValue());
                 player.setSaturation(20);
             }
             game.startFreeRoam();
