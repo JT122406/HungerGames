@@ -9,7 +9,6 @@ import com.gmail.nossr50.events.items.McMMOItemSpawnEvent;
 import com.gmail.nossr50.events.skills.abilities.McMMOPlayerAbilityActivateEvent;
 import com.gmail.nossr50.events.skills.secondaryabilities.SubSkillEvent;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -93,29 +92,6 @@ public class McmmoListeners implements Listener {
 			Player player = event.getPlayer();
 			if (playerManager.hasPlayerData(player.getUniqueId())) {
 				event.setCancelled(true);
-			}
-		}
-	}
-
-	@EventHandler
-	private void entityDamageByEntityEvent(FakeEntityDamageByEntityEvent event) {
-		if (!Config.mcmmoUseSkills) {
-			Entity damager = event.getDamager();
-			Entity victim = event.getEntity();
-			if (playerManager.hasPlayerData(damager.getUniqueId()) || playerManager.hasPlayerData(victim.getUniqueId())) {
-				event.setCancelled(true);
-			}
-		}
-	}
-
-	@EventHandler
-	private void entityDamageEvent(FakeEntityDamageEvent event) {
-		if (!Config.mcmmoUseSkills) {
-			if (event.getEntity() instanceof Player) {
-				Player player = ((Player) event.getEntity());
-				if (playerManager.hasPlayerData(player.getUniqueId())) {
-					event.setCancelled(true);
-				}
 			}
 		}
 	}
