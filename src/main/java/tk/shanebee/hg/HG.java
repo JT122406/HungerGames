@@ -232,7 +232,9 @@ public class HG extends JavaPlugin {
 		cmds.put("reload", new ReloadCmd());
 		cmds.put("setlobbywall", new SetLobbyWallCmd());
 		cmds.put("wand", new WandCmd());
-		cmds.put("kit", new KitCmd());
+		if (Config.enableKitSelection) {
+			cmds.put("kit", new KitCmd());
+		}
 		cmds.put("debug", new DebugCmd());
 		cmds.put("list", new ListCmd());
 		cmds.put("listgames", new ListGamesCmd());

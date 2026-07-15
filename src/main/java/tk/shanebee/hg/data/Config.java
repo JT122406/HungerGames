@@ -44,6 +44,7 @@ public class Config {
     public static String forcestartitem;
     public static boolean bonusRandom;
     public static double bonusChance;
+    public static boolean enableKitSelection;
 
     //Team info
     public static boolean team_showTeamNames;
@@ -139,6 +140,7 @@ public class Config {
         forcestartitem = config.getString("settings.force-start-item-type");
         bonusRandom = config.getBoolean("settings.bonus-random");
         bonusChance = config.getDouble("settings.bonus-chance");
+        enableKitSelection = config.getBoolean("settings.enable-kit-selection");
 
         // Team
         team_maxTeamSize = config.getInt("team.max-team-size");

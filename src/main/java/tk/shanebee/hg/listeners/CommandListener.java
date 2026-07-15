@@ -172,7 +172,7 @@ public class CommandListener implements CommandExecutor, TabCompleter {
 				if (args.length == 4 && args[0].equalsIgnoreCase("bordertimer")) {
 					return Collections.singletonList("<end=remaining seconds>");
 				}
-			} else if (args[0].equalsIgnoreCase("kit")) {
+			} else if (args[0].equalsIgnoreCase("kit") && Config.enableKitSelection) {
 				if (args.length == 2) {
 					ArrayList<String> matchesKit = new ArrayList<>();
 					Game game = null;

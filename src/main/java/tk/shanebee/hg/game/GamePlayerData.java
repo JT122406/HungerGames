@@ -331,7 +331,7 @@ public class GamePlayerData extends Data {
                         msgAll(broadcast);
                     }
                 }
-                if (game.kitManager.hasKits()) {
+                if (Config.enableKitSelection && game.kitManager.hasKits()) {
                     kitHelp(player);
                 }
 

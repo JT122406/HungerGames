@@ -67,6 +67,9 @@ settings:
     leave-item-type: RED_BED
     # Item that is shown to force start game
     force-start-item-type: NETHER_STAR
+    # Allow players to pick a kit with /hg kit <name>. Disabled by default.
+    # When disabled, the kit command is hidden entirely from players.
+    enable-kit-selection: false
 team:
     # When enabled, players will see nametags of other players on their team
     # if 'hide-nametags' is disabled, this option is ignored and names will show regardless
