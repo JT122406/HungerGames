@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
+import org.bukkit.Registry;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -12,9 +13,9 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 import org.jetbrains.annotations.Nullable;
 import tk.shanebee.hg.HG;
 import tk.shanebee.hg.data.KitEntry;
@@ -164,9 +165,9 @@ public class ItemStackManager {
                 }
             } else if (s.startsWith("potion-base:") && itemMeta instanceof PotionMeta) {
                 s = s.replace("potion-base:", "");
-                PotionData potionData = PotionTypeUtils.getPotionData(s);
-                if (potionData != null) {
-                    ((PotionMeta) itemMeta).setBasePotionData(potionData);
+                PotionType potionType = PotionTypeUtils.getPotionType(s);
+                if (potionType != null) {
+                    ((PotionMeta) itemMeta).setBasePotionType(potionType);
                 }
             } else if (s.startsWith("data:")) {
                 s = s.replace("data:", "").replace("~", " ");
@@ -181,7 +182,6 @@ public class ItemStackManager {
         return item;
     }
 
-    @SuppressWarnings("deprecation") //Enchantment#getName
     private void enchant(ItemMeta itemMeta, String line, String enchantString) {
         enchantString = enchantString.replace("enchant:", "").toUpperCase();
         String[] d = enchantString.split(":");
@@ -189,13 +189,18 @@ public class ItemStackManager {
         if (d.length != 1 && Util.isInt(d[1])) {
             level = Integer.parseInt(d[1]);
         }
-        for (Enchantment e : Enchantment.values()) {
-            if (e.getKey().getKey().equalsIgnoreCase(d[0]) || e.getName().equalsIgnoreCase(d[0])) {
+        for (Enchantment e : Registry.ENCHANTMENT) {
+            if (e.getKey().getKey().equalsIgnoreCase(d[0]) || legacyNameMatches(e, d[0])) {
                 itemMeta.addEnchant(e, level, true);
                 return;
             }
         }
         Util.warning("Invalid enchantment: &c%s &eline: &b%s", enchantString, line);
+    }
+
+    @SuppressWarnings("deprecation") //Enchantment#getName has no non-deprecated replacement for legacy free-text name lookup
+    private boolean legacyNameMatches(Enchantment e, String name) {
+        return e.getName().equalsIgnoreCase(name);
     }
 
     private ItemStack itemStringToStack(String item, int amount) {

@@ -1,6 +1,5 @@
 package tk.shanebee.hg.util;
 
-import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionType;
 import org.jetbrains.annotations.Nullable;
 
@@ -9,7 +8,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Util for getting {@link PotionData}
+ * Util for getting {@link PotionType}
  */
 public enum PotionTypeUtils {
 
@@ -82,26 +81,40 @@ public enum PotionTypeUtils {
     }
 
     /**
-     * Get a PotionType based on a Bukkit key
+     * Get a PotionType based on a legacy Bukkit key
+     * <p>Some legacy Bukkit key names (eg: 'SPEED', 'JUMP', 'REGEN') no longer exist as
+     * {@link PotionType} constants themselves, so this resolves via the enum's own
+     * MC-namespace name (eg: 'SWIFTNESS', 'LEAPING', 'REGENERATION') instead of assuming
+     * the legacy key is still a valid constant.</p>
      *
-     * @param bukkit Key for PotionType
-     * @return PotionType
+     * @param bukkit Legacy key for PotionType
+     * @return PotionType, or null if this legacy key has no modern equivalent
      */
+    @Nullable
     public static PotionType getByBukkit(String bukkit) {
-        return PotionType.valueOf(bukkit.toUpperCase());
+        for (PotionTypeUtils p : values()) {
+            if (p.bukkit.equalsIgnoreCase(bukkit)) {
+                try {
+                    return PotionType.valueOf(p.name());
+                } catch (IllegalArgumentException ex) {
+                    return null;
+                }
+            }
+        }
+        return null;
     }
 
     /**
-     * Get PotionData from a String
+     * Get a PotionType from a String
      * <p><b>Formats:</b>
      * <br>POTION-TYPE (optional start with 'LONG_' or 'STRONG_')
      * <br>POTION-TYPE:boolean(strong):boolean(extended)</p>
      *
      * @param data data string of potion type
-     * @return New PotionData if checks passed
+     * @return Resolved PotionType if checks passed
      */
     @Nullable
-    public static PotionData getPotionData(String data) {
+    public static PotionType getPotionType(String data) {
         String[] potionData = data.split(":");
         if (potionData.length == 1) {
             String pData = potionData[0].toUpperCase(Locale.ROOT);
@@ -124,7 +137,7 @@ public enum PotionTypeUtils {
                 Util.warning("Potion can not be upgraded: &b" + data);
                 return null;
             }
-            return new PotionData(potionType, extended, strong);
+            return resolveVariant(potionType, extended, strong);
         } else if (potionData.length == 3) {
             PotionType potionType = get(potionData[0]);
             if (potionType == null) {
@@ -150,11 +163,27 @@ public enum PotionTypeUtils {
                 return null;
             }
 
-            return new PotionData(potionType, extended, upgraded);
+            return resolveVariant(potionType, extended, upgraded);
         } else {
             potionTypeWarning("Improper setup of potion-data: &c");
             return null;
         }
+    }
+
+    /**
+     * Resolve the granular {@link PotionType} constant (eg: LONG_SWIFTNESS, STRONG_SWIFTNESS)
+     * for a base potion type plus extended/upgraded flags, since these are now folded directly
+     * into the enum rather than represented as separate metadata.
+     *
+     * @param base     Base potion type (already validated as extendable/upgradeable if needed)
+     * @param extended Whether the extended (LONG_) variant is requested
+     * @param upgraded Whether the upgraded (STRONG_) variant is requested
+     * @return Resolved PotionType
+     */
+    private static PotionType resolveVariant(PotionType base, boolean extended, boolean upgraded) {
+        if (extended) return PotionType.valueOf("LONG_" + base.name());
+        if (upgraded) return PotionType.valueOf("STRONG_" + base.name());
+        return base;
     }
 
     private static void potionTypeWarning(@Nullable String warning) {

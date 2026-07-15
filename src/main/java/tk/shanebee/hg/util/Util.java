@@ -10,12 +10,13 @@ import org.bukkit.Material;
 import org.bukkit.Tag;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Directional;
+import org.bukkit.block.data.FaceAttachable;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.material.Attachable;
-import org.bukkit.material.MaterialData;
 import org.jetbrains.annotations.NotNull;
 import tk.shanebee.hg.HG;
 import tk.shanebee.hg.data.Config;
@@ -64,7 +65,7 @@ public class Util {
      * @param warning Message to log to console
      */
     public static void warning(String warning) {
-        if (warning.length() > 0) { // only send messages if its actually a message
+        if (!warning.isEmpty()) { // only send messages if its actually a message
             LOGGER.warning(getColString("&7[&e&lHungerGames&7] &eWARNING: " + warning));
         }
     }
@@ -114,7 +115,7 @@ public class Util {
      * @param s      Message to send
      */
     public static void scm(CommandSender sender, String s) {
-        if (s.length() > 0) { // only send messages if its actually a message
+        if (!s.isEmpty()) { // only send messages if its actually a message
             sender.sendMessage(getColString(s) + ChatColor.RESET);
         }
     }
@@ -137,7 +138,7 @@ public class Util {
      * @param message Message to send
      */
     public static void sendPrefixedMessage(CommandSender sender, String message) {
-        if (message.length() > 0) { // only send messages if its actually a message
+        if (!message.isEmpty()) { // only send messages if its actually a message
             scm(sender, HG.getPlugin().getLang().prefix + message);
         }
     }
@@ -159,7 +160,7 @@ public class Util {
      * @param s Message to send
      */
     public static void broadcast(String s) {
-        if (s.length() > 0) { // only send messages if its actually a message
+        if (!s.isEmpty()) { // only send messages if its actually a message
             Bukkit.broadcastMessage(getColString(HG.getPlugin().getLang().prefix + " " + s));
         }
     }
@@ -205,16 +206,12 @@ public class Util {
     }
 
     public static BlockFace getSignFace(BlockFace face) {
-        switch (face) {
-            case WEST:
-                return BlockFace.SOUTH;
-            case SOUTH:
-                return BlockFace.EAST;
-            case EAST:
-                return BlockFace.NORTH;
-            default:
-                return BlockFace.WEST;
-        }
+        return switch (face) {
+            case WEST -> BlockFace.SOUTH;
+            case SOUTH -> BlockFace.EAST;
+            case EAST -> BlockFace.NORTH;
+            default -> BlockFace.WEST;
+        };
     }
 
     /**
@@ -276,19 +273,32 @@ public class Util {
         fw.setFireworkMeta(fm);
     }
 
-    @SuppressWarnings("deprecation")
     public static boolean isAttached(Block base, Block attached) {
         if (attached.getType() == Material.AIR) return false;
 
-        MaterialData bs = attached.getState().getData();
-        //BlockData bs = attached.getBlockData();
+        BlockData data = attached.getBlockData();
+        BlockFace face;
 
-        if (!(bs instanceof Attachable)) return false;
+        if (data instanceof FaceAttachable) {
+            FaceAttachable.AttachedFace attachedFace = ((FaceAttachable) data).getAttachedFace();
+            switch (attachedFace) {
+                case CEILING:
+                    face = BlockFace.UP;
+                    break;
+                case FLOOR:
+                    face = BlockFace.DOWN;
+                    break;
+                default:
+                    if (!(data instanceof Directional)) return false;
+                    face = ((Directional) data).getFacing().getOppositeFace();
+                    break;
+            }
+        } else if (data instanceof Directional) {
+            face = ((Directional) data).getFacing().getOppositeFace();
+        } else {
+            return false;
+        }
 
-        Attachable at = (Attachable) bs;
-        BlockFace face = at.getAttachedFace();
-
-        if (face == null) return false;
         return attached.getRelative(face).equals(base);
     }
 
