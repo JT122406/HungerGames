@@ -8,6 +8,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.util.BoundingBox;
 import tk.shanebee.hg.HG;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -27,6 +28,8 @@ public class Bound {
 	private final int z2;
 	private final String world;
 	private final List<Entity> entities;
+
+    private WeakReference<World> cachedWorld = new WeakReference<>(null);
 
 	/** Create a new bounding box between 2 sets of coordinates
 	 * @param world World this bound is in
@@ -67,14 +70,16 @@ public class Bound {
 	 * @return True if location is within this bound
 	 */
 	public boolean isInRegion(Location loc) {
-        World locWorld = loc.getWorld();
-        if (locWorld == null) return false;
-        String locWorldId = HG.getPlugin().getAdapter().getWorldId(locWorld);
-        if (!world.equals(locWorldId)) return false;
 		int cx = loc.getBlockX();
 		int cy = loc.getBlockY();
 		int cz = loc.getBlockZ();
-		return (cx >= x && cx <= x2) && (cy >= y && cy <= y2) && (cz >= z && cz <= z2);
+        if (cx < x || cx > x2 || cy < y || cy > y2 || cz < z || cz > z2) return false;
+        World locWorld = loc.getWorld();
+        if (locWorld == null) return false;
+        if (locWorld == cachedWorld.get()) return true;
+        if (!world.equals(HG.getPlugin().getAdapter().getWorldId(locWorld))) return false;
+        cachedWorld = new WeakReference<>(locWorld);
+        return true;
 	}
 
 	/**
