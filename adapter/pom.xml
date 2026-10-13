@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>tk.shanebee.hg</groupId>
+        <artifactId>hungergames-parent</artifactId>
+        <version>5.2.8</version>
+    </parent>
+
+    <artifactId>adapter-parent</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>api</module>
+        <module>adapter-legacy</module>
+        <module>adapter-v1_17</module>
+        <module>adapter-v1_21</module>
+        <module>adapter-v26</module>
+    </modules>
+</project>
