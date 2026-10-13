@@ -1,5 +1,6 @@
 package tk.shanebee.adapters;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -21,4 +22,5 @@ public interface VersionAdapter {
     PotionEffectType getPotionEffect(String name);
     PotionType getPotionType(String name);
     boolean setBasePotion(PotionMeta meta, PotionType type, boolean extended, boolean upgraded);
+    OfflinePlayer getOfflinePlayer(String name);
 }

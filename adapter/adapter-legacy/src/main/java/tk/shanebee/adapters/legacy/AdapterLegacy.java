@@ -2,6 +2,7 @@ package tk.shanebee.adapters.legacy;
 
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
@@ -84,5 +85,10 @@ public class AdapterLegacy implements VersionAdapter {
     @Override
     public boolean setBasePotion(PotionMeta meta, PotionType type, boolean extended, boolean upgraded) {
         return PotionUtils.setBasePotion(meta, type, extended, upgraded);
+    }
+
+    @Override
+    public OfflinePlayer getOfflinePlayer(String name) {
+        return Bukkit.getOfflinePlayer(name);
     }
 }

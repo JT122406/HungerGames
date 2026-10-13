@@ -1,6 +1,5 @@
 package tk.shanebee.hg.managers;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -170,7 +169,7 @@ public class ItemStackManager {
                     itemMeta = nbtApi.getItemWithNBT(item, s).getItemMeta();
             } else if (s.startsWith("ownerName:") && itemMeta instanceof SkullMeta) {
                 s = s.replace("ownerName:", "");
-                ((SkullMeta) itemMeta).setOwningPlayer(Bukkit.getOfflinePlayer(s));
+                ((SkullMeta) itemMeta).setOwningPlayer(HG.getPlugin().getAdapter().getOfflinePlayer(s));
             }
             item.setItemMeta(itemMeta);
         }
