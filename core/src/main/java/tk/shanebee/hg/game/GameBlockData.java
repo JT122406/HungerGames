@@ -25,8 +25,8 @@ import java.util.Set;
  */
 public class GameBlockData extends Data {
 
-    private final List<Location> chests = new ArrayList<>();
-    private final List<Location> playerChests = new ArrayList<>();
+    private final Set<Location> chests = new HashSet<>();
+    private final Set<Location> playerChests = new HashSet<>();
     private final List<BlockState> blocks = new ArrayList<>();
     private final List<ItemFrameData> itemFrameData = new ArrayList<>();
     private final Set<Location> editedSigns = new HashSet<>();
@@ -65,9 +65,10 @@ public class GameBlockData extends Data {
 
     void clearChests() {
         for (Location loc : chests) {
-            if (HG.getPlugin().getAdapter().getBlockState(loc.getBlock()) instanceof InventoryHolder) {
-                ((InventoryHolder) HG.getPlugin().getAdapter().getBlockState(loc.getBlock())).getInventory().clear();
-                HG.getPlugin().getAdapter().getBlockState(loc.getBlock()).update();
+            BlockState state = HG.getPlugin().getAdapter().getBlockState(loc.getBlock());
+            if (state instanceof InventoryHolder) {
+                ((InventoryHolder) state).getInventory().clear();
+                state.update();
             }
         }
         chests.clear();

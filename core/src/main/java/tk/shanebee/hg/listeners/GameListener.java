@@ -43,8 +43,8 @@ import tk.shanebee.hg.util.Util;
 
 import java.util.Collections;
 import java.util.Objects;
-import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Internal event listener
@@ -381,13 +381,14 @@ public class GameListener implements Listener {
 			Block block = event.getClickedBlock();
 			assert block != null;
 			PlayerData pd = playerManager.getPlayerData(player);
-			if (gameManager.getGame(player.getLocation()) == null) return;
-			if (gameManager.getGame(player.getLocation()).getGameArenaData().getStatus()  == Status.COUNTDOWN  || gameManager.getGame(player.getLocation()).getGameArenaData().getStatus()  == Status.WAITING) event.setCancelled(true);
+            Game locationGame = gameManager.getGame(player.getLocation());
+            if (locationGame == null) return;
+            Status locationStatus = locationGame.getGameArenaData().getStatus();
+            if (locationStatus == Status.COUNTDOWN || locationStatus == Status.WAITING) event.setCancelled(true);
 
 			if(Config.bonusRandom){
 				int random = Math.toIntExact((long) (Config.bonusChance*10));
-				Random ran = new Random();
-				int chance = ran.nextInt(10);
+				int chance = ThreadLocalRandom.current().nextInt(10);
 				if(chance<=random){
                     assert pd != null;
                     Bukkit.getServer().getPluginManager().callEvent(new ChestOpenEvent(pd.getGame(), block, true));
@@ -705,16 +706,11 @@ public class GameListener implements Listener {
 		if (playerManager.hasSpectatorData(player)) {
 			event.setCancelled(true);
 		}
-		if (gameManager.isInRegion(player.getLocation())) {
-			if (event.getAction() == Action.PHYSICAL) {
-				assert event.getClickedBlock() != null;
-				Material block = event.getClickedBlock().getType();
-				if (block == Material.FARMLAND) {
-					event.setCancelled(true);
-				}
-			}
-		}
-	}
+        if (event.getAction() == Action.PHYSICAL) {
+            assert event.getClickedBlock() != null;
+            if (event.getClickedBlock().getType() == Material.FARMLAND && gameManager.isInRegion(player.getLocation())) event.setCancelled(true);
+	    }
+    }
 
 	@EventHandler(ignoreCancelled = true)
 	private void onSignChange(SignChangeEvent event) {
@@ -876,7 +872,8 @@ public class GameListener implements Listener {
 	private void onMove(PlayerMoveEvent event) {
 		Game game = plugin.getPlayerManager().getGame(event.getPlayer());
 		if (game == null) return;
-		if (game.getGameArenaData().getStatus() == Status.COUNTDOWN || game.getGameArenaData().getStatus() == Status.WAITING) {
+        Status status = game.getGameArenaData().getStatus();
+        if (status == Status.COUNTDOWN || status == Status.WAITING) {
             if (event.getFrom().getX() != event.getTo().getX() || event.getFrom().getY() != event.getTo().getY() || event.getFrom().getZ() != event.getTo().getZ())
                 event.setCancelled(true);
         }
